@@ -21,8 +21,8 @@
   <br>
   <i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
   <h3>신제품 기획</h3><br>
-  <button class="w3-button w3-border w3-hover-red" style="cursor:pointer" onclick="location.href='pur_writeform.jsp'">등록</button>
-  <button class="w3-button w3-border w3-hover-red" style="cursor:pointer" onclick="location.href='pur_list.jsp'">조회</button>
+  <button class="w3-button w3-border w3-hover-red" style="cursor:pointer" onclick="location.href='/pur_writeform'">등록</button>
+  <button class="w3-button w3-border w3-hover-red" style="cursor:pointer" onclick="location.href='/pur_list'">조회</button>
   </div>
 </div>
 

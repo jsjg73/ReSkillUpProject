@@ -8,7 +8,9 @@ public class PurposalDTO {
 	private Date upd_date;
 	private String writer;
 	private String pdt_name;
+	
 	private int pdt_type;
+	
 	private String bigo;
 	private int target;
 	private String pic;

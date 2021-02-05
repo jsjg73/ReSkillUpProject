@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="vm.*" %>
-<%@ page import="java.util.*" %>
+<%@page import="com.mycompany.myapp.dto.*"%><%@ page import="java.util.*" %>
 <%
 	request.setCharacterEncoding("utf-8");
 %>

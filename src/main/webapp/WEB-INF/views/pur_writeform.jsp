@@ -6,13 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>신제품 기획서 등록</title>
    <!--부트스트랩 css 추가-->
-   <link rel="stylesheet" href="./css/bootstrap.min.css">
+   <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
 <h1 style="text-align:center">신제품 기획서 등록</h1><br><br>
 
 <div class="container">
-   <form action="pur_write.jsp" method="post">
+   <form action="pur_write" method="post">
    <input type="hidden" name="writer" value="employee">
       <div class="form-group">
          <label>제품명</label>
@@ -21,18 +21,18 @@
       </div>
       <div class="form-group">
          <label>등록날짜</label>
-         <input type="date" class="form-control" name="reg_date">
+         <input type="date" class="form-control" name="reg_date" value="2018-07-22">
       </div>
       <div class="form-group">
          <label>주 고객층</label>
-         <label><input type="checkbox" name="target" value="1"> code1</label>
+         <label><input type="checkbox" name="target" value="1" checked="checked"> code1</label>
 		 <label><input type="checkbox" name="target" value="2"> code2</label>
       </div>
       <div class="form-group">
          <label>유형</label>
          <select class="form-control" name="pdt_type" >
 		    <option value="none">=== 선택 ===</option>
-		    <option value="1">type1</option>
+		    <option value="1" selected="selected">type1</option>
 		    <option value="2">type2</option>
   		 </select>
       </div>
@@ -48,9 +48,9 @@
       <input class="btn btn-danger" type="reset" value="취소">
    </form>
 </div> <!-- /container -->
-
 <!--부트스트랩 js, jquery 추가-->
-<script src="./js/jquery.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
+<%-- <script src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script> --%>
+<script src="/resources/js/jquery.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
