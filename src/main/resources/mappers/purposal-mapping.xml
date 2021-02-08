@@ -16,7 +16,7 @@
 			WHERE rn > (#{pageNum}-1)* #{amount}
 			]]>
 		 </select>
-		 
+
 		 <select id="purCnt" resultType="int">
 		 	SELECT COUNT(*) FROM PURPOSAL
 		 </select>
@@ -27,7 +27,7 @@
 		 
 		 <insert id="PurposalInsert">
 		 INSERT INTO PURPOSAL (pdt_name,reg_date,writer,pdt_type,bigo,target,pic,orgpic)
-		 VALUES (#{pdt_name},#{reg_date},#{writer},#{pdt_type},#{bigo},#{target},#{pic},#{orgpic})
+		 VALUES (#{pdt_name},#{reg_date},#{writer},#{pdt_type,typeHandler=org.apache.ibatis.type.EnumTypeHandler, jdbcType=VARCHAR },#{bigo},#{target,typeHandler=org.apache.ibatis.type.EnumTypeHandler, jdbcType=VARCHAR },#{pic},#{pic})
 		 </insert>
 		 
 		 <update id="updatePur"></update>
