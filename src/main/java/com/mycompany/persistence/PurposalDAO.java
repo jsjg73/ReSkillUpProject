@@ -1,4 +1,4 @@
-package com.mycompany.myapp.dao;
+package com.mycompany.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mycompany.myapp.dto.PurposalDTO;
+import com.mycompany.domain.PurposalDTO;
 @Service
 public class PurposalDAO {
 	@Autowired

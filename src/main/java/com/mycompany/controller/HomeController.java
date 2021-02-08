@@ -1,4 +1,4 @@
-package com.mycompany.myapp.controller;
+package com.mycompany.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.mycompany.myapp.dao.PurposalDAO;
-import com.mycompany.myapp.dto.PurposalDTO;
+import com.mycompany.domain.PurposalDTO;
+import com.mycompany.persistence.PurposalDAO;
 
 /**
  * Handles requests for the application home page.

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.mycompany.myapp.dto.*"%><%@ page import="java.util.*" %>
+<%@page import="com.mycompany.domain.*"%>
+<%@page import="com.mycompany.persistence.*"%>
+<%@ page import="java.util.*" %>
 <%
 	request.setCharacterEncoding("utf-8");
 %>
 <%
 	String pdt_name = request.getParameter("pdt_name");
 	PurposalDAO dao = new PurposalDAO();
-	PurposalDTO dto = dao.purposalRead(pdt_name);
+	PurposalDTO dto = null;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

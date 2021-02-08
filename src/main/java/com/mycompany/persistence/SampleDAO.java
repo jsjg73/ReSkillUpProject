@@ -1,4 +1,4 @@
-package com.mycompany.myapp.dao;
+package com.mycompany.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mycompany.myapp.dto.SampleDTO;
+import com.mycompany.domain.SampleDTO;
 
 public class SampleDAO {
 	private static final String URL ="jdbc:oracle:thin:@localhost:1521:XE";

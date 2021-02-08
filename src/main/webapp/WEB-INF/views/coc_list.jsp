@@ -1,7 +1,7 @@
-<%@page import="com.mycompany.myapp.dto.*"%>
+<%@page import="com.mycompany.domain.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="com.mycompany.myapp.controller.*" %>
+    <%@ page import="com.mycompany.controller.*" %>
 <%@ page import="java.util.*" %>
 <% 
 	PurposalDAO purDAO = new PurposalDAO();

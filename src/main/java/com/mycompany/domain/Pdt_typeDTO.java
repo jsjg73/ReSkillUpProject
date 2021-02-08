@@ -1,4 +1,4 @@
-package com.mycompany.myapp.dto;
+package com.mycompany.domain;
 
 public class Pdt_typeDTO {
 	int pdt_type;

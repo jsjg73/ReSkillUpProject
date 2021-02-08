@@ -1,4 +1,4 @@
-package com.mycompany.myapp.dto;
+package com.mycompany.domain;
 
 import java.sql.Date;
 
