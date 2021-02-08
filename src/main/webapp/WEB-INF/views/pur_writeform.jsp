@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,23 +23,25 @@
       <div class="form-group">
          <label>등록날짜</label>
          <input type="date" class="form-control" name="reg_date" value="2018-07-22">
-      </div>
-      <div class="form-group">
-         <label>주 고객층</label>
-         <label><input type="checkbox" name="target" value="1" checked="checked"> code1</label>
-		 <label><input type="checkbox" name="target" value="2"> code2</label>
-      </div>
+      </div>    
       <div class="form-group">
          <label>유형</label>
          <select class="form-control" name="pdt_type" >
-		    <option value="none">=== 선택 ===</option>
-		    <option value="1" selected="selected">type1</option>
-		    <option value="2">type2</option>
+         	<option value="none">=== 선택 ===</option>
+         	<c:forEach var="Pdt_type" items="${Pdt_type_list}">		    
+			    <option value="${Pdt_type }" >${Pdt_type }</option>
+		    </c:forEach>
   		 </select>
       </div>
       <div class="form-group">
          <label>비고</label>
          <textarea class="form-control" name="bigo" rows="5" cols="30"></textarea>
+      </div>
+      <div class="form-group">
+         <label>주 고객층</label>
+         <c:forEach var="TargetDTO" items="${TargetDTO_list}">
+         	<label><input type="checkbox" name="target" value="${TargetDTO }" > ${TargetDTO }</label>
+		 </c:forEach>
       </div>
       <div class="form-group">
          <label>사진</label>
