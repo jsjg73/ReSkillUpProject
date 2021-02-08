@@ -81,10 +81,7 @@ public class HomeController {
 		int total = service.puposalCnt();
 		
 		//DB 처리 : mybatis
-		System.out.println(cri);
 		List<PurposalDTO> list = dao.purposalListPaging(cri);
-		//list null  문제
-		System.out.println(list.size());
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
 		
@@ -106,8 +103,6 @@ public class HomeController {
 		
 		//DB 처리 : mybatis
 		dto.setWriter((String)sess.getAttribute("login"));
-		System.out.println("updateform 작업할 차례");
-		System.out.println(dto);
 		model.addAttribute("dto",dto);
 		return "pur_updateform";
 	}
