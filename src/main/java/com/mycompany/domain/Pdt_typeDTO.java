@@ -1,20 +1,17 @@
 package com.mycompany.domain;
 
-public class Pdt_typeDTO {
-	int pdt_type;
-	String type_name;
+import java.util.ArrayList;
+import java.util.List;
+
+public enum Pdt_typeDTO {
+	전자기기, 가구, 식품, 화장품;
 	
-	public int getPdt_type() {
-		return pdt_type;
-	}
-	public void setPdt_type(int pdt_type) {
-		this.pdt_type = pdt_type;
-	}
-	public String getType_name() {
-		return type_name;
-	}
-	public void setType_name(String type_name) {
-		this.type_name = type_name;
-	}
+    public String getKey() {
+        return super.name();
+    }
 	
+	public String getValue() {
+        return super.toString();
+    }
+
 }
