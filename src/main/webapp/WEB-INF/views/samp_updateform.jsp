@@ -6,12 +6,12 @@
 	request.setCharacterEncoding("utf-8");
 %>
 <%
-	//String strPg = request.getParameter("pg");
+//String strPg = request.getParameter("pg");
 	//int pg = Integer.parseInt(strPg);
 	String strId = request.getParameter("samp_id");
 	int id = Integer.parseInt(strId);
 	
-	SampleDAO sampleDAO = new SampleDAO();
+	SampleDAOImpl sampleDAO = new SampleDAOImpl();
 	SampleDTO dto = sampleDAO.sampleRead(id);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

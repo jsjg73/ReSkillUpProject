@@ -93,7 +93,6 @@ public class PurposalController {
 	public String pur_update(Model model, PurposalDTO dto, String pageNum) {
 		
 		service.purposalUpdate(dto);
-		
 		return "redirect:/pur_list/"+pageNum;
 	}
 }
