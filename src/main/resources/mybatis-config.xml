@@ -3,7 +3,8 @@
 <configuration>	
 	<!-- Alias 설정 -->
 	<typeAliases>
-		<typeAlias alias="pur" type="com.mycompany.myapp.dto.PurposalDTO"/>
+		<typeAlias alias="pur" type="com.mycompany.domain.PurposalDTO"/>
+		<typeAlias alias="page" type="com.mycompany.domain.PageDTO"/>
 	</typeAliases>
 		
 	<!-- sql Mapper  설정 -->

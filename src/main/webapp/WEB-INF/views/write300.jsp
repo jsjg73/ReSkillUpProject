@@ -4,9 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	int start =353;
+int start =353;
 	int capa = 100;
-	PurposalDAO boardDAO = new PurposalDAO();
+	PurposalDAOImpl boardDAO = new PurposalDAOImpl();
 	for(int i=start; i<=start+capa; i++) {
 		Thread.sleep(200);
 		PurposalDTO dto = new PurposalDTO();

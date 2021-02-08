@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.mycompany.domain.*"%><%@ page import="java.util.*" %>
-<% 
-	PurposalDAO purDAO = new PurposalDAO();
+<%
+PurposalDAOImpl purDAO = new PurposalDAOImpl();
 	ArrayList<PurposalDTO> list = purDAO.purposalList();
 	//System.out.println(list.size());
 %>

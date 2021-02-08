@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ page import="vm.*" %>
 <%@ page import="java.util.*" %>
-<% 
-	PurposalDAO purDAO = new PurposalDAO();
+<%
+PurposalDAOImpl purDAO = new PurposalDAOImpl();
 	ArrayList<PurposalDTO> list = purDAO.purposalList();
 	//System.out.println(list.size());
 %>

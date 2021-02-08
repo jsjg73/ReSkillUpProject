@@ -55,15 +55,44 @@
 		<c:forEach var="b" items="${list}" varStatus="st">
 		<tr>
 			<td>${st.index}</td>
-			<td><a href="/pur_read?pdt_name=${b.pdt_name}">${b.pdt_name}</a></td>
+			<td><a href="/pur_read/${b.pdt_name}">${b.pdt_name}</a></td>
 			<td>${b.writer}</td>
 			<td>${b.pdt_type}</td>
 			<td><fmt:formatDate value="${b.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			<td><fmt:formatDate value="${b.upd_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		</tr>
 	</c:forEach>
+</tbody>
+</table>
+<div style="width:660px" align="left">
+<c:if test="${page.prev}">
+   [ <a href="/pur_list/1">◀◀</a>]
+   [ <a href="/pur_list/${page.startPage-1}">◀</a>]
+</c:if>
+<c:if test="${not page.prev }">
+   [ <span style="color:silver">◀</span> ]
+   [ <span style="color:silver">◀◀</span> ]
+</c:if>
 
+<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
+   <c:if test="${page.cri.pageNum != i}">
+      [<a href="/pur_list/${i }">${i}</a>]
+   </c:if>
+   <c:if test="${page.cri.pageNum == i}">
+      [${i }]
+   </c:if>
+</c:forEach>
+<c:if test="${page.next}">
+   [<a href="/pur_list/${page.endPage+1}">▶</a>]
+   [<a href="/pur_list/${page.totalPage }">▶▶</a>]
+</c:if>
+<c:if test="${not page.next}">
+   [ <span style="color:silver">▶</span> ]
+   [ <span style="color:silver">▶▶</span> ]
+</c:if>
 </div>
-	</div>
+</div>
+	
+	
 </body>
 </html>

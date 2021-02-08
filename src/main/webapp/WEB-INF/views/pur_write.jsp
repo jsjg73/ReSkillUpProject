@@ -21,7 +21,7 @@ dto.setPic(pic);
 dto.setTarget(Integer.parseInt(target));
 dto.setPdt_type(Integer.parseInt(pdt_type));
 
-PurposalDAO dao = new PurposalDAO();
+PurposalDAOImpl dao = new PurposalDAOImpl();
 dao.PurposalInsert(dto);
 %>
 <html>

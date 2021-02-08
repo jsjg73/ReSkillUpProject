@@ -99,6 +99,13 @@ public class PurposalDTO {
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
+	@Override
+	public String toString() {
+		return "PurposalDTO [reg_date=" + reg_date + ", ins_date=" + ins_date + ", upd_date=" + upd_date + ", writer="
+				+ writer + ", pdt_name=" + pdt_name + ", pdt_type=" + pdt_type + ", bigo=" + bigo + ", target=" + target
+				+ ", pic=" + pic + ", orgpic=" + orgpic + ", del_ck=" + del_ck + "]";
+	}
+	
 	
 }
 
