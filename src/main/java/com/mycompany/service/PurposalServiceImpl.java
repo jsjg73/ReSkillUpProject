@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.domain.Criteria;
+import com.mycompany.domain.PurposalDTO;
 import com.mycompany.persistence.PurposalDAO;
 
 @Service
@@ -12,7 +13,11 @@ public class PurposalServiceImpl implements PurposalService {
 	public PurposalDAO purDAO;
 	
 	@Override
-	public int puposalCnt() {
+	public int purposalCnt() {
 		return purDAO.purCnt();
+	}
+	@Override
+	public void purposalUpdate(PurposalDTO dto) {
+		purDAO.purposalUpdate(dto);
 	}
 }

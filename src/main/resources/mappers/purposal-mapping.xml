@@ -30,7 +30,17 @@
 		 VALUES (#{pdt_name},#{reg_date},#{writer},#{pdt_type},#{bigo},#{target},#{pic},#{orgpic})
 		 </insert>
 		 
-		 <update id="updatePur"></update>
+		 <update id="purposalUpdate">
+		 	UPDATE purposal
+		 	SET 
+		 		reg_date = #{reg_date},
+		 		target = #{target},
+		 		bigo = #{bigo},
+		 		pic = #{pic},
+		 		orgpic = #{orgpic},
+		 		upd_date = sysdate
+		 	WHERE pdt_name = #{pdt_name}
+		 </update>
 		 
  
 </mapper>

@@ -56,6 +56,10 @@ public class PurposalDAOImpl implements PurposalDAO {
 	public List<PurposalDTO> purposalListPaging(Criteria cri) {
 		return mybatis.selectList("Pur.purposalListPaging",cri);
 	}
+	@Override
+	public void purposalUpdate(PurposalDTO dto) {
+		mybatis.update("Pur.purposalUpdate",dto);
+	}
 	
 	public ArrayList<PurposalDTO> purposalList(int begin, int end) {
 		ArrayList<PurposalDTO> list = new ArrayList<PurposalDTO>();
@@ -84,7 +88,7 @@ public class PurposalDAOImpl implements PurposalDAO {
 				pur.setPdt_type(rs.getInt("pdt_type"));
 				pur.setPic(rs.getString("pic"));
 				pur.setReg_date(rs.getDate("reg_date"));
-				pur.setTarget(rs.getInt("target"));
+				pur.setTarget(rs.getString("target"));
 				list.add(pur);
 			}// while
 		} catch(Exception e) {

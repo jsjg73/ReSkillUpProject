@@ -29,9 +29,17 @@
       </div>
       <div class="form-group">
          <label>주 고객층</label>
-         <!-- 선택된 고객층을 어떻게 체크를 해놓을지 모르겠음 -->
-         <label><input type="checkbox" name="target" value="1"> code1</label>
-		 <label><input type="checkbox" name="target" value="2"> code2</label>
+	        <c:set var="idx" value="0" />
+	      <c:forEach var="i" begin="1" end="4" >
+	      	<label>
+      			<input type="checkbox" name="target" value="${i}" disabled="disabled"
+      				<c:if test="${targets[idx] == i}">
+      					<c:set var="idx" value="${idx+1}" />
+      					checked="checked"
+      				</c:if>
+      			> code${i}
+	      	</label>
+	      </c:forEach>
       </div>
       <div class="form-group">
          <label>유형</label>
@@ -50,7 +58,7 @@
          <!-- 선택된 사진을 어떻게 받아서 표시할지 모르겠음 -->
          <input type="file" class="form-control" name="pic" value="${pur.pic}" accept="image/gif,image/jpeg, image/png" readonly>
       </div>
-      <a href="/pur_list" class="btn btn-primary">확인</a>
+      <a href="/pur_list/1" class="btn btn-primary">확인</a>
       <button type="submit" class="btn btn-primary">수정페이지로</button>
    </form>
 </div> <!-- /container -->

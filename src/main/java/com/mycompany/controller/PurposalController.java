@@ -35,16 +35,16 @@ public class PurposalController {
 	public String pur_write(PurposalDTO dto, HttpSession sess) {
 		
 		//DB 처리 : mybatis
-		dto.setWriter((String)sess.getAttribute("login"));
-		System.out.println(dto);
-		//dao.PurposalInsert(dto);
 		
-		return "redirect:/pur_list";
+		System.out.println(dto);
+		dao.PurposalInsert(dto);
+		
+		return "redirect:/pur_list/1";
 	}
 	
 	@RequestMapping(value="pur_list/{pageNum}")
 	public String pur_list(Model model, Criteria cri) {
-		int total = service.puposalCnt();
+		int total = service.purposalCnt();
 		
 		//DB 처리 : mybatis
 		System.out.println(cri);
@@ -65,16 +65,28 @@ public class PurposalController {
 		dto.setPdt_name(pdt_name);
 		dto = dao.purposalRead(dto);
 		model.addAttribute("pur", dto);
+		
+		// taget 체크박스 체크
+		String[] targets = dto.getTarget().split(",");
+		model.addAttribute("targets",targets);
+		
 		return "pur_read";
 	}
 	@RequestMapping(value="pur_updateform")
-	public String pur_updateform(Model model, PurposalDTO dto, HttpSession sess) {
+	public String pur_updateform(Model model, String pdt_name, HttpSession sess) {
 		
-		//DB 처리 : mybatis
-		dto.setWriter((String)sess.getAttribute("login"));
-		System.out.println("updateform 작업할 차례");
-		System.out.println(dto);
+		
+		model.addAttribute("editor", (String)sess.getAttribute("session"));
+//		model.addAttribute("editor", editor);
+		
+		PurposalDTO dto = new PurposalDTO();
+		dto.setPdt_name(pdt_name);
+		dto = dao.purposalRead(dto);
 		model.addAttribute("dto",dto);
+		
+		// taget 체크박스 체크
+		String[] targets = dto.getTarget().split(",");
+		model.addAttribute("targets",targets);
 		return "pur_updateform";
 	}
 	@RequestMapping(value="pur_update")
@@ -82,7 +94,8 @@ public class PurposalController {
 		
 		//DB 처리 : mybatis
 		System.out.println("update 작업할 차례");
-		
-		return "pur_read";
+		System.out.println(dto);
+		service.purposalUpdate(dto);
+		return "redirect:/pur_list/1";
 	}
 }

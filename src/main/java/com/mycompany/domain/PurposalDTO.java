@@ -12,7 +12,7 @@ public class PurposalDTO {
 	private int pdt_type;
 	
 	private String bigo;
-	private int target;
+	private String target;
 	private String pic;
 	private String orgpic;
 	private Pdt_typeDTO pdt_typeDTO;
@@ -87,10 +87,10 @@ public class PurposalDTO {
 	public void setBigo(String bigo) {
 		this.bigo = bigo;
 	}
-	public int getTarget() {
+	public String getTarget() {
 		return target;
 	}
-	public void setTarget(int target) {
+	public void setTarget(String target) {
 		this.target = target;
 	}
 	public String getPic() {

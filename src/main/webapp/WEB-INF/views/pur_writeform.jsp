@@ -17,8 +17,9 @@
 <div class="container">
    <form action="pur_write" method="post" id="pur_writeform" name="pwf">
    <input type="hidden" name="writer" value="employee">
+   <input type="hidden" name="orgpic" value="">
       <div class="form-group">
-         <label>제품명</label>
+         <label>제품명(중복 조회 처리해야함)</label>
          <input type="text" class="form-control" name="pdt_name" id="pdt_name"
                placeholder="제품명을 입력하세요">
       </div>
@@ -28,10 +29,10 @@
       </div>
       <div class="form-group">
          <label>주 고객층</label>
-         <label><input type="checkbox" name="targets[0]" value="1"> code1</label>
-		 <label><input type="checkbox" name="targets[1]" value="2"> code2</label>
-		 <label><input type="checkbox" name="targets[2]" value="3"> code3</label>
-		 <label><input type="checkbox" name="targets[3]" value="4"> code4</label>
+         <label><input type="checkbox" name="target" value="1"> code1</label>
+		 <label><input type="checkbox" name="target" value="2"> code2</label>
+		 <label><input type="checkbox" name="target" value="3"> code3</label>
+		 <label><input type="checkbox" name="target" value="4"> code4</label>
       </div>
       <div class="form-group">
          <label>유형</label>
