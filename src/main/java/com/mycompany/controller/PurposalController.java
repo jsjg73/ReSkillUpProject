@@ -36,7 +36,8 @@ public class PurposalController {
 		
 		//DB 처리 : mybatis
 		dto.setWriter((String)sess.getAttribute("login"));
-		dao.PurposalInsert(dto);
+		System.out.println(dto);
+		//dao.PurposalInsert(dto);
 		
 		return "redirect:/pur_list";
 	}
