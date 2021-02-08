@@ -1,5 +1,6 @@
 package com.mycompany.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
+import com.mycompany.domain.Pdt_typeDTO;
 import com.mycompany.domain.PurposalDTO;
+import com.mycompany.domain.TargetDTO;
 import com.mycompany.persistence.PurposalDAO;
 import com.mycompany.service.PurposalService;
 
@@ -27,16 +30,35 @@ public class PurposalController {
 	
 	
 	@RequestMapping("pur_writeform")
-	public String pur_writeform() {
+	public String pur_writeform(Model model) {
+		ArrayList<String> Pdt_type_list = new ArrayList<String>();
+
+		for (Pdt_typeDTO Pdt_type : Pdt_typeDTO.values()) {
+			Pdt_type_list.add(Pdt_type.getKey());
+		}
+		
+		ArrayList<String> TargetDTO_list = new ArrayList<String>();
+
+		for (TargetDTO TargetDTO : TargetDTO.values()) {
+			TargetDTO_list.add(TargetDTO.getKey());
+		}
+		System.out.println("Pdt_type_list size : " + Pdt_type_list.size());
+		System.out.println("TargetDTO_list size : " + TargetDTO_list.size());
+		System.out.println("한글 확인 : " + Pdt_type_list.get(0));
+		model.addAttribute("Pdt_type_list", Pdt_type_list);
+		model.addAttribute("TargetDTO_list", TargetDTO_list);
+		
 		return "pur_writeform";
 	}
+	
 	
 	@RequestMapping(value="pur_write", method=RequestMethod.POST)
 	public String pur_write(PurposalDTO dto, HttpSession sess) {
 		
 		//DB 처리 : mybatis
-		dto.setWriter((String)sess.getAttribute("login"));
-		dao.PurposalInsert(dto);
+		dto.setWriter((String)sess.getAttribute("session"));
+		System.out.println(dto.toString());
+		service.PurposalInsert(dto);
 		
 		return "redirect:/pur_list";
 	}
