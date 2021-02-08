@@ -57,44 +57,44 @@ public class PurposalDAOImpl implements PurposalDAO {
 		return mybatis.selectList("Pur.purposalListPaging",cri);
 	}
 	
-	public ArrayList<PurposalDTO> purposalList(int begin, int end) {
-		ArrayList<PurposalDTO> list = new ArrayList<PurposalDTO>();
-		Connection conn = null;
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		String sql =
-			"SELECT * " +
-			"FROM (SELECT rownum as rn, A.* " +
-			"      FROM (SELECT * FROM purposal ORDER BY ins_date DESC) A " +
-			"      WHERE rownum <= ?) " +
-			"WHERE rn >= ?";
-		try {
-			conn = getConn();
-			st = conn.prepareStatement(sql);
-			st.setInt(1, end);
-			st.setInt(2, begin);
-			rs = st.executeQuery();
-			while(rs.next()) {
-				PurposalDTO pur = new PurposalDTO();
-				pur.setPdt_name(rs.getString("pdt_name"));
-				pur.setIns_date(rs.getDate("ins_date"));
-				pur.setUpd_date(rs.getDate("upd_date"));
-				pur.setWriter(rs.getString("writer"));
-				pur.setBigo(rs.getString("bigo"));
-				pur.setPdt_type(rs.getInt("pdt_type"));
-				pur.setPic(rs.getString("pic"));
-				pur.setReg_date(rs.getDate("reg_date"));
-				pur.setTarget(rs.getInt("target"));
-				list.add(pur);
-			}// while
-		} catch(Exception e) {
-			System.out.println("boardList 예외 발생!!!");
-			e.printStackTrace();
-		} finally {
-			close(conn,st,rs);
-		}
-		return list;
-	}
+//	public ArrayList<PurposalDTO> purposalList(int begin, int end) {
+//		ArrayList<PurposalDTO> list = new ArrayList<PurposalDTO>();
+//		Connection conn = null;
+//		PreparedStatement st = null;
+//		ResultSet rs = null;
+//		String sql =
+//			"SELECT * " +
+//			"FROM (SELECT rownum as rn, A.* " +
+//			"      FROM (SELECT * FROM purposal ORDER BY ins_date DESC) A " +
+//			"      WHERE rownum <= ?) " +
+//			"WHERE rn >= ?";
+//		try {
+//			conn = getConn();
+//			st = conn.prepareStatement(sql);
+//			st.setInt(1, end);
+//			st.setInt(2, begin);
+//			rs = st.executeQuery();
+//			while(rs.next()) {
+//				PurposalDTO pur = new PurposalDTO();
+//				pur.setPdt_name(rs.getString("pdt_name"));
+//				pur.setIns_date(rs.getDate("ins_date"));
+//				pur.setUpd_date(rs.getDate("upd_date"));
+//				pur.setWriter(rs.getString("writer"));
+//				pur.setBigo(rs.getString("bigo"));
+//				pur.setPdt_type(rs.getInt("pdt_type"));
+//				pur.setPic(rs.getString("pic"));
+//				pur.setReg_date(rs.getDate("reg_date"));
+//				pur.setTarget(rs.getInt("target"));
+//				list.add(pur);
+//			}// while
+//		} catch(Exception e) {
+//			System.out.println("boardList 예외 발생!!!");
+//			e.printStackTrace();
+//		} finally {
+//			close(conn,st,rs);
+//		}
+//		return list;
+//	}
 	
 	public int purCount() {
 		int cnt = 0;
