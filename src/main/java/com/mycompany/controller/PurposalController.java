@@ -31,34 +31,32 @@ public class PurposalController {
 		return "pur_writeform";
 	}
 	
+	//등록
 	@RequestMapping(value="pur_write", method=RequestMethod.POST)
 	public String pur_write(PurposalDTO dto, HttpSession sess) {
 		
-		//DB 처리 : mybatis
-		
-		System.out.println(dto);
+		//등록
 		dao.PurposalInsert(dto);
 		
 		return "redirect:/pur_list/1";
 	}
 	
+	//
 	@RequestMapping(value="pur_list/{pageNum}")
 	public String pur_list(Model model, Criteria cri) {
 		int total = service.purposalCnt();
 		
-		//DB 처리 : mybatis
-		System.out.println(cri);
+		//cri.pageNum==1, cri.amout == 10; (default)
 		List<PurposalDTO> list = dao.purposalListPaging(cri);
-		//list null  문제
-		System.out.println(list.size());
+		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
 		
 		return "pur_list";
 	}
 	
-	@RequestMapping(value="pur_read/{pdt_name}")
-	public String pur_read(Model model, @PathVariable("pdt_name") String pdt_name) {
+	@RequestMapping(value="pur_read/{pdt_name}/{pageNum}")
+	public String pur_read(Model model, @PathVariable("pdt_name") String pdt_name, @PathVariable("pageNum") String pageNum) {
 		
 		//DB 처리 : mybatis
 		PurposalDTO dto = new PurposalDTO();
@@ -69,15 +67,16 @@ public class PurposalController {
 		// taget 체크박스 체크
 		String[] targets = dto.getTarget().split(",");
 		model.addAttribute("targets",targets);
+		model.addAttribute("pageNum",pageNum);
 		
 		return "pur_read";
 	}
 	@RequestMapping(value="pur_updateform")
-	public String pur_updateform(Model model, String pdt_name, HttpSession sess) {
+	public String pur_updateform(Model model, String pdt_name, HttpSession sess, String pageNum) {
 		
-		
-		model.addAttribute("editor", (String)sess.getAttribute("session"));
-//		model.addAttribute("editor", editor);
+		String editor = (String)sess.getAttribute("session");
+		if(editor == null) editor = "editor";
+		model.addAttribute("editor", editor);
 		
 		PurposalDTO dto = new PurposalDTO();
 		dto.setPdt_name(pdt_name);
@@ -87,15 +86,14 @@ public class PurposalController {
 		// taget 체크박스 체크
 		String[] targets = dto.getTarget().split(",");
 		model.addAttribute("targets",targets);
+		model.addAttribute("pageNum",pageNum);
 		return "pur_updateform";
 	}
 	@RequestMapping(value="pur_update")
-	public String pur_update(Model model, PurposalDTO dto) {
+	public String pur_update(Model model, PurposalDTO dto, String pageNum) {
 		
-		//DB 처리 : mybatis
-		System.out.println("update 작업할 차례");
-		System.out.println(dto);
 		service.purposalUpdate(dto);
-		return "redirect:/pur_list/1";
+		
+		return "redirect:/pur_list/"+pageNum;
 	}
 }

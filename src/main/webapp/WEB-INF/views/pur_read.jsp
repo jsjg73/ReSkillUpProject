@@ -17,6 +17,7 @@
 <div class="container">
    <form action="/pur_updateform" method="post">
    <input type="hidden" name="writer" value="${pur.writer}">
+   <input type="hidden" name="pageNum" value="${pageNum}">
       <div class="form-group">
          <label>제품명</label>
          <input type="text" class="form-control" name="pdt_name"
@@ -32,7 +33,7 @@
 	        <c:set var="idx" value="0" />
 	      <c:forEach var="i" begin="1" end="4" >
 	      	<label>
-      			<input type="checkbox" name="target" value="${i}" disabled="disabled"
+      			<input type="checkbox" name="target" value="${i}"
       				<c:if test="${targets[idx] == i}">
       					<c:set var="idx" value="${idx+1}" />
       					checked="checked"

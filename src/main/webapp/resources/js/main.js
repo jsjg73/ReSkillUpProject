@@ -10,7 +10,6 @@ $(function(){
 			$("#reg_date").focus();
 			return false;
 		}
-		alert(pwf.target[0].checked);
 		if( pwf.target[0].checked == false &&
 		pwf.target[1].checked == false &&
 		pwf.target[2].checked == false &&
