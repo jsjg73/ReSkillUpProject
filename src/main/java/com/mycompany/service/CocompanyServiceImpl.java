@@ -1,52 +1,50 @@
 package com.mycompany.service;
 
-
-import java.util.List;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mycompany.domain.CocompanyDTO;
 import com.mycompany.domain.Criteria;
-import com.mycompany.domain.PurposalDTO;
-import com.mycompany.persistence.PurposalDAO;
+import com.mycompany.persistence.CocompanyDAO;
 
-@Service
-public class PurposalServiceImpl implements PurposalService {
+public class CocompanyServiceImpl implements CocompanyService {
 	@Autowired 
-	public PurposalDAO purDAO;
+	public CocompanyDAO cocDAO;
 	
 	@Override
-	public int purposalCnt() {
-		return purDAO.purposalCnt();
+	public int cocompanyCnt() {
+		return cocDAO.cocompanyCnt();
 	}
 
 	@Override
-	public void PurposalInsert(PurposalDTO dto) {
-		purDAO.PurposalInsert(dto);
-	}
-	
-	@Override
-	public void purposalUpdate(PurposalDTO dto) {
-		purDAO.purposalUpdate(dto);
+	public void cocompanyInsert(CocompanyDTO dto) {
+		cocDAO.cocompanyInsert(dto);
 	}
 
 	@Override
-	public List<PurposalDTO> purposalList() {
-		return purDAO.purposalList();
-	}
-	@Override
-	public List<PurposalDTO> purposalListPaging(Criteria cri) {
-		return purDAO.purposalListPaging(cri);
-	}
-	@Override
-	public PurposalDTO purposalRead(PurposalDTO dto) {
-		return purDAO.purposalRead(dto);
+	public void cocompanyUpdate(CocompanyDTO dto) {
+		cocDAO.cocompanyUpdate(dto);
 	}
 
-	
+	@Override
+	public List<CocompanyDTO> cocompanyList() {		
+		return cocDAO.cocompanyList();
+	}
+
+	@Override
+	public List<CocompanyDTO> cocompanyListPaging(Criteria cri) {
+		return cocDAO.cocompanyListPaging(cri);
+	}
+
+	@Override
+	public CocompanyDTO cocompanyRead(CocompanyDTO dto) {
+		return cocDAO.cocompanyRead(dto);
+	}
+
 	@Override
 	public String saveFile(MultipartFile file){
 	    
@@ -64,6 +62,5 @@ public class PurposalServiceImpl implements PurposalService {
 
 	    return saveName;
 	} 
-
 
 }

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+
+<c:set var="targets" value="${targets }" /> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,7 +23,7 @@
 <div class="container">
    <form action="/pur_update" method="post" id="pur_updateform" name="puf" >
    <input type="hidden" name="writer" value="${editor}">
-   <input type="hidden" name="orgpic" value="">
+   <input type="hidden" name="orgpic" value="${dto.orgpic }">
    <input type="hidden" name="pageNum" value="${pageNum }">
       <div class="form-group">
          <label>제품명</label>
@@ -46,10 +49,11 @@
          		> ${TargetDTO }
          	</label>
 		 </c:forEach>
+
       </div>
       <div class="form-group">
          <label>유형</label>
-         <input class="form-control" value="type${dto.pdt_type}" readonly="readonly" >
+         <input class="form-control" value="${dto.pdt_type}" readonly="readonly" >
          <input type="hidden" name="pdt_type" value="${dto.pdt_type}" >
       </div>
       <div class="form-group">
@@ -58,6 +62,7 @@
       </div>
       <div class="form-group">
          <label>사진</label>
+         <img src="C:\\upload\\tmp\\${dto.orgpic }"><br>
          <input type="file" class="form-control" name="pic" accept="image/gif,image/jpeg, image/png">
       </div>
       <button type="submit" class="btn btn-primary">수정</button>

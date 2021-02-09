@@ -113,6 +113,9 @@ public class PurposalController {
 		
 		// taget 체크박스 체크
 		String[] targets = dto.getTarget().split(",");
+		for(String str : targets) {
+			System.out.print(str + " ");
+		}
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
 		

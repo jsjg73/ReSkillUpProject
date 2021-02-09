@@ -29,18 +29,14 @@
          value="<fmt:formatDate type="both" value="${pur.reg_date}" pattern="yyyy-MM-dd" />" readonly>
       </div>
       <div class="form-group">
-         <label>주 고객층</label>
+         <label>주 고객층</label><br>
          <c:forEach var="target" items="${targets}">
          	<label><input type="checkbox" name="target" value="${target }" disabled="disabled" checked="checked"> ${target }</label>
 		 </c:forEach>
       </div>
       <div class="form-group">
          <label>유형</label>
-         <select class="form-control" name="pdt_type" readonly>
-         	<!-- 선택된 유형의 이름을 어떻게 받아서 표시할지 모르겠음 -->
-		    <option value="${pur.pdt_type}" selected >${pur.pdt_type}</option>
-		    
-  		 </select>
+         <input class="form-control" value="${dto.pdt_type}" readonly="readonly" >
       </div>
       <div class="form-group">
          <label>비고</label>
@@ -49,7 +45,7 @@
       <div class="form-group">
          <label>사진</label>
          <!-- 선택된 사진을 어떻게 받아서 표시할지 모르겠음 -->
-         <input type="file" class="form-control" name="pic" value="${pur.pic}" accept="image/gif,image/jpeg, image/png" readonly>
+         <img src="C:\\upload\\tmp\\${dto.orgpic }"><br>
       </div>
       <a href="/pur_list/${pageNum}" class="btn btn-primary">확인</a>
       <button type="submit" class="btn btn-primary">수정페이지로</button>
