@@ -1,31 +1,19 @@
-package com.mycompany.persistence;
+package com.mycompany.service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.SampleDTO;
+import com.mycompany.persistence.SampleDAO;
+@Service
+public class SampleServiceImpl implements SampleService {
 
-@Repository
-public class SampleDAOImpl implements SampleDAO {
-	private String ns = "Samp";	
 	@Autowired
-	private SqlSessionTemplate mybatis;
+	SampleDAO samdao;
 	
-	@Override
-	public SampleDTO sampleRead(String samp_id) {
-		return mybatis.selectOne(ns+".sampleRead", samp_id);
-	}
-
 	@Override
 	public int sampleCnt() {
 		// TODO Auto-generated method stub
@@ -34,13 +22,13 @@ public class SampleDAOImpl implements SampleDAO {
 
 	@Override
 	public void sampleInsert(SampleDTO dto) {
-		mybatis.insert(ns+".sampleInsert", dto);
+		samdao.sampleInsert(dto);
 	}
 
 	@Override
 	public void sampleUpdate(SampleDTO dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -54,5 +42,11 @@ public class SampleDAOImpl implements SampleDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public SampleDTO sampleRead(SampleDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

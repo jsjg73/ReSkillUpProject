@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Samp">
 
-		 <select id="sampleRead">
-		 	select * from samp where samp_id = #{samp_id};
-		 </select>
- 
+	 <select id="sampleRead" resultType="samp">
+	 	select * from samp where samp_id = #{samp_id};
+	 </select>
+ 	<insert id="sampleInsert">
+	 	insert into samp  ( bigo,samp_id, arriv_date, writer, price,  pic, coc_name, pdt_name, pdt_type)
+	 	values
+	 	(#{bigo},#{samp_id},#{arriv_date},#{writer},#{price},#{pic},#{coc_name},#{pdt_name},#{pdt_type,typeHandler=org.apache.ibatis.type.EnumTypeHandler, jdbcType=VARCHAR })
+	 	
+ 	</insert>
 </mapper>
