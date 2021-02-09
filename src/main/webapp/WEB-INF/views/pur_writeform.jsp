@@ -16,7 +16,7 @@
 <h1 style="text-align:center">신제품 기획서 등록</h1><br><br>
 
 <div class="container">
-   <form action="pur_write" method="post" id="pur_writeform" name="pwf">
+   <form action="pur_write" method="post" id="pur_writeform" name="pwf" enctype="multipart/form-data">
    <input type="hidden" name="writer" value="employee">
    <input type="hidden" name="orgpic" value="">
       <div class="form-group">
@@ -49,7 +49,7 @@
       </div>
       <div class="form-group">
          <label>사진</label>
-         <input type="file" class="form-control" name="pic" accept="image/gif,image/jpeg, image/png">
+         <input type="file" class="form-control" name="file" accept="image/gif,image/jpeg, image/png">
       </div>
       <button type="submit" class="btn btn-primary">등록</button>
       <input class="btn btn-danger" type="reset" value="취소">
