@@ -1,8 +1,9 @@
 package com.mycompany.service;
 
 import java.util.List;
-
 import com.mycompany.domain.Criteria;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.mycompany.domain.PurposalDTO;
 
 public interface PurposalService {
@@ -11,8 +12,12 @@ public interface PurposalService {
 	public void PurposalInsert(PurposalDTO dto);
 	void purposalUpdate(PurposalDTO dto);
 
+
 	List<PurposalDTO> purposalList();
 	List<PurposalDTO> purposalListPaging(Criteria cri);
 
 	PurposalDTO purposalRead(PurposalDTO dto);
+
+	public String saveFile(MultipartFile file);
+
 }
