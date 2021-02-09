@@ -29,23 +29,15 @@
       </div>
       <div class="form-group">
          <label>주 고객층</label>
-	        <c:set var="idx" value="0" />
-	      <c:forEach var="i" begin="1" end="4" >
-	      	<label>
-      			<input type="checkbox" name="target" value="${i}" disabled="disabled"
-      				<c:if test="${targets[idx] == i}">
-      					<c:set var="idx" value="${idx+1}" />
-      					checked="checked"
-      				</c:if>
-      			> code${i}
-	      	</label>
-	      </c:forEach>
+         <c:forEach var="target" items="${targets}">
+         	<label><input type="checkbox" name="target" value="${target }" disabled="disabled" checked="checked"> ${target }</label>
+		 </c:forEach>
       </div>
       <div class="form-group">
          <label>유형</label>
-         <select class="form-control" name="pdt_type" >
+         <select class="form-control" name="pdt_type" readonly>
          	<!-- 선택된 유형의 이름을 어떻게 받아서 표시할지 모르겠음 -->
-		    <option value="${pur.pdt_type}" selected readonly>type ${pur.pdt_type}</option>
+		    <option value="${pur.pdt_type}" selected >${pur.pdt_type}</option>
 		    
   		 </select>
       </div>
