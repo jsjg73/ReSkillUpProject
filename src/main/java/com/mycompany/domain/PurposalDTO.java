@@ -1,6 +1,8 @@
 package com.mycompany.domain;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.*;
 
@@ -16,7 +18,7 @@ public class PurposalDTO {
 
 	
 	private String bigo;
-	private TargetDTO target;
+	private String target;
 	private String pic;
 	private String orgpic;
 	private int del_ck;
