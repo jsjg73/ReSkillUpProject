@@ -9,13 +9,18 @@
 <title>신제품 기획서 수정</title>
    <!--부트스트랩 css 추가-->
    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script src="/resources/js/main.js"></script>
+   
+   
 </head>
 <body>
 <h1 style="text-align:center">신제품 기획서 수정</h1><br><br>
 
 <div class="container">
-   <form action="/pur_update" method="post">
-   <input type="hidden" name="writer" value="${dto.writer}">
+   <form action="/pur_update" method="post" id="pur_updateform" name="puf" >
+   <input type="hidden" name="writer" value="${editor}">
+   <input type="hidden" name="orgpic" value="">
       <div class="form-group">
          <label>제품명</label>
          <input type="text" class="form-control" name="pdt_name"
@@ -24,17 +29,26 @@
       <div class="form-group">
          <label>등록날짜</label>
          <input type="date" class="form-control" name="reg_date"
-         value="<fmt:formatDate type="both" value="${dto.reg_date}" pattern="yyyy-MM-dd"/>" readonly>
+         value="<fmt:formatDate type="both" value="${dto.reg_date}" pattern="yyyy-MM-dd"/>">
       </div>
       <div class="form-group">
-         <label>주 고객층</label>
-         <!-- 선택된 고객층을 어떻게 체크를 해놓을지 모르겠음 -->
-         <label><input type="checkbox" name="target" value="1" checked="checked"> code1</label>
-		 <label><input type="checkbox" name="target" value="2" checked="checked"> code2</label>
+      <label>주 고객층</label>
+	        <c:set var="idx" value="0" />
+	      <c:forEach var="i" begin="1" end="4" >
+	      	<label>
+      			<input type="checkbox" name="target" value="${i}" 
+      				<c:if test="${targets[idx] == i}">
+      					<c:set var="idx" value="${idx+1}" />
+      					checked="checked"
+      				</c:if>
+      			> code${i}
+	      	</label>
+	      </c:forEach>
       </div>
       <div class="form-group">
          <label>유형</label>
-         <input class="form-control" name="pdt_type" value="type${dto.pdt_type}" readonly="readonly" >
+         <input class="form-control" value="type${dto.pdt_type}" readonly="readonly" >
+         <input type="hidden" name="pdt_type" value="${dto.pdt_type}" >
       </div>
       <div class="form-group">
          <label>비고</label>

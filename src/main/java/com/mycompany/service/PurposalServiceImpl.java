@@ -13,7 +13,7 @@ public class PurposalServiceImpl implements PurposalService {
 	public PurposalDAO purDAO;
 	
 	@Override
-	public int puposalCnt() {
+	public int purposalCnt() {
 		return purDAO.purCnt();
 	}
 
@@ -22,4 +22,9 @@ public class PurposalServiceImpl implements PurposalService {
 		purDAO.PurposalInsert(dto);
 	}
 	
+	@Override
+	public void purposalUpdate(PurposalDTO dto) {
+		purDAO.purposalUpdate(dto);
+	}
+
 }

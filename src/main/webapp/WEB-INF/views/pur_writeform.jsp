@@ -7,21 +7,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>신제품 기획서 등록</title>
    <!--부트스트랩 css 추가-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+   <script src="/resources/js/main.js"></script>
+   
 </head>
 <body>
 <h1 style="text-align:center">신제품 기획서 등록</h1><br><br>
 
 <div class="container">
-   <form action="pur_write" method="post">
+   <form action="pur_write" method="post" id="pur_writeform" name="pwf">
    <input type="hidden" name="writer" value="employee">
+   <input type="hidden" name="orgpic" value="">
       <div class="form-group">
-         <label>제품명</label>
-         <input type="text" class="form-control" name="pdt_name"
+         <label>제품명(중복 조회 처리해야함)</label>
+         <input type="text" class="form-control" name="pdt_name" id="pdt_name"
                placeholder="제품명을 입력하세요">
       </div>
       <div class="form-group">
-         <label>등록날짜</label>
+         <label>기획날짜</label>
          <input type="date" class="form-control" name="reg_date" value="2018-07-22">
       </div>    
       <div class="form-group">

@@ -16,4 +16,6 @@ public interface PurposalDAO {
 	PurposalDTO purposalRead(PurposalDTO dto);
 	
 	int purCnt();
+
+	void purposalUpdate(PurposalDTO dto);
 }
