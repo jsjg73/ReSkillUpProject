@@ -85,7 +85,7 @@ public class PurposalDAOImpl implements PurposalDAO {
 				pur.setUpd_date(rs.getDate("upd_date"));
 				pur.setWriter(rs.getString("writer"));
 				pur.setBigo(rs.getString("bigo"));
-				pur.setPdt_type(rs.getInt("pdt_type"));
+				pur.setPdt_type(rs.getString("pdt_type"));
 				pur.setPic(rs.getString("pic"));
 				pur.setReg_date(rs.getDate("reg_date"));
 				pur.setTarget(rs.getString("target"));
