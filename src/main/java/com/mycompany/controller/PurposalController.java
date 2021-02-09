@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
@@ -52,11 +53,15 @@ public class PurposalController {
 
 	//등록
 	@RequestMapping(value="pur_write", method=RequestMethod.POST)
-	public String pur_write(PurposalDTO dto,  HttpSession sess) {
+	public String pur_write(@RequestParam("file") MultipartFile file, PurposalDTO dto,  HttpSession sess) {
 		
 		//DB 처리 : mybatis
-		//dto.setTargetList(targetList);
+
+		dto.setWriter((String)sess.getAttribute("session"));
+		dto.setPic(file.getName());
+		dto.setOrgpic(file.getOriginalFilename());
 		System.out.println(dto.toString());
+		service.saveFile(file);
 		service.PurposalInsert(dto);
 		
 		return "redirect:/pur_list/1";
