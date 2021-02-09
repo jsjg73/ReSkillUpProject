@@ -21,6 +21,7 @@
    <form action="/pur_update" method="post" id="pur_updateform" name="puf" >
    <input type="hidden" name="writer" value="${editor}">
    <input type="hidden" name="orgpic" value="">
+   <input type="hidden" name="pageNum" value="${pageNum }">
       <div class="form-group">
          <label>제품명</label>
          <input type="text" class="form-control" name="pdt_name"

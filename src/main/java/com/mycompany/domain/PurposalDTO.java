@@ -16,7 +16,7 @@ public class PurposalDTO {
 
 	
 	private String bigo;
-	private TargetDTO target;
+	private String target;
 	private String pic;
 	private String orgpic;
 	private int del_ck;
