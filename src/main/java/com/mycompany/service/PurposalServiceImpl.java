@@ -52,7 +52,7 @@ public class PurposalServiceImpl implements PurposalService {
 	    
 	    String saveName = file.getOriginalFilename();
 
-	    // 저장할 File 객체를 생성(껍데기 파일)ㄴ
+	    // 저장할 File 객체를 생성(껍데기 파일)
 	    File saveFile = new File("C:\\upload\\tmp",saveName); // 저장할 폴더 이름, 저장할 파일 이름
 
 	    try {
