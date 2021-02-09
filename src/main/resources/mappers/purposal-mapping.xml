@@ -27,7 +27,7 @@
 		 
 		 <insert id="PurposalInsert">
 		 INSERT INTO PURPOSAL (pdt_name,reg_date,writer,pdt_type,bigo,target,pic,orgpic)
-		 VALUES (#{pdt_name},#{reg_date},#{writer},#{pdt_type,typeHandler=org.apache.ibatis.type.EnumTypeHandler, jdbcType=VARCHAR },#{bigo},#{target,typeHandler=org.apache.ibatis.type.EnumTypeHandler, jdbcType=VARCHAR },#{pic},#{pic})
+		 VALUES (#{pdt_name},#{reg_date},#{writer},#{pdt_type,typeHandler=org.apache.ibatis.type.EnumTypeHandler, jdbcType=VARCHAR },#{bigo},#{target},#{pic},#{pic})
 		 </insert>
 		 
 		 <update id="purposalUpdate">
