@@ -40,7 +40,7 @@ public class SampController {
 	}
 	
 	@RequestMapping("samp_writeform/{pdt_name}")
-	public String sample_writeform(Model model,HttpSession sess, @PathVariable("pdt_name") String pdt_name, @PathVariable("pageNum") String pageNum ) {
+	public String sample_writeform(Model model,HttpSession sess, @PathVariable("pdt_name") String pdt_name ) {
 		
 		//현재 로그인한 직원 번호를 세션에서 가져옴
 		String writer = (String)sess.getAttribute("session");
@@ -52,10 +52,6 @@ public class SampController {
 		purDTO.setPdt_name(pdt_name);
 		purDTO =  purService.purposalRead(purDTO);
 		model.addAttribute("pur",purDTO);
-		
-		
-		model.addAttribute("pageNum",pageNum);
-		
 		
 		return "samp_writeform_step2";
 	}

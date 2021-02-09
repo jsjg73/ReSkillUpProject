@@ -15,7 +15,6 @@
 <h1 style="text-align:center" >샘플 등록</h1>
 <div class="container">
    <form action="/samp_write" method="post" id="samp_writeform" enctype="multipart/form-data" >
-   <input type="hidden" name=pageNum value="${pageNum}">
    <input type="hidden" name=writer value="${writer}">
    
       <div class="form-group">
