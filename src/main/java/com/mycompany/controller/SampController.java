@@ -35,9 +35,12 @@ public class SampController {
 	
 	@RequestMapping("/samp_writeform/{pdt_name}/{pageNum}")
 	public String sample_writeform(Model model, @PathVariable("pdt_name") String pdt_name, @PathVariable("pageNum") String pageNum ) {
-		System.out.println(pdt_name);
-		System.out.println(pageNum);
+		PurposalDTO purDTO = new PurposalDTO();
+		purDTO.setPdt_name(pdt_name);
+		purDTO =  purService.purposalRead(purDTO);
 		
-		return "index";
+		model.addAttribute("pur",purDTO);
+		model.addAttribute("pageNum",pageNum);
+		return "samp_writeform_step2";
 	}
 }

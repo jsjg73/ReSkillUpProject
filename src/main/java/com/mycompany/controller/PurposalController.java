@@ -14,14 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
 import com.mycompany.domain.PurposalDTO;
-import com.mycompany.persistence.PurposalDAO;
 import com.mycompany.service.PurposalService;
 
 @Controller
 public class PurposalController {
 
-	@Autowired
-	PurposalDAO dao ;
 	@Autowired
 	PurposalService service;
 	
@@ -36,7 +33,7 @@ public class PurposalController {
 	public String pur_write(PurposalDTO dto, HttpSession sess) {
 		
 		//등록
-		dao.PurposalInsert(dto);
+		service.PurposalInsert(dto);
 		
 		return "redirect:/pur_list/1";
 	}
@@ -47,7 +44,7 @@ public class PurposalController {
 		int total = service.purposalCnt();
 		
 		//cri.pageNum==1, cri.amout == 10; (default)
-		List<PurposalDTO> list = dao.purposalListPaging(cri);
+		List<PurposalDTO> list = service.purposalListPaging(cri);
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
@@ -61,7 +58,7 @@ public class PurposalController {
 		//DB 처리 : mybatis
 		PurposalDTO dto = new PurposalDTO();
 		dto.setPdt_name(pdt_name);
-		dto = dao.purposalRead(dto);
+		dto = service.purposalRead(dto);
 		model.addAttribute("pur", dto);
 		
 		// taget 체크박스 체크
@@ -80,7 +77,7 @@ public class PurposalController {
 		
 		PurposalDTO dto = new PurposalDTO();
 		dto.setPdt_name(pdt_name);
-		dto = dao.purposalRead(dto);
+		dto = service.purposalRead(dto);
 		model.addAttribute("dto",dto);
 		
 		// taget 체크박스 체크

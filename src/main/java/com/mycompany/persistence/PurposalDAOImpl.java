@@ -48,7 +48,7 @@ public class PurposalDAOImpl implements PurposalDAO {
 		return mybatis.selectOne("Pur.purposalRead", dto);
 	}
 	@Override
-	public int purCnt() {
+	public int purposalCnt() {
 		return mybatis.selectOne("Pur.purCnt");
 	}
 	
