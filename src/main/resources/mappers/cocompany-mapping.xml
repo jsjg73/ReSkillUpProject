@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Coc">
+	<select id="cocompanyList" resultType="coc">
+		SELECT * FROM COCOMPANY
+		ORDER BY reg_date DESC
+	</select>
+
+	<select id="cocompanyListPaging" resultType="coc">
+		 	<![CDATA[
+		 	SELECT *
+			FROM (SELECT rownum as rn, A.*
+			      FROM (SELECT * FROM COCOMPANY ORDER BY reg_date DESC) A
+			      WHERE rownum <= #{pageNum} * #{amount}) 
+			WHERE rn > (#{pageNum}-1)* #{amount}
+			]]>
+	</select>
+
+	<select id="cocCnt" resultType="int">
+		SELECT COUNT(*) FROM
+		COCOMPANY
+	</select>
+
+	<select id="cocompanyRead" resultType="coc">
+		SELECT * FROM COCOMPANY
+		WHERE coc_name = #{coc_name}
+	</select>
+
+	<insert id="cocompanyInsert">
+		INSERT INTO COCOMPANY
+		(coc_name,pdt_type,pwd,empno,coc_emp,coc_call,coc_mail)
+		VALUES
+		(#{coc_name},#{pdt_type,typeHandler=org.apache.ibatis.type.EnumTypeHandler,
+		jdbcType=VARCHAR },#{pwd},#{empno},#{coc_emp},#{coc_call},#{coc_mail)
+	</insert>
+
+	<update id="cocompanyUpdate">
+		UPDATE COCOMPANY
+		SET
+		coc_emp = #{coc_emp},
+		coc_call = #{coc_call},
+		coc_mail = #{coc_mail}
+		WHERE coc_name = #{coc_name}
+	</update>
+</mapper>
