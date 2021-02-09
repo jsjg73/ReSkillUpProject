@@ -34,7 +34,8 @@ $(function(){
 		if( puf.target[0].checked == false &&
 				puf.target[1].checked == false &&
 				puf.target[2].checked == false &&
-				puf.target[3].checked == false 	) {
+				puf.target[3].checked == false &&
+				puf.target[4].checked == false 	) {
 			alert("주 고객층을 꼭 선택해주세요!");
 			return false;
 		}
@@ -62,6 +63,20 @@ $(function(){
 			alert("제조사를 꼭 선택해주세요!");
 			$("#coc_name").focus();
 			return false;
+		}
+	});
+	
+	$("#samp_updateform").submit(function(){
+	   
+		if( $("#arriv_date").val() == "" ) {
+			alert("도착날짜를 꼭 선택해주세요!");
+			return false;
+			$("#arriv_date").focus();
+		}
+		if( $("#price").val() == "" ) {
+			alert("가격을 꼭 선택해주세요!");
+			return false;
+			$("#price").focus();
 		}
 	});
 });

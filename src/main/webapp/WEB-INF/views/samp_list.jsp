@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.mycompany.domain.*"%><%@ page import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 
 </head>
 <body>
@@ -54,35 +55,46 @@
 			</tr>
 		</thead>
 		<tbody>
-<tr>
-				<th scope="row">1</th>
-				<td><a href='samp_read.jsp'>더미 샘플ID</a></td>
-				<td>더미 제품명</td>
-				<td>더미 제조사</td>
-				<td>더미 유형</td>
-				<td>더미 단가</td>
-				<td>더미 도착날짜</td>
-			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td><a href='samp_read.jsp'>더미 샘플ID</a></td>
-				<td>더미 제품명</td>
-				<td>더미 제조사</td>
-				<td>더미 유형</td>
-				<td>더미 단가</td>
-				<td>더미 도착날짜</td>
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td><a href='samp_read.jsp'>더미 샘플ID</a></td>
-				<td>더미 제품명</td>
-				<td>더미 제조사</td>
-				<td>더미 유형</td>
-				<td>더미 단가</td>
-				<td>더미 도착날짜</td>
-			</tr>
+			<c:forEach var="b" items="${list}" varStatus="st">
+				<tr>
+					<td>${st.index}</td>
+					<td><a href="/samp_read/${b.samp_id}/${page.cri.pageNum}">${b.samp_id}</a></td>
+					<td>${b.pdt_name}</td>
+					<td>${b.coc_name}</td>
+					<td>${b.pdt_type}</td>
+					<td>${b.price}</td>
+					<td><fmt:formatDate value="${b.arriv_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
+	<div style="width:660px" align="left">
+<c:if test="${page.prev}">
+   [ <a href="/samp_list/1">◀◀</a>]
+   [ <a href="/samp_list/${page.startPage-1}">◀</a>]
+</c:if>
+<c:if test="${not page.prev }">
+   [ <span style="color:silver">◀</span> ]
+   [ <span style="color:silver">◀◀</span> ]
+</c:if>
+
+<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
+   <c:if test="${page.cri.pageNum != i}">
+      [<a href="/samp_list/${i }">${i}</a>]
+   </c:if>
+   <c:if test="${page.cri.pageNum == i}">
+      [${i }]
+   </c:if>
+</c:forEach>
+<c:if test="${page.next}">
+   [<a href="/samp_list/${page.endPage+1}">▶</a>]
+   [<a href="/samp_list/${page.totalPage }">▶▶</a>]
+</c:if>
+<c:if test="${not page.next}">
+   [ <span style="color:silver">▶</span> ]
+   [ <span style="color:silver">▶▶</span> ]
+</c:if>
+</div>
 	</div>
 </body>
 

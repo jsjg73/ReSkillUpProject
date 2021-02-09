@@ -28,8 +28,7 @@ public class SampleDAOImpl implements SampleDAO {
 
 	@Override
 	public int sampleCnt() {
-		// TODO Auto-generated method stub
-		return 0;
+		return mybatis.selectOne(ns+".sampleCnt");
 	}
 
 	@Override
@@ -39,8 +38,7 @@ public class SampleDAOImpl implements SampleDAO {
 
 	@Override
 	public void sampleUpdate(SampleDTO dto) {
-		// TODO Auto-generated method stub
-		
+		mybatis.update(ns+".sampleUpdate",dto);
 	}
 
 	@Override
@@ -51,8 +49,7 @@ public class SampleDAOImpl implements SampleDAO {
 
 	@Override
 	public List<SampleDTO> sampleListPaging(Criteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+		return mybatis.selectList(ns+".sampleListPaging",cri);
 	}
 	
 }

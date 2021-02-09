@@ -11,6 +11,7 @@ public class SampleDTO {
 	private int price;
 	private String bigo;
 	private String pic;
+	private String orgpic;
 	private Date ins_date;
 	private Date upd_date;
 	private String coc_name;

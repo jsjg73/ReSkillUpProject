@@ -13,5 +13,5 @@ public interface SampleService {
 	List<SampleDTO> sampleList();
 	List<SampleDTO> sampleListPaging(Criteria cri);
 
-	SampleDTO sampleRead(SampleDTO dto);
+	SampleDTO sampleRead(String samp_id);
 }

@@ -12,23 +12,21 @@ import com.mycompany.persistence.SampleDAO;
 public class SampleServiceImpl implements SampleService {
 
 	@Autowired
-	SampleDAO samdao;
+	SampleDAO sampdao;
 	
 	@Override
 	public int sampleCnt() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sampdao.sampleCnt();
 	}
 
 	@Override
 	public void sampleInsert(SampleDTO dto) {
-		samdao.sampleInsert(dto);
+		sampdao.sampleInsert(dto);
 	}
 
 	@Override
 	public void sampleUpdate(SampleDTO dto) {
-		// TODO Auto-generated method stub
-
+		sampdao.sampleUpdate(dto);
 	}
 
 	@Override
@@ -40,13 +38,12 @@ public class SampleServiceImpl implements SampleService {
 	@Override
 	public List<SampleDTO> sampleListPaging(Criteria cri) {
 		// TODO Auto-generated method stub
-		return null;
+		return sampdao.sampleListPaging(cri);
 	}
 
 	@Override
-	public SampleDTO sampleRead(SampleDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public SampleDTO sampleRead(String samp_id) {
+		return sampdao.sampleRead(samp_id);
 	}
 
 }

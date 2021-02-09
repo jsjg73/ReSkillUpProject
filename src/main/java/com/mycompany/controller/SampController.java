@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
@@ -57,10 +59,68 @@ public class SampController {
 	}
 	
 	@RequestMapping("samp_write")
-	public String sample_write(SampleDTO samp) {
+	public String sample_write(SampleDTO samp, @RequestParam("file") MultipartFile file) {
 		System.out.println(samp);
+		samp.setPic(file.getName());
+		samp.setOrgpic(file.getOriginalFilename());
+		System.out.println(samp.toString());
+		
+		//파일명 중복 문제는 교재 510쪽
+		purService.saveFile(file);
 		samservice.sampleInsert(samp);
 		
 		return "redirect:/samp_list/1";
+	}
+	
+	@RequestMapping(value="samp_list/{pageNum}")
+	public String samp_list(Model model, Criteria cri) {
+		int total = samservice.sampleCnt(); //
+		
+		//cri.pageNum==1, cri.amout == 10; (default)
+		List<SampleDTO> list = samservice.sampleListPaging(cri);
+		
+		model.addAttribute("page",new PageDTO(cri, total));
+		model.addAttribute("list", list);
+		
+		return "samp_list";
+	}
+	@RequestMapping(value="samp_read/{samp_id}/{pageNum}")
+	public String samp_read(Model model,HttpSession sess, @PathVariable("samp_id") String samp_id, @PathVariable("pageNum") String pageNum) {
+		
+		//현재 로그인한 직원 번호를 세션에서 가져옴
+		String writer = (String)sess.getAttribute("session");
+		//비정상적인 경로로 update 페이지에 오면 session이 null
+		if(writer == null) writer = "emp";
+		model.addAttribute("writer", writer);
+		
+		//DB 처리 : mybatis
+		SampleDTO dto = new SampleDTO();
+		dto = samservice.sampleRead(samp_id);
+		model.addAttribute("samp", dto);
+		
+		model.addAttribute("pageNum",pageNum);
+		
+		return "samp_read";
+	}
+	
+	@RequestMapping(value="samp_updateform")
+	public String samp_updateform(Model model, @RequestParam("writer") String writer, @RequestParam("pageNum") String pageNum,SampleDTO samp) {
+		//비정상적인 경로로 update 페이지에 오면 session이 null
+		if(writer == null) writer = "editor";
+		model.addAttribute("writer", writer);
+		
+		samp = samservice.sampleRead(samp.getSamp_id());
+		model.addAttribute("samp",samp);
+		model.addAttribute("pageNum",pageNum);
+		
+		return "samp_updateform";
+	}
+	
+	@RequestMapping("samp_update")
+	public String samp_update(@RequestParam("pageNum")String pageNum, SampleDTO samp) {
+		
+		samservice.sampleUpdate(samp);
+		
+		return "redirect:/samp_list/"+pageNum;
 	}
 }

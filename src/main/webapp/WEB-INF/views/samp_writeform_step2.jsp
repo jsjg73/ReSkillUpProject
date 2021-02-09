@@ -18,7 +18,7 @@
    <input type="hidden" name=writer value="${writer}">
    
       <div class="form-group">
-         <label>샘플ID</label>
+         <label>샘플ID(중복처리)</label>
          <input type="text" class="form-control" name="samp_id" id="samp_id"
                placeholder="샘플ID를 입력하세요">
       </div>
