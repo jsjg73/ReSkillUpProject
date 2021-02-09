@@ -14,7 +14,7 @@
 <body>
 <h1 style="text-align:center" >샘플 등록</h1>
 <div class="container">
-   <form action="/samp_write" method="post" id="samp_writeform" >
+   <form action="/samp_write" method="post" id="samp_writeform" enctype="multipart/form-data" >
    <input type="hidden" name=pageNum value="${pageNum}">
    <input type="hidden" name=writer value="${writer}">
    
@@ -48,11 +48,7 @@
       </div>
       <div class="form-group">
          <label>사진</label>
-         <input type="file" class="form-control" name="pic" accept="image/gif,image/jpeg, image/png">
-         
-         <!-- 업로드 구현 전까지 사용할 임시 코드 null 방지-->
-         <input type="hidden" name="orgpic" value="">
-         
+         <input type="file" class="form-control" name="file" accept="image/gif,image/jpeg, image/png">
       </div>
       <div class="form-group">
          <label>비고</label>

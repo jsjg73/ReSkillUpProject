@@ -57,7 +57,7 @@
 		<c:forEach var="b" items="${list}" varStatus="st">
 		<tr>
 			<td>${st.index}</td>
-			<td><a href="/samp_writeform/${b.pdt_name}/${page.cri.pageNum}">${b.pdt_name}</a></td>
+			<td><a href="/samp_writeform/${b.pdt_name}">${b.pdt_name}</a></td>
 			<td>${b.writer}</td>
 			<td>${b.pdt_type}</td>
 			<td><fmt:formatDate value="${b.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>

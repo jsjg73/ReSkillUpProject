@@ -39,7 +39,7 @@ public class SampController {
 		return "samp_writeform_step1";
 	}
 	
-	@RequestMapping("samp_writeform/{pdt_name}/{pageNum}")
+	@RequestMapping("samp_writeform/{pdt_name}")
 	public String sample_writeform(Model model,HttpSession sess, @PathVariable("pdt_name") String pdt_name, @PathVariable("pageNum") String pageNum ) {
 		
 		//현재 로그인한 직원 번호를 세션에서 가져옴
