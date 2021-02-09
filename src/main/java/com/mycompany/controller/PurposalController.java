@@ -60,7 +60,7 @@ public class PurposalController {
 		System.out.println(dto.toString());
 		service.PurposalInsert(dto);
 		
-		return "redirect:/pur_list";
+		return "redirect:/pur_list/1";
 	}
 	
 	@RequestMapping(value="pur_list/{pageNum}")
