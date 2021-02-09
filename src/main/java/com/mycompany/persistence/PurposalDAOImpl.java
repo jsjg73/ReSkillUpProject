@@ -1,6 +1,7 @@
 package com.mycompany.persistence;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,12 +11,13 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
 import com.mycompany.domain.PurposalDTO;
-@Service
+
+@Repository
 public class PurposalDAOImpl implements PurposalDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
