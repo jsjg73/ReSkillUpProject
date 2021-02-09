@@ -55,7 +55,6 @@ public class PurposalController {
 	public String pur_write(PurposalDTO dto,  HttpSession sess) {
 		
 		//DB 처리 : mybatis
-		dto.setWriter((String)sess.getAttribute("session"));
 		//dto.setTargetList(targetList);
 		System.out.println(dto.toString());
 		service.PurposalInsert(dto);
@@ -111,6 +110,13 @@ public class PurposalController {
 		String[] targets = dto.getTarget().split(",");
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
+		
+		//checkbox form만들기
+		ArrayList<String> TargetDTO_list = new ArrayList<String>();
+		for (TargetDTO TargetDTO : TargetDTO.values()) {
+			TargetDTO_list.add(TargetDTO.getKey());
+		}
+		model.addAttribute("TargetDTO_list", TargetDTO_list);
 		return "pur_updateform";
 	}
 	@RequestMapping(value="pur_update")

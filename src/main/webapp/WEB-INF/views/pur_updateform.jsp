@@ -32,19 +32,20 @@
          <input type="date" class="form-control" name="reg_date"
          value="<fmt:formatDate type="both" value="${dto.reg_date}" pattern="yyyy-MM-dd"/>">
       </div>
+      
       <div class="form-group">
-      <label>주 고객층</label>
-	        <c:set var="idx" value="0" />
-	      <c:forEach var="i" begin="1" end="4" >
-	      	<label>
-      			<input type="checkbox" name="target" value="${i}" 
-      				<c:if test="${targets[idx] == i}">
-      					<c:set var="idx" value="${idx+1}" />
-      					checked="checked"
-      				</c:if>
-      			> code${i}
-	      	</label>
-	      </c:forEach>
+         <label>주 고객층</label><br>
+         <c:set var="idx" value="0" />		<!-- check할 targets배열의 인덱스  -->
+         <c:forEach var="TargetDTO" items="${TargetDTO_list}">
+         	<label>
+         		<input type="checkbox" name="target" value="${TargetDTO }" 
+         		<c:if test="${targets[idx] == TargetDTO}">
+      				checked="checked"						<!-- check 활성화 -->
+      				<c:set var="idx" value="${idx+1}" />	<!-- idx 늘려주기 -->
+      			</c:if>
+         		> ${TargetDTO }
+         	</label>
+		 </c:forEach>
       </div>
       <div class="form-group">
          <label>유형</label>

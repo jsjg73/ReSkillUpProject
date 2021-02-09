@@ -51,7 +51,7 @@
          <!-- 선택된 사진을 어떻게 받아서 표시할지 모르겠음 -->
          <input type="file" class="form-control" name="pic" value="${pur.pic}" accept="image/gif,image/jpeg, image/png" readonly>
       </div>
-      <a href="/pur_list/1" class="btn btn-primary">확인</a>
+      <a href="/pur_list/${pageNum}" class="btn btn-primary">확인</a>
       <button type="submit" class="btn btn-primary">수정페이지로</button>
    </form>
 </div> <!-- /container -->
