@@ -4,7 +4,7 @@ import com.mycompany.domain.PurposalDTO;
 
 public interface PurposalService {
 
-	int puposalCnt();
+	int purposalCnt();
 	public void PurposalInsert(PurposalDTO dto);
 	void purposalUpdate(PurposalDTO dto);
 	
