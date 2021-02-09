@@ -10,7 +10,7 @@
    <!--부트스트랩 css 추가-->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-   <script src="/resources/js/main.js"></script>
+   <script src="/resources/js/pur.js"></script>
    
 </head>
 <body>

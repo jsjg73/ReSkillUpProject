@@ -13,7 +13,7 @@
 	<script src="/resources/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/samp.js"></script>
 </head>
 <body>
 <h1 style="text-align:center">샘플 수정</h1><br><br>
