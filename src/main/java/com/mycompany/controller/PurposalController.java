@@ -68,7 +68,7 @@ public class PurposalController {
 
 		dto.setWriter((String)sess.getAttribute("session"));
 		dto.setOrgpic(file.getOriginalFilename());
-		dto.setPic(upload.saveFile(file));
+		dto.setPic(upload.saveFiles(file, dto.getReg_date()));
 		System.out.println(dto.toString());
 		
 		service.PurposalInsert(dto);
