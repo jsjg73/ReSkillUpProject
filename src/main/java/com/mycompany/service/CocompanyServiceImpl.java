@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.domain.CocompanyDTO;
 import com.mycompany.domain.Criteria;
 import com.mycompany.persistence.CocompanyDAO;
 
+@Service
 public class CocompanyServiceImpl implements CocompanyService {
 	@Autowired 
 	public CocompanyDAO cocDAO;
