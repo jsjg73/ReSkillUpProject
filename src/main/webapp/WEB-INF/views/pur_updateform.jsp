@@ -24,6 +24,7 @@
    <form action="/pur_update" method="post" id="pur_updateform" name="puf" >
    <input type="hidden" name="writer" value="${editor}">
    <input type="hidden" name="orgpic" value="${dto.orgpic }">
+   <input type="hidden" name="pic" value="${dto.pic }">
    <input type="hidden" name="pageNum" value="${pageNum }">
       <div class="form-group">
          <label>제품명</label>
@@ -45,8 +46,8 @@
          		<c:if test="${targets[idx] == TargetDTO}">
       				checked="checked"						<!-- check 활성화 -->
       				<c:set var="idx" value="${idx+1}" />	<!-- idx 늘려주기 -->
-      			</c:if>
-         		> ${TargetDTO }
+      			</c:if>>
+      			 ${TargetDTO }
          	</label>
 		 </c:forEach>
 
@@ -62,6 +63,7 @@
       </div>
       <div class="form-group">
          <label>사진 변경</label>
+         <input type="text" value="${dto.orgpic}" readonly="readonly">
          <input type="file" class="form-control" name="file" accept="image/gif,image/jpeg, image/png" >
       </div>
       <button type="submit" class="btn btn-primary">수정</button>

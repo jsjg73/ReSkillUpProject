@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,6 +38,26 @@ public class UploadServiceImpl implements UploadService {
 		return saveName;
 	}
 	@Override
+	public void updateFile(MultipartFile file, String realPath, String pic, Date date) {
+		
+		//실제 저장 위치
+		File uploadPath = new File(realPath+"resources/upload/tmp",getFolder(date));
+		
+		if(uploadPath.exists()==false)
+			uploadPath.mkdirs();
+		//make yyyy/MM/dd folder
+		
+		String saveName = pic;
+	    // 저장할 File 객체를 생성(껍데기 파일)
+	    File saveFile = new File(uploadPath,saveName); // 저장할 폴더 이름, 저장할 파일 이름
+
+	    try {
+	        file.transferTo(saveFile); // 업로드 파일에 saveFile이라는 껍데기 입힘
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+	@Override
 	public String getReadPath(String filename ,Date date) {
 		String str =null;
 		str = getFolder()+"/"+filename;
@@ -44,6 +66,11 @@ public class UploadServiceImpl implements UploadService {
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
+		String str = sdf.format(date);
+		return str.replace("-", File.separator);
+	}
+	private String getFolder(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String str = sdf.format(date);
 		return str.replace("-", File.separator);
 	}

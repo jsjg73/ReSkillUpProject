@@ -120,8 +120,15 @@ public class SampController {
 	}
 	
 	@RequestMapping("samp_update")
-	public String samp_update(@RequestParam("pageNum")String pageNum, SampleDTO samp) {
+	public String samp_update(@RequestParam("file") MultipartFile file,HttpSession sess,@RequestParam("pageNum")String pageNum, SampleDTO samp) {
+		//pic은 변화 없음
 		
+		if(!file.isEmpty()) {
+			samp.setOrgpic(file.getOriginalFilename());
+			// 업로드 위치 절대경로
+			String realPath = sess.getServletContext().getRealPath("/");
+			upload.updateFile(file,realPath,samp.getPic(),samp.getIns_date());
+		}
 		samservice.sampleUpdate(samp);
 		
 		return "redirect:/samp_list/"+pageNum;

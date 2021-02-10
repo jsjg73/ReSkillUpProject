@@ -133,8 +133,15 @@ public class PurposalController {
 		return "pur_updateform";
 	}
 	@RequestMapping(value="pur_update")
-	public String pur_update(Model model, PurposalDTO dto, String pageNum) {
+	public String pur_update( @RequestParam("file") MultipartFile file,HttpSession sess,Model model, PurposalDTO dto, String pageNum) {
+		//pic은 변화 없음
 		
+		if(!file.isEmpty()) {
+			dto.setOrgpic(file.getOriginalFilename());
+			// 업로드 위치 절대경로
+			String realPath = sess.getServletContext().getRealPath("/");
+			upload.updateFile(file,realPath,dto.getPic(),dto.getIns_date());
+		}
 		service.purposalUpdate(dto);
 		return "redirect:/pur_list/"+pageNum;
 	}
