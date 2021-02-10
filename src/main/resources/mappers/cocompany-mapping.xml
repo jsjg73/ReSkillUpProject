@@ -30,8 +30,7 @@
 		INSERT INTO COCOMPANY
 		(coc_name,pdt_type,pwd,empno,coc_emp,coc_call,coc_mail)
 		VALUES
-		(#{coc_name},#{pdt_type,typeHandler=org.apache.ibatis.type.EnumTypeHandler,
-		jdbcType=VARCHAR },#{pwd},#{empno},#{coc_emp},#{coc_call},#{coc_mail)
+		(#{coc_name},#{pdt_type},#{pwd},#{empno},#{coc_emp},#{coc_call},#{coc_mail})
 	</insert>
 
 	<update id="cocompanyUpdate">
