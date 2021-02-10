@@ -18,10 +18,12 @@
 <body>
 <h1 style="text-align:center">샘플 수정</h1><br><br>
 <div class="container">
-<form action="/samp_update" method="post" id="samp_updateform">
+<form action="/samp_update" method="post" id="samp_updateform" enctype="multipart/form-data">
    <input type="hidden" name=writer value="${writer}">
    <input type="hidden" name=pageNum value="${pageNum}">
-   
+   <input type="hidden" name="orgpic" value="${samp.orgpic }">
+   <input type="hidden" name="pic" value="${samp.pic }">
+   <input type="hidden" name="ins_date" value="${samp.ins_date}">
       <div class="form-group">
          <label>샘플ID</label>
          <input type="text" class="form-control" name="samp_id" id="samp_id"
@@ -56,8 +58,10 @@
                value="${samp.coc_name }">
       </div>
       <div class="form-group">
-         <label>사진</label>
-         <input type="text" value="(사진 수정하기)">
+         <label>저장된 사진</label>
+         <input type="text" value="${samp.orgpic}" readonly="readonly">
+         <label>변경할 사진</label>
+         <input type="file" class="form-control" name="file" accept="image/gif,image/jpeg, image/png" >
       </div>
       <div class="form-group">
          <label>비고</label>

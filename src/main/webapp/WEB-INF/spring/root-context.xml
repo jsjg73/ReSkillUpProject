@@ -80,14 +80,5 @@
 	
 	<!-- @Transactional 어노테이션 관리 설정  -->
 	<!-- 클래스 내에서도 트랜잭션 관리 가능 -->
-	<tx:annotation-driven/>
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </beans>

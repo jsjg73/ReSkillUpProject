@@ -21,10 +21,11 @@
 <h1 style="text-align:center">신제품 기획서 수정</h1><br><br>
 
 <div class="container">
-   <form action="/pur_update" method="post" id="pur_updateform" name="puf" >
+   <form action="/pur_update" method="post" id="pur_updateform" name="puf" enctype="multipart/form-data" >
    <input type="hidden" name="writer" value="${editor}">
    <input type="hidden" name="orgpic" value="${dto.orgpic }">
    <input type="hidden" name="pic" value="${dto.pic }">
+   <input type="hidden" name="ins_date" value="${dto.ins_date}">
    <input type="hidden" name="pageNum" value="${pageNum }">
       <div class="form-group">
          <label>제품명</label>
@@ -62,8 +63,9 @@
          <textarea class="form-control" name="bigo" rows="5" cols="30" >${dto.bigo}</textarea>
       </div>
       <div class="form-group">
-         <label>사진 변경</label>
+         <label>저장된 사진</label>
          <input type="text" value="${dto.orgpic}" readonly="readonly">
+         <label>변경할 사진</label>
          <input type="file" class="form-control" name="file" accept="image/gif,image/jpeg, image/png" >
       </div>
       <button type="submit" class="btn btn-primary">수정</button>
