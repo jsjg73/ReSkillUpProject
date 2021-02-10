@@ -64,12 +64,9 @@ public class SampController {
 	@RequestMapping("samp_write")
 	public String sample_write(SampleDTO samp, @RequestParam("file") MultipartFile file) {
 		System.out.println(samp);
-		samp.setPic(file.getName());
+		samp.setPic(upload.saveFile(file));
 		samp.setOrgpic(file.getOriginalFilename());
-		System.out.println(samp.toString());
 		
-		//파일명 중복 문제는 교재 510쪽
-		System.out.println(upload.saveFile(file, samp.getArriv_date()));
 		samservice.sampleInsert(samp);
 		
 		return "redirect:/samp_list/1";
