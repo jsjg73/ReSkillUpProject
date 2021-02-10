@@ -23,13 +23,15 @@ import com.mycompany.domain.PurposalDTO;
 import com.mycompany.domain.TargetDTO;
 
 import com.mycompany.service.PurposalService;
+import com.mycompany.service.UploadService;
 
 @Controller
 public class PurposalController {
 
 	@Autowired
 	PurposalService service;
-	
+	@Autowired
+	UploadService upload;
 	
 	@RequestMapping("pur_writeform")
 	public String pur_writeform(Model model) {
@@ -58,10 +60,10 @@ public class PurposalController {
 		//DB 처리 : mybatis
 
 		dto.setWriter((String)sess.getAttribute("session"));
-		dto.setPic(file.getName());
 		dto.setOrgpic(file.getOriginalFilename());
+		dto.setPic(upload.saveFile(file));
 		System.out.println(dto.toString());
-		service.saveFile(file);
+		
 		service.PurposalInsert(dto);
 		
 		return "redirect:/pur_list/1";
