@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,8 +19,9 @@ public class CommonServiceImpl implements CommonService {
 		if(uploadPath.exists()==false)
 			uploadPath.mkdirs();
 		//make yyyy/MM/dd folder
+		UUID uuid = UUID.randomUUID();
 		
-		String saveName = file.getOriginalFilename();
+		String saveName = uuid.toString()+"_"+ file.getOriginalFilename();
 	    // 저장할 File 객체를 생성(껍데기 파일)
 	    File saveFile = new File(uploadPath,saveName); // 저장할 폴더 이름, 저장할 파일 이름
 
@@ -30,7 +32,7 @@ public class CommonServiceImpl implements CommonService {
 	        return null;
 	    }
 
-		return saveFile.getPath();
+		return saveName;
 	}
 	
 	
