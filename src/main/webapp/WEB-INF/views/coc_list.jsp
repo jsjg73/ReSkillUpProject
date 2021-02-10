@@ -9,19 +9,16 @@
 <title>제조사 목록 화면</title>
 	<!--부트스트랩 css 추가-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 
 </head>
 <body>
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<div class="container">
-		<h2>제조사 목록</h2>
+		<h2 style="text-align:center">제조사 목록</h2>
+		<br><br><br>
 		<form action="search_coc_list" method="post">
 
 			<table>
