@@ -25,7 +25,7 @@ import com.mycompany.service.PurposalService;
 @Controller
 public class HomeController {
 	
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String index() {
 		return "index";
 	}

@@ -17,6 +17,7 @@ import com.mycompany.domain.PageDTO;
 import com.mycompany.domain.PurposalDTO;
 import com.mycompany.domain.SampleDTO;
 import com.mycompany.persistence.PurposalDAO;
+import com.mycompany.service.CommonService;
 import com.mycompany.service.PurposalService;
 import com.mycompany.service.SampleService;
 
@@ -24,9 +25,10 @@ import com.mycompany.service.SampleService;
 public class SampController {
 	@Autowired
 	PurposalService purService;
-	
 	@Autowired
 	SampleService samservice;
+	@Autowired
+	CommonService commonservice;
 	
 	@RequestMapping("samp_writeform_step1")
 	public String sample_writeform_step1(Model model, Criteria cri) {
@@ -66,7 +68,7 @@ public class SampController {
 		System.out.println(samp.toString());
 		
 		//파일명 중복 문제는 교재 510쪽
-		purService.saveFile(file);
+		System.out.println(commonservice.saveFiles(file, samp.getArriv_date()));
 		samservice.sampleInsert(samp);
 		
 		return "redirect:/samp_list/1";

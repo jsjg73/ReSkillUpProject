@@ -21,14 +21,21 @@ import com.mycompany.domain.Pdt_typeDTO;
 import com.mycompany.domain.PurposalDTO;
 
 import com.mycompany.domain.TargetDTO;
-
+import com.mycompany.service.CommonService;
 import com.mycompany.service.PurposalService;
 
+import jdk.internal.org.jline.utils.Log;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+
 @Controller
+@Log4j
 public class PurposalController {
 
 	@Autowired
 	PurposalService service;
+	@Autowired
+	CommonService commonservice;
 	
 	
 	@RequestMapping("pur_writeform")
@@ -60,8 +67,7 @@ public class PurposalController {
 		dto.setWriter((String)sess.getAttribute("session"));
 		dto.setPic(file.getName());
 		dto.setOrgpic(file.getOriginalFilename());
-		System.out.println(dto.toString());
-		service.saveFile(file);
+		System.out.println(commonservice.saveFiles(file, dto.getReg_date()));
 		service.PurposalInsert(dto);
 		
 		return "redirect:/pur_list/1";
