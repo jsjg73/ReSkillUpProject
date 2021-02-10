@@ -3,14 +3,13 @@
 <mapper namespace="Coc">
 	<select id="cocompanyList" resultType="coc">
 		SELECT * FROM COCOMPANY
-		ORDER BY reg_date DESC
 	</select>
 
 	<select id="cocompanyListPaging" resultType="coc">
 		 	<![CDATA[
 		 	SELECT *
 			FROM (SELECT rownum as rn, A.*
-			      FROM (SELECT * FROM COCOMPANY ORDER BY reg_date DESC) A
+			      FROM (SELECT * FROM COCOMPANY ORDER BY coc_name DESC) A
 			      WHERE rownum <= #{pageNum} * #{amount}) 
 			WHERE rn > (#{pageNum}-1)* #{amount}
 			]]>
