@@ -97,6 +97,7 @@ public class PurposalController {
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
 		
+		System.out.println(dto.toString());
 		return "pur_read";
 	}
 	@RequestMapping(value="pur_updateform")
