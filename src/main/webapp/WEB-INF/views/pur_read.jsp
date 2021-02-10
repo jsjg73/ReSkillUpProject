@@ -45,7 +45,7 @@
       <div class="form-group">
          <label>사진</label>
          <!-- 선택된 사진을 어떻게 받아서 표시할지 모르겠음 -->
-         <img src="file:\\\C:/upload/tmp/${pur.orgpic }"><br>
+         <img src="/resources/upload/tmp/test.png"><br>
       </div>
       <a href="/pur_list/${pageNum}" class="btn btn-primary">확인</a>
       <button type="submit" class="btn btn-primary">수정페이지로</button>

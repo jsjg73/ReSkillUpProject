@@ -103,8 +103,8 @@ public class PurposalController {
 		String[] targets = dto.getTarget().split(",");
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
+		upload.getFilePath(dto);
 		
-		System.out.println(dto.toString());
 		return "pur_read";
 	}
 	@RequestMapping(value="pur_updateform")

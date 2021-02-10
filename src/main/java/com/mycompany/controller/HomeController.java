@@ -25,8 +25,9 @@ import com.mycompany.service.PurposalService;
 @Controller
 public class HomeController {
 	
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public String index() {
+		System.out.println();
 		return "index";
 	}
 	// 직원 로그인
