@@ -72,6 +72,15 @@
 	</tx:advice>
 	
 	
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(public * com.mycompany.service.*Service.*(..))" id="serviceOperation" />
+		<aop:advisor advice-ref="txAdivce" id="transactionAdvisor" pointcut-ref="serviceOperation"/>
+	</aop:config>
+	
+	
+	<!-- @Transactional 어노테이션 관리 설정  -->
+	<!-- 클래스 내에서도 트랜잭션 관리 가능 -->
+	
 	
 	
 	
