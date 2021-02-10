@@ -29,7 +29,7 @@ public class SampController {
 	@Autowired
 	SampleService samservice;
 	@Autowired
-	UploadService upload;
+	CommonService upload;
 	
 	@RequestMapping("samp_writeform_step1")
 	public String sample_writeform_step1(Model model, Criteria cri) {
@@ -62,9 +62,11 @@ public class SampController {
 	}
 	
 	@RequestMapping("samp_write")
-	public String sample_write(SampleDTO samp, @RequestParam("file") MultipartFile file) {
+	public String sample_write(SampleDTO samp,HttpSession sess, @RequestParam("file") MultipartFile file) {
 		System.out.println(samp);
-		samp.setPic(upload.saveFile(file));
+		// 업로드 위치 절대경로
+		String realPath = sess.getServletContext().getRealPath("/");
+		samp.setPic(upload.saveFile(file,samp.getArriv_date(),realPath));
 		samp.setOrgpic(file.getOriginalFilename());
 		
 		samservice.sampleInsert(samp);
@@ -99,7 +101,7 @@ public class SampController {
 		model.addAttribute("samp", dto);
 		
 		model.addAttribute("pageNum",pageNum);
-		
+		model.addAttribute("imgPath", upload.getReadPath(dto.getPic(),dto.getArriv_date()));
 		return "samp_read";
 	}
 	

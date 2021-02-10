@@ -3,6 +3,7 @@ package com.mycompany.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,8 @@ import com.mycompany.service.CommonService;
 import com.mycompany.service.PurposalService;
 import com.mycompany.service.UploadService;
 
-import jdk.internal.org.jline.utils.Log;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.log4j.Log4j2;
 
 @Controller
-@Log4j
 public class PurposalController {
 
 	@Autowired
@@ -62,13 +59,16 @@ public class PurposalController {
 
 	//등록
 	@RequestMapping(value="pur_write", method=RequestMethod.POST)
-	public String pur_write(@RequestParam("file") MultipartFile file, PurposalDTO dto,  HttpSession sess) {
+	public String pur_write(@RequestParam("file") MultipartFile file, PurposalDTO dto,  HttpSession sess, HttpServletRequest res) {
 		
 		//DB 처리 : mybatis
 
 		dto.setWriter((String)sess.getAttribute("session"));
+		
 		dto.setOrgpic(file.getOriginalFilename());
-		dto.setPic(upload.saveFile(file));
+		// 업로드 위치 절대경로
+		String realPath = sess.getServletContext().getRealPath("/");
+		dto.setPic(commonservice.saveFile(file,dto.getReg_date(),realPath));
 		System.out.println(dto.toString());
 		
 		service.PurposalInsert(dto);
@@ -91,7 +91,7 @@ public class PurposalController {
 	}
 	
 	@RequestMapping(value="pur_read/{pdt_name}/{pageNum}")
-	public String pur_read(Model model, @PathVariable("pdt_name") String pdt_name, @PathVariable("pageNum") String pageNum) {
+	public String pur_read(Model model, HttpSession sess, @PathVariable("pdt_name") String pdt_name, @PathVariable("pageNum") String pageNum) {
 		
 		//DB 처리 : mybatis
 		PurposalDTO dto = new PurposalDTO();
@@ -103,7 +103,7 @@ public class PurposalController {
 		String[] targets = dto.getTarget().split(",");
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
-		System.out.println(upload.getFilePath(dto.getOrgpic(),dto.getReg_date()));
+		model.addAttribute("imgPath", commonservice.getReadPath(dto.getPic(),dto.getReg_date()));
 		
 		return "pur_read";
 	}

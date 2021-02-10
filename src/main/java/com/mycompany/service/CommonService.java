@@ -6,6 +6,6 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface CommonService {
-	String saveFiles(MultipartFile file, Date date);
-	
+	String saveFile(MultipartFile file, Date date,String realPath);
+	String getReadPath(String filename ,Date date);
 }

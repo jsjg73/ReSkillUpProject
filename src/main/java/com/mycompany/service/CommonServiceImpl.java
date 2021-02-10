@@ -13,8 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class CommonServiceImpl implements CommonService {
 
 	@Override
-	public String saveFiles(MultipartFile file, Date date) {
-		File uploadPath = new File("C:\\upload\\tmp",getFolder(date));
+	public String saveFile(MultipartFile file, Date date , String realPath ) {
+		//실제 저장 위치
+		File uploadPath = new File(realPath+"resources/upload/tmp",getFolder(date));
 		
 		if(uploadPath.exists()==false)
 			uploadPath.mkdirs();
@@ -34,8 +35,12 @@ public class CommonServiceImpl implements CommonService {
 
 		return saveName;
 	}
-	
-	
+	@Override
+	public String getReadPath(String filename ,Date date) {
+		String str =null;
+		str = (getFolder(date)+"/"+filename).replaceAll("\\","/");
+		return str;
+	}
 	private String getFolder(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String str = sdf.format(date);

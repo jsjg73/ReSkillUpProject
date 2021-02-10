@@ -53,7 +53,7 @@
       </div>
       <div class="form-group">
          <label>사진</label>
-         <input type="text" value="(사진보여주기)">
+         <img src="/resources/upload/tmp/${imgPath}"><br>
       </div>
       <div class="form-group">
          <label>비고</label>
