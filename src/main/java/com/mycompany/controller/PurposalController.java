@@ -103,7 +103,7 @@ public class PurposalController {
 		String[] targets = dto.getTarget().split(",");
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
-		upload.getFilePath(dto);
+		System.out.println(upload.getFilePath(dto.getOrgpic(),dto.getReg_date()));
 		
 		return "pur_read";
 	}
