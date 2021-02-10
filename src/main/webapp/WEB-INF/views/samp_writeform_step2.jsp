@@ -16,7 +16,8 @@
 <div class="container">
    <form action="/samp_write" method="post" id="samp_writeform" enctype="multipart/form-data" >
    <input type="hidden" name=writer value="${writer}">
-   
+   <input type="hidden" name="pic" value=""><!-- 첨부파일 없을때 -->
+   <input type="hidden" name="orgpic" value=""><!-- 첨부파일 없을때 -->
       <div class="form-group">
          <label>샘플ID(중복처리)</label>
          <input type="text" class="form-control" name="samp_id" id="samp_id"

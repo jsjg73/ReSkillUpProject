@@ -62,11 +62,12 @@ public class PurposalController {
 		//DB 처리 : mybatis
 
 		dto.setWriter((String)sess.getAttribute("session"));
-		
-		dto.setOrgpic(file.getOriginalFilename());
-		// 업로드 위치 절대경로
-		String realPath = sess.getServletContext().getRealPath("/");
-		dto.setPic(upload.saveFile(file,dto.getReg_date(),realPath));
+		if(!file.isEmpty()) {
+			dto.setOrgpic(file.getOriginalFilename());
+			// 업로드 위치 절대경로
+			String realPath = sess.getServletContext().getRealPath("/");
+			dto.setPic(upload.saveFile(file,realPath));
+		}
 		
 		service.PurposalInsert(dto);
 		
@@ -100,7 +101,7 @@ public class PurposalController {
 		String[] targets = dto.getTarget().split(",");
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
-		model.addAttribute("imgPath", upload.getReadPath(dto.getPic(),dto.getReg_date()));
+		model.addAttribute("imgPath", upload.getReadPath(dto.getPic(),dto.getIns_date()));
 		
 		return "pur_read";
 	}
@@ -120,9 +121,6 @@ public class PurposalController {
 		
 		// taget 체크박스 체크
 		String[] targets = dto.getTarget().split(",");
-		for(String str : targets) {
-			System.out.print(str + " ");
-		}
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
 		

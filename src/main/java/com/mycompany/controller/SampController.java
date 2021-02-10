@@ -63,11 +63,12 @@ public class SampController {
 	
 	@RequestMapping("samp_write")
 	public String sample_write(SampleDTO samp,HttpSession sess, @RequestParam("file") MultipartFile file) {
-		System.out.println(samp);
-		// 업로드 위치 절대경로
-		String realPath = sess.getServletContext().getRealPath("/");
-		samp.setPic(upload.saveFile(file,samp.getArriv_date(),realPath));
-		samp.setOrgpic(file.getOriginalFilename());
+		if(!file.isEmpty()) {
+			// 업로드 위치 절대경로
+			String realPath = sess.getServletContext().getRealPath("/");
+			samp.setPic(upload.saveFile(file, realPath));
+			samp.setOrgpic(file.getOriginalFilename());
+		}
 		
 		samservice.sampleInsert(samp);
 		
@@ -101,7 +102,7 @@ public class SampController {
 		model.addAttribute("samp", dto);
 		
 		model.addAttribute("pageNum",pageNum);
-		model.addAttribute("imgPath", upload.getReadPath(dto.getPic(),dto.getArriv_date()));
+		model.addAttribute("imgPath", upload.getReadPath(dto.getPic(),dto.getIns_date()));
 		return "samp_read";
 	}
 	

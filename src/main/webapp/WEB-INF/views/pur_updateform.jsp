@@ -61,9 +61,8 @@
          <textarea class="form-control" name="bigo" rows="5" cols="30" >${dto.bigo}</textarea>
       </div>
       <div class="form-group">
-         <label>사진</label>
-         <img src="C:\\upload\\tmp\\${dto.orgpic }"><br>
-         <input type="file" class="form-control" name="pic" accept="image/gif,image/jpeg, image/png">
+         <label>사진 변경</label>
+         <input type="file" class="form-control" name="file" accept="image/gif,image/jpeg, image/png" >
       </div>
       <button type="submit" class="btn btn-primary">수정</button>
       <input class="btn btn-danger" type="reset" value="취소">

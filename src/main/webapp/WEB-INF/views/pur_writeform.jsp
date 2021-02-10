@@ -19,6 +19,8 @@
 <div class="container">
    <form action="pur_write" method="post" id="pur_writeform" name="pwf" enctype="multipart/form-data">
    <input type="hidden" name="writer" value="employee">
+   <input type="hidden" name="pic" value=""><!-- 첨부파일 없을때 -->
+   <input type="hidden" name="orgpic" value=""><!-- 첨부파일 없을때 -->
       <div class="form-group">
          <label>제품명(중복 조회 처리해야함)</label>
          <input type="text" class="form-control" name="pdt_name" id="pdt_name"

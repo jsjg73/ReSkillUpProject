@@ -13,9 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadServiceImpl implements UploadService {
 
 	@Override
-	public String saveFile(MultipartFile file, Date date , String realPath ) {
+	public String saveFile(MultipartFile file, String realPath ) {
 		//실제 저장 위치
-		File uploadPath = new File(realPath+"resources/upload/tmp",getFolder(date));
+		File uploadPath = new File(realPath+"resources/upload/tmp",getFolder());
 		
 		if(uploadPath.exists()==false)
 			uploadPath.mkdirs();
@@ -38,11 +38,12 @@ public class UploadServiceImpl implements UploadService {
 	@Override
 	public String getReadPath(String filename ,Date date) {
 		String str =null;
-		str = getFolder(date)+"/"+filename;
+		str = getFolder()+"/"+filename;
 		return str;
 	}
-	private String getFolder(Date date) {
+	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
 		String str = sdf.format(date);
 		return str.replace("-", File.separator);
 	}
