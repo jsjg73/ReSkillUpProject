@@ -23,6 +23,7 @@ import com.mycompany.domain.PurposalDTO;
 import com.mycompany.domain.TargetDTO;
 import com.mycompany.service.CommonService;
 import com.mycompany.service.PurposalService;
+import com.mycompany.service.UploadService;
 
 import jdk.internal.org.jline.utils.Log;
 import lombok.extern.log4j.Log4j;
@@ -36,7 +37,8 @@ public class PurposalController {
 	PurposalService service;
 	@Autowired
 	CommonService commonservice;
-	
+	@Autowired
+	UploadService upload;
 	
 	@RequestMapping("pur_writeform")
 	public String pur_writeform(Model model) {
@@ -65,9 +67,10 @@ public class PurposalController {
 		//DB 처리 : mybatis
 
 		dto.setWriter((String)sess.getAttribute("session"));
-		dto.setPic(file.getName());
 		dto.setOrgpic(file.getOriginalFilename());
-		System.out.println(commonservice.saveFiles(file, dto.getReg_date()));
+		dto.setPic(upload.saveFile(file));
+		System.out.println(dto.toString());
+		
 		service.PurposalInsert(dto);
 		
 		return "redirect:/pur_list/1";
