@@ -22,7 +22,7 @@ import com.mycompany.domain.Pdt_typeDTO;
 import com.mycompany.domain.PurposalDTO;
 
 import com.mycompany.domain.TargetDTO;
-import com.mycompany.service.CommonService;
+import com.mycompany.service.UploadService;
 import com.mycompany.service.PurposalService;
 import com.mycompany.service.UploadService;
 
@@ -32,8 +32,6 @@ public class PurposalController {
 
 	@Autowired
 	PurposalService service;
-	@Autowired
-	CommonService commonservice;
 	@Autowired
 	UploadService upload;
 	
@@ -68,8 +66,7 @@ public class PurposalController {
 		dto.setOrgpic(file.getOriginalFilename());
 		// 업로드 위치 절대경로
 		String realPath = sess.getServletContext().getRealPath("/");
-		dto.setPic(commonservice.saveFile(file,dto.getReg_date(),realPath));
-		System.out.println(dto.toString());
+		dto.setPic(upload.saveFile(file,dto.getReg_date(),realPath));
 		
 		service.PurposalInsert(dto);
 		
@@ -103,7 +100,7 @@ public class PurposalController {
 		String[] targets = dto.getTarget().split(",");
 		model.addAttribute("targets",targets);
 		model.addAttribute("pageNum",pageNum);
-		model.addAttribute("imgPath", commonservice.getReadPath(dto.getPic(),dto.getReg_date()));
+		model.addAttribute("imgPath", upload.getReadPath(dto.getPic(),dto.getReg_date()));
 		
 		return "pur_read";
 	}

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class CommonServiceImpl implements CommonService {
+public class UploadServiceImpl implements UploadService {
 
 	@Override
 	public String saveFile(MultipartFile file, Date date , String realPath ) {
