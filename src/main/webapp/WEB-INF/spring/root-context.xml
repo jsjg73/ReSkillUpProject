@@ -28,10 +28,17 @@
 		<property name="password" value="tiger" />
 	</bean>	 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<!-- 실무 사용 -->
+		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
+		-->
+		
+		<!-- 테스트 사용 -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:XE" />
 		<property name="username" value="scott" />
-		<property name="password" value="tiger" />
+		<property name="password" value="tiger" /> 
+		
 	</bean>
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig"/>
@@ -50,5 +57,27 @@
 	
 	<context:component-scan base-package="com.mycompany.persistence" />
 	<context:component-scan base-package="com.mycompany.service" />
+	
+	<!-- AOP 트랜잭션 설정 -->
+	<bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<tx:advice id="txAdivce" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*Insert" rollback-for="Exception"/>
+			<tx:method name="*Update" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </beans>
