@@ -19,7 +19,7 @@
 <br>
 <div class="container">
 	<h2 style="text-align:center" >제품 목록</h2>
-	<br>
+	<br><br>
 	<form action="search_pur_list" method="post">
 		<table>
 			<thead></thead>
