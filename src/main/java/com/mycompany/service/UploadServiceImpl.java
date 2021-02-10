@@ -38,7 +38,7 @@ public class UploadServiceImpl implements UploadService {
 	@Override
 	public String getReadPath(String filename ,Date date) {
 		String str =null;
-		str = (getFolder(date)+"/"+filename).replaceAll("\\","/");
+		str = getFolder(date)+"/"+filename;
 		return str;
 	}
 	private String getFolder(Date date) {
