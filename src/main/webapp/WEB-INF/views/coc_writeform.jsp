@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>제조사 등록</title>
    <!--부트스트랩 css 추가-->
-   <link rel="stylesheet" href="./css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+   <script src="/resources/js/coc.js"></script>
 </head>
 <body>
 <h1 style="text-align:center">제조사 등록</h1><br><br>
 
 <div class="container">
-   <form action="pur_write.jsp" method="post">
+   <form action="coc_write" method="post">
    <input type="hidden" name="writer" value="employee">
       <div class="form-group">
          <label>제조사명</label>
@@ -21,9 +25,10 @@
          <button id="coc_duplicate" disabled="disabled">중복검사</button>
       </div>
       <div class="form-group">
-         <label>유형</label>
-         <label><input type="checkbox" name="pdt_type" value="1"> type1</label>
-		 <label><input type="checkbox" name="pdt_type" value="2"> type2</label>
+         <label>유형</label><br>
+  		 <c:forEach var="Pdt_type" items="${Pdt_type_list}">
+         	<label><input type="checkbox" name="Pdt_type" value="${Pdt_type }" > ${Pdt_type }</label>
+		 </c:forEach>
       </div>
       <div class="form-group">
          <label>인증번호</label> <!-- 아무 회사나 등록하지못하고 기획회사 직원이 인증한 회사만 정보등록가능하도록 -->
@@ -56,7 +61,7 @@
 </div> <!-- /container -->
 
 <!--부트스트랩 js, jquery 추가-->
-<script src="./js/jquery.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
+<script src="/resources/js/jquery.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
