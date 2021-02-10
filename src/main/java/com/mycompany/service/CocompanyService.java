@@ -18,5 +18,4 @@ public interface CocompanyService {
 
 	CocompanyDTO cocompanyRead(CocompanyDTO dto);
 
-	public String saveFile(MultipartFile file);
 }

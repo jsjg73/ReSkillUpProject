@@ -18,6 +18,4 @@ public interface PurposalService {
 
 	PurposalDTO purposalRead(PurposalDTO dto);
 
-	public String saveFile(MultipartFile file);
-
 }
