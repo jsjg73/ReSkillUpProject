@@ -47,4 +47,9 @@ public class CocompanyServiceImpl implements CocompanyService {
 		return cocDAO.cocompanyRead(dto);
 	}
 
+	@Override
+	public List<String> cocompanyReadByPdt_type(String pdt_type) {
+		return cocDAO.cocompanyReadByPdt_type(pdt_type);
+	}
+
 }

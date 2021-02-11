@@ -35,6 +35,11 @@ public class CocompanyDAOImpl implements CocompanyDAO {
 	public List<CocompanyDTO> cocompanyRead(CocompanyDTO dto) {
 		return mybatis.selectList("Coc.cocompanyRead", dto);
 	}
+	
+	@Override
+	public List<String> cocompanyReadByPdt_type(String pdt_type) {
+		return mybatis.selectList("Coc.cocompanyReadByPdt_type", pdt_type);
+	}
 
 	@Override
 	public int cocompanyCnt() {
