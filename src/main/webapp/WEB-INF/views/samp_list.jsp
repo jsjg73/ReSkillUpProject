@@ -20,21 +20,20 @@
 <br>
 <div class="container">
 	<h2>샘플 목록</h2>
-	<form action="search_samp_list" method="post">
-		
+	<form action="/samp_list_search" method="post">
+	<input type="hidden" value="1" name="pageNum">
 		<table>
 			<thead></thead>
 			<tbody>
 				<tr>
 					<td align="right">
-						<select name="searchCondition">
-							<option value=''>-- 선택 --</option>
-							<option value='제품명' selected>제품명</option>
-							<option value='제조사명'>제조사명</option>
-							<option value='등록날짜'>등록날짜</option>
-							<option value='작성자명'>작성자명</option>
+						<select name="condi">
+							<c:forEach var="i" items="${sampsearch }">
+							<option <c:if test="${page.cri.condi==i.condi }">selected</c:if> value='${i.condi}'>${i.key}</option>
+							</c:forEach>
+							<!-- <option value='등록날짜'>등록날짜</option> 어려워서 보류 -->
 						</select> 
-						<input type="text" name="searchKeyword"> 
+						<input type="text" name="keyword" value=""> 
 						<input type="submit" value="검색">
 					</td>
 				</tr>
@@ -71,7 +70,7 @@
 	<div style="width:660px" align="left">
 <c:if test="${page.prev}">
    [ <a href="/samp_list/1">◀◀</a>]
-   [ <a href="/samp_list/${page.startPage-1}">◀</a>]
+   [ <a href="/samp_list/${page.startPage-1}/${page.cri.condi}/${page.cri.keyword}">◀</a>]
 </c:if>
 <c:if test="${not page.prev }">
    [ <span style="color:silver">◀</span> ]
@@ -80,15 +79,15 @@
 
 <c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
    <c:if test="${page.cri.pageNum != i}">
-      [<a href="/samp_list/${i }">${i}</a>]
+      [<a href="/samp_list/${i }/${page.cri.condi}/${page.cri.keyword}">${i}</a>]
    </c:if>
    <c:if test="${page.cri.pageNum == i}">
       [${i }]
    </c:if>
 </c:forEach>
 <c:if test="${page.next}">
-   [<a href="/samp_list/${page.endPage+1}">▶</a>]
-   [<a href="/samp_list/${page.totalPage }">▶▶</a>]
+   [<a href="/samp_list/${page.endPage+1}/${page.cri.condi}/${page.cri.keyword}">▶</a>]
+   [<a href="/samp_list/${page.totalPage }/${page.cri.condi}/${page.cri.keyword}">▶▶</a>]
 </c:if>
 <c:if test="${not page.next}">
    [ <span style="color:silver">▶</span> ]

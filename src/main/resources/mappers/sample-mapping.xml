@@ -2,19 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Samp">
 
-	 <select id="sampleRead" resultType="samp">
-	 	select * from samp where samp_id = #{samp_id}
-	 </select>
- 	<insert id="sampleInsert">
-	 	insert into samp  ( samp_id, arriv_date, writer, price,  pic, orgpic, coc_name, pdt_name, bigo,pdt_type)
-	 	values
-	 	(#{samp_id},#{arriv_date},#{writer},#{price},#{pic},#{orgpic},#{coc_name},#{pdt_name},#{bigo},#{pdt_type,typeHandler=org.apache.ibatis.type.EnumTypeHandler, jdbcType=VARCHAR })
- 	</insert>
- 	<select id="sampleCnt" resultType="int">
- 		select count(*) from samp
- 	</select>
- 	
- 	<select id="sampleListPaging" resultType="samp">
+	<select id="sampleRead" resultType="samp">
+		select * from samp where samp_id = #{samp_id}
+	</select>
+	<insert id="sampleInsert">
+		insert into samp ( samp_id, arriv_date, writer, price, pic, orgpic,
+		coc_name, pdt_name, bigo,pdt_type)
+		values
+		(#{samp_id},#{arriv_date},#{writer},#{price},#{pic},#{orgpic},#{coc_name},#{pdt_name},#{bigo},#{pdt_type,typeHandler=org.apache.ibatis.type.EnumTypeHandler,
+		jdbcType=VARCHAR })
+	</insert>
+	<select id="sampleCnt" resultType="int">
+		select count(*) from samp
+	</select>
+
+	<select id="sampleListPaging" resultType="samp">
 		 	<![CDATA[
 		 	SELECT *
 			FROM (SELECT rownum as rn, A.*
@@ -22,15 +24,27 @@
 			      WHERE rownum <= #{pageNum} * #{amount}) 
 			WHERE rn > (#{pageNum}-1)* #{amount}
 			]]>
-		 </select>
-		 
-	 <update id="sampleUpdate">
-	 	UPDATE samp
-	 	SET 
-	 		price = #{price},
-	 		arriv_date = #{arriv_date},
-	 		bigo = #{bigo},
-	 		upd_date = sysdate
-	 	WHERE samp_id = #{samp_id}
-	 </update>
+	</select>
+
+	<update id="sampleUpdate">
+		UPDATE samp
+		SET
+		price = #{price},
+		arriv_date = #{arriv_date},
+		bigo = #{bigo},
+		upd_date = sysdate
+		WHERE samp_id = #{samp_id}
+	</update>
+	<select id="sampleSearchCnt" resultType="int">
+		select count(*) from samp where ${condi} like '%'||#{keyword}||'%'
+	</select>
+	<select id="sampleListPagingSearch" resultType="samp">
+		 	<![CDATA[
+		 	SELECT *
+			FROM (SELECT rownum as rn, A.*
+			      FROM (SELECT * FROM samp where ${condi} like '%'||#{keyword}||'%' ORDER BY ins_date DESC) A
+			      WHERE rownum <= #{pageNum} * #{amount}) 
+			WHERE rn > (#{pageNum}-1)* #{amount}
+			]]>
+	</select>
 </mapper>

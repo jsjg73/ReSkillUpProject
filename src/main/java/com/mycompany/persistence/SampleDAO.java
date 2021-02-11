@@ -13,6 +13,7 @@ public interface SampleDAO {
 	public void sampleInsert(SampleDTO dto);
 	void sampleUpdate(SampleDTO dto);
 
-	List<SampleDTO> sampleList();
 	List<SampleDTO> sampleListPaging(Criteria cri);
+	int sampleSearchCnt(Criteria cri);
+	List<SampleDTO> sampleListPagingSearch(Criteria cri);
 }

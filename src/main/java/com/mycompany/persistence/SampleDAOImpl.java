@@ -17,39 +17,42 @@ import com.mycompany.domain.SampleDTO;
 
 @Repository
 public class SampleDAOImpl implements SampleDAO {
-	private String ns = "Samp";	
+	private String ns = "Samp";
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
+
 	@Override
 	public SampleDTO sampleRead(String samp_id) {
-		return mybatis.selectOne(ns+".sampleRead", samp_id);
+		return mybatis.selectOne(ns + ".sampleRead", samp_id);
 	}
 
 	@Override
 	public int sampleCnt() {
-		return mybatis.selectOne(ns+".sampleCnt");
+		return mybatis.selectOne(ns + ".sampleCnt");
 	}
 
 	@Override
 	public void sampleInsert(SampleDTO dto) {
-		mybatis.insert(ns+".sampleInsert", dto);
+		mybatis.insert(ns + ".sampleInsert", dto);
 	}
 
 	@Override
 	public void sampleUpdate(SampleDTO dto) {
-		mybatis.update(ns+".sampleUpdate",dto);
-	}
-
-	@Override
-	public List<SampleDTO> sampleList() {
-		// TODO Auto-generated method stub
-		return null;
+		mybatis.update(ns + ".sampleUpdate", dto);
 	}
 
 	@Override
 	public List<SampleDTO> sampleListPaging(Criteria cri) {
-		return mybatis.selectList(ns+".sampleListPaging",cri);
+		return mybatis.selectList(ns + ".sampleListPaging", cri);
 	}
-	
+
+	@Override
+	public int sampleSearchCnt(Criteria cri) {
+		return mybatis.selectOne(ns + ".sampleSearchCnt",cri);
+	}
+
+	@Override
+	public List<SampleDTO> sampleListPagingSearch(Criteria cri) {
+		return mybatis.selectList(ns + ".sampleListPagingSearch", cri);
+	}
 }

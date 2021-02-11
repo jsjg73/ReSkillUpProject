@@ -14,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
+import com.mycompany.domain.PurSearchDTO;
 import com.mycompany.domain.PurposalDTO;
+import com.mycompany.domain.SampSearchDTO;
 import com.mycompany.domain.SampleDTO;
 import com.mycompany.persistence.PurposalDAO;
 import com.mycompany.service.UploadService;
@@ -84,9 +86,42 @@ public class SampController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
-		
+		model.addAttribute("sampsearch", SampSearchDTO.values());
 		return "samp_list";
 	}
+	@RequestMapping(value="samp_list_search")
+	public String samp_list_search(Model model, Criteria cri) {
+		int total = samservice.sampleSearchCnt(cri); //
+		
+		//cri.pageNum==1, cri.amout == 10; (default)
+		List<SampleDTO> list = samservice.sampleListPagingSearch(cri);
+		
+		model.addAttribute("page",new PageDTO(cri, total));
+		model.addAttribute("list", list);
+		model.addAttribute("sampsearch", SampSearchDTO.values());
+		return "samp_list";
+	}
+	@RequestMapping(value="samp_list/{pageNum}/{condi}/{keyword}")
+	public String samp_list_search_pagemove(Model model, Criteria cri) {
+		//검색 조건이 없을때 기본 목록으로 리다이렉트
+		if(cri.getCondi().equals("#")) { 
+			return "redirect:/samp_list/"+cri.getPageNum();
+		}
+		//키워드가 없을 때 공백으로 치환
+		if(cri.getKeyword().equals("#")) {
+			cri.setKeyword("");
+		}
+		int total = samservice.sampleSearchCnt(cri); //
+		
+		//cri.pageNum==1, cri.amout == 10; (default)
+		List<SampleDTO> list = samservice.sampleListPagingSearch(cri);
+		
+		model.addAttribute("page",new PageDTO(cri, total));
+		model.addAttribute("list", list);
+		model.addAttribute("sampsearch", SampSearchDTO.values());
+		return "samp_list";
+	}
+	
 	@RequestMapping(value="samp_read/{samp_id}/{pageNum}")
 	public String samp_read(Model model,HttpSession sess, @PathVariable("samp_id") String samp_id, @PathVariable("pageNum") String pageNum) {
 		

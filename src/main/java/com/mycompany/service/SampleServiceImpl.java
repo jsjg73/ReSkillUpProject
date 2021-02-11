@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.SampleDTO;
 import com.mycompany.persistence.SampleDAO;
+
 @Service
 public class SampleServiceImpl implements SampleService {
 
 	@Autowired
 	SampleDAO sampdao;
-	
+
 	@Override
 	public int sampleCnt() {
 		return sampdao.sampleCnt();
@@ -46,4 +47,15 @@ public class SampleServiceImpl implements SampleService {
 		return sampdao.sampleRead(samp_id);
 	}
 
+	@Override
+	public List<SampleDTO> sampleListPagingSearch(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sampdao.sampleListPagingSearch(cri);
+	}
+
+	@Override
+	public int sampleSearchCnt(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sampdao.sampleSearchCnt(cri);
+	}
 }
