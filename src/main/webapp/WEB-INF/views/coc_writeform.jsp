@@ -22,7 +22,8 @@
          <label>제조사명</label>
          <input type="text" class="form-control" name="coc_name" id="coc_name"
                placeholder="제조사명을 입력하세요">
-         <button id="coc_duplicate" disabled="disabled">중복검사</button>
+         <span id="coc_nametd"></span>
+         <button id="coc_duplicate" >중복검사</button>
       </div>
       <div class="form-group">
          <label>유형</label><br>
