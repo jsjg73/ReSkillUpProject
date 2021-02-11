@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.domain.AuthenticationCode;
 import com.mycompany.domain.CocompanyDTO;
@@ -120,5 +121,15 @@ public class CocompanyController {
 	public String coc_update(Model model, CocompanyDTO dto, String pageNum) {
 		cocservice.cocompanyUpdate(dto);
 		return "redirect:/coc_list/"+pageNum;
+	}
+	
+	@RequestMapping(value="/coc_dupli")
+	@ResponseBody
+	public String coc_duplicate( CocompanyDTO dto) {
+		List<CocompanyDTO> list = cocservice.cocompanyRead(dto);
+		if(list.isEmpty())
+			return "-1";
+		else 
+			return "1";
 	}
 }
