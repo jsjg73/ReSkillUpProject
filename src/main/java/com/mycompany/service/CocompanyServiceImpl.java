@@ -43,7 +43,7 @@ public class CocompanyServiceImpl implements CocompanyService {
 	}
 
 	@Override
-	public CocompanyDTO cocompanyRead(CocompanyDTO dto) {
+	public List<CocompanyDTO> cocompanyRead(CocompanyDTO dto) {
 		return cocDAO.cocompanyRead(dto);
 	}
 

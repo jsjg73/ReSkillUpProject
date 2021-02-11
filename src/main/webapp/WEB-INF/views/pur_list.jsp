@@ -7,7 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>제품 목록 화면</title>
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+	<!--부트스트랩 css 추가-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
 <br>
@@ -17,7 +19,7 @@
 <br>
 <div class="container">
 	<h2 style="text-align:center" >제품 목록</h2>
-	<br>
+	<br><br>
 	<form action="search_pur_list" method="post">
 		<table>
 			<thead></thead>
@@ -93,6 +95,7 @@
 </div>
 </div>
 	
-	
+<script src="/resources/js/jquery.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>	
 </body>
 </html>

@@ -16,11 +16,11 @@
 <h1 style="text-align:center">제조사 등록</h1><br><br>
 
 <div class="container">
-   <form action="coc_write" method="post">
+   <form action="coc_write" method="post" id="coc_writeform" name="cwf">
    <input type="hidden" name="writer" value="employee">
       <div class="form-group">
          <label>제조사명</label>
-         <input type="text" class="form-control" name="coc_name"
+         <input type="text" class="form-control" name="coc_name" id="coc_name"
                placeholder="제조사명을 입력하세요">
          <button id="coc_duplicate" disabled="disabled">중복검사</button>
       </div>
@@ -32,27 +32,27 @@
       </div>
       <div class="form-group">
          <label>인증번호</label> <!-- 아무 회사나 등록하지못하고 기획회사 직원이 인증한 회사만 정보등록가능하도록 -->
-         <input type="text" class="form-control" name="empno">
+         <input type="text" class="form-control" name="empno" id="empno" placeholder="숫자만 입력하세요">
       </div>
       <div class="form-group">
          <label>담당자</label> 
-         <input type="text" class="form-control" name="coc_emp">
+         <input type="text" class="form-control" name="coc_emp" id="coc_emp">
       </div>
       <div class="form-group">
          <label>연락처</label> 
-         <input type="text" class="form-control" name="coc_call">
+         <input type="text" class="form-control" name="coc_call" id="coc_call">
       </div>
       <div class="form-group">
          <label>이메일</label>
-         <input type="text" class="form-control" name="coc_mail">
+         <input type="text" class="form-control" name="coc_mail" id="coc_mail">
       </div>
       <div class="form-group">
          <label>비밀번호</label> <!-- 유효성검사 -->
-         <input type="password" class="form-control" name="pwd">
+         <input type="password" class="form-control" name="pwd" id="pwd">
       </div>
       <div class="form-group">
          <label>비밀번호확인</label>
-         <input type="password" class="form-control" name="pwd_ck">
+         <input type="password" class="form-control" name="pwd_check" id="pwd_check">
       </div>
       
       <button type="submit" class="btn btn-primary">등록</button>

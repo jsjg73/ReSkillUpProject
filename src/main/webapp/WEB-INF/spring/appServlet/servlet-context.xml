@@ -25,7 +25,9 @@
 		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
 		<!-- 1024 * 1024 * 10 bytes 10MB -->
 		<beans:property name="maxUploadSize" value="104857560"></beans:property>
-		<!-- <beans:property name="uploadTempDir" value="/resources/upload/tmp"></beans:property> -->
+		<!-- 
+		<beans:property name="uploadTempDir" value="/resources/upload/tmp"></beans:property>
+		 -->
 		<beans:property name="maxInMemorySize" value="10485756"></beans:property>
 	</beans:bean>
 	<!-- <beans:bean id="multipartResolver"

@@ -19,7 +19,6 @@ import com.mycompany.domain.CocompanyDTO;
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
 import com.mycompany.domain.Pdt_typeDTO;
-import com.mycompany.domain.PurposalDTO;
 import com.mycompany.service.CocompanyService;
 
 @Controller
@@ -89,11 +88,36 @@ public class CocompanyController {
 		//DB 처리 : mybatis
 		CocompanyDTO dto = new CocompanyDTO();
 		dto.setCoc_name(coc_name);
-		dto = cocservice.cocompanyRead(dto);
-		model.addAttribute("coc", dto);
+		List<CocompanyDTO> list = cocservice.cocompanyRead(dto);
+		if(!list.isEmpty()) {
+			model.addAttribute("coc", list.get(0));
+		}
+		model.addAttribute("list", list);
 		model.addAttribute("pageNum",pageNum);
 		
 		System.out.println(dto.toString());
 		return "coc_read";
+	}
+	
+	@RequestMapping(value="coc_updateform")
+	public String coc_updateform(Model model, String coc_name, String pageNum) {
+		
+		CocompanyDTO dto = new CocompanyDTO();
+		dto.setCoc_name(coc_name);
+		List<CocompanyDTO> list = cocservice.cocompanyRead(dto);
+		if(!list.isEmpty()) {
+			model.addAttribute("coc", list.get(0));
+			model.addAttribute("pwd", list.get(0).getPwd());
+		}
+		
+		model.addAttribute("pageNum",pageNum);
+		
+		
+		return "coc_updateform";
+	}
+	@RequestMapping(value="coc_update")
+	public String pur_update(Model model, CocompanyDTO dto, String pageNum) {
+		cocservice.cocompanyUpdate(dto);
+		return "redirect:/coc_list/"+pageNum;
 	}
 }
