@@ -24,6 +24,11 @@
 		SELECT * FROM COCOMPANY
 		WHERE coc_name = #{coc_name}
 	</select>
+	
+	<select id="cocompanyReadByPdt_type" resultType="string">
+		SELECT coc_name FROM COCOMPANY
+		WHERE pdt_type = #{pdt_type}
+	</select>
 
 	<insert id="cocompanyInsert">
 		INSERT INTO COCOMPANY
