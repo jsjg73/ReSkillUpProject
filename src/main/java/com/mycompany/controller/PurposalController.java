@@ -49,8 +49,14 @@ public class PurposalController {
 		for (TargetDTO TargetDTO : TargetDTO.values()) {
 			TargetDTO_list.add(TargetDTO.getKey());
 		}
+		List<PurposalDTO> dto_list = service.purposalList();
+		List<String> pdt_name_list = new ArrayList<String>();
+		for(PurposalDTO dto : dto_list) {
+			pdt_name_list.add(dto.getPdt_name());
+		}
 		model.addAttribute("Pdt_type_list", Pdt_type_list);
 		model.addAttribute("TargetDTO_list", TargetDTO_list);
+		model.addAttribute("pdt_name_list", pdt_name_list);
 		
 		return "pur_writeform";
 	}
