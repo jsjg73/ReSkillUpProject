@@ -30,7 +30,7 @@ public class CocompanyController {
 	AuthenticationCode auth_code = AuthenticationCode.getInstance();
 
 	@RequestMapping("coc_writeform")
-	public String pur_writeform(Model model) {
+	public String coc_writeform(Model model) {
 
 		// 유형,주고객 프론트로 전달.
 		ArrayList<String> Pdt_type_list = new ArrayList<String>();
@@ -83,7 +83,7 @@ public class CocompanyController {
 	}
 	
 	@RequestMapping(value="coc_read/{coc_name}/{pageNum}")
-	public String pur_read(Model model, @PathVariable("coc_name") String coc_name, @PathVariable("pageNum") String pageNum) {
+	public String coc_read(Model model, @PathVariable("coc_name") String coc_name, @PathVariable("pageNum") String pageNum) {
 		
 		//DB 처리 : mybatis
 		CocompanyDTO dto = new CocompanyDTO();
@@ -116,7 +116,7 @@ public class CocompanyController {
 		return "coc_updateform";
 	}
 	@RequestMapping(value="coc_update")
-	public String pur_update(Model model, CocompanyDTO dto, String pageNum) {
+	public String coc_update(Model model, CocompanyDTO dto, String pageNum) {
 		cocservice.cocompanyUpdate(dto);
 		return "redirect:/coc_list/"+pageNum;
 	}
