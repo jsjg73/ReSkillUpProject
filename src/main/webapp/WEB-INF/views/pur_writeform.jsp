@@ -25,7 +25,7 @@
          <label>제품명(중복 조회 처리해야함)</label>
          <input type="text" class="form-control" name="pdt_name" id="pdt_name"
                placeholder="제품명을 입력하세요">
-         <button id="coc_duplicate" disabled="disabled">중복검사</button>
+         <button id="pur_duplicate" disabled="disabled">중복검사</button>
       </div>
       <div class="form-group">
          <label>기획날짜</label>
