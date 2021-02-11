@@ -9,7 +9,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,7 +87,7 @@ public class PurposalController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
-		model.addAttribute("pursearch", PurSearchDTO.values());
+		model.addAttribute("pursearch", PurSearchDTO.values());//검색조건 enum
 		return "pur_list";
 	}
 	
@@ -100,7 +102,7 @@ public class PurposalController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
-		model.addAttribute("pursearch", PurSearchDTO.values());
+		model.addAttribute("pursearch", PurSearchDTO.values()); //검색조건 enum
 		return "pur_list";
 	}
 	
@@ -123,7 +125,7 @@ public class PurposalController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
-		model.addAttribute("pursearch", PurSearchDTO.values());
+		model.addAttribute("pursearch", PurSearchDTO.values());//검색조건 enum
 		return "pur_list";
 	}
 	
@@ -183,5 +185,15 @@ public class PurposalController {
 		}
 		service.purposalUpdate(dto);
 		return "redirect:/pur_list/"+pageNum;
+	}
+	
+	@RequestMapping(value="/pur_dupli")
+	@ResponseBody
+	public String pur_duplicate( PurposalDTO pur) {
+		pur = service.purposalRead(pur);
+		if(pur==null)
+			return "-1";
+		else 
+			return "1";
 	}
 }

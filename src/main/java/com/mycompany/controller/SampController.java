@@ -86,7 +86,7 @@ public class SampController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
-		model.addAttribute("sampsearch", SampSearchDTO.values());
+		model.addAttribute("sampsearch", SampSearchDTO.values());//검색조건 enum
 		return "samp_list";
 	}
 	@RequestMapping(value="samp_list_search")
@@ -98,7 +98,7 @@ public class SampController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
-		model.addAttribute("sampsearch", SampSearchDTO.values());
+		model.addAttribute("sampsearch", SampSearchDTO.values());//검색조건 enum
 		return "samp_list";
 	}
 	@RequestMapping(value="samp_list/{pageNum}/{condi}/{keyword}")
@@ -118,7 +118,7 @@ public class SampController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
-		model.addAttribute("sampsearch", SampSearchDTO.values());
+		model.addAttribute("sampsearch", SampSearchDTO.values());//검색조건 enum
 		return "samp_list";
 	}
 	
