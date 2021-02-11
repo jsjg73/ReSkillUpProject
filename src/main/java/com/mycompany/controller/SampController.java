@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.domain.Criteria;
@@ -18,7 +19,6 @@ import com.mycompany.domain.PurSearchDTO;
 import com.mycompany.domain.PurposalDTO;
 import com.mycompany.domain.SampSearchDTO;
 import com.mycompany.domain.SampleDTO;
-import com.mycompany.persistence.PurposalDAO;
 import com.mycompany.service.UploadService;
 import com.mycompany.service.PurposalService;
 import com.mycompany.service.SampleService;
@@ -167,5 +167,15 @@ public class SampController {
 		samservice.sampleUpdate(samp);
 		
 		return "redirect:/samp_list/"+pageNum;
+	}
+	
+	@RequestMapping(value="/samp_dupli")
+	@ResponseBody
+	public String samp_duplicate( String samp_id) {
+		SampleDTO samp = samservice.sampleRead(samp_id);
+		if(samp==null)
+			return "-1";
+		else 
+			return "1";
 	}
 }
