@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
 import com.mycompany.domain.Pdt_typeDTO;
+import com.mycompany.domain.PurSearchDTO;
 import com.mycompany.domain.PurposalDTO;
 
 import com.mycompany.domain.TargetDTO;
@@ -74,7 +75,7 @@ public class PurposalController {
 		return "redirect:/pur_list/1";
 	}
 	
-	//
+	//기본 목록 조회
 	@RequestMapping(value="pur_list/{pageNum}")
 	public String pur_list(Model model, Criteria cri) {
 		int total = service.purposalCnt();
@@ -84,7 +85,37 @@ public class PurposalController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
+		model.addAttribute("pursearch", PurSearchDTO.values());
+		return "pur_list";
+	}
+	
+	//첫 검색어 목록 조회
+	@RequestMapping(value="/pur_list_search")
+	public String pur_list_search(Model model, Criteria cri) {
+		System.out.println(cri);
+		int total = service.purposalSearchCnt(cri);
 		
+		//cri.pageNum==1, cri.amout == 10; (default)
+		List<PurposalDTO> list = service.purposalListPagingSearch(cri);
+		
+		model.addAttribute("page",new PageDTO(cri, total));
+		model.addAttribute("list", list);
+		model.addAttribute("pursearch", PurSearchDTO.values());
+		return "pur_list";
+	}
+	
+	//검색된 목록 페이지 이동
+	@RequestMapping(value="/pur_list_search/{pageNum}/{condi}/{keyword}")
+	public String pur_list_search_pagemove(Model model, Criteria cri) {
+		System.out.println(cri);
+		int total = service.purposalSearchCnt(cri);
+		
+		//cri.pageNum==1, cri.amout == 10; (default)
+		List<PurposalDTO> list = service.purposalListPaging(cri);
+		
+		model.addAttribute("page",new PageDTO(cri, total));
+		model.addAttribute("list", list);
+		model.addAttribute("pursearch", PurSearchDTO.values());
 		return "pur_list";
 	}
 	

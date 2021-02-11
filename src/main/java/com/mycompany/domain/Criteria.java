@@ -10,6 +10,8 @@ import lombok.ToString;
 public class Criteria {
 	private int pageNum;
 	private int amount;
+	private String condi;
+	private String keyword;
 	
 	public Criteria() {
 		this(1,10);

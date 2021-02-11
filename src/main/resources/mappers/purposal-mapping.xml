@@ -42,5 +42,17 @@
 		 	WHERE pdt_name = #{pdt_name}
 		 </update>
 		 
- 
+ 		<select id="purposalSearchCnt" resultType="int">
+ 			SELECT COUNT(*) FROM PURPOSAL WHERE ${condi} like '%'||#{keyword}||'%'
+ 		</select>
+ 		
+ 		<select id="purposalListPagingSearch" resultType="pur">
+		 	<![CDATA[
+		 	SELECT *
+			FROM (SELECT rownum as rn, A.*
+			      FROM (SELECT * FROM purposal WHERE ${condi} like '%'||#{keyword}||'%' ORDER BY reg_date DESC) A
+			      WHERE rownum <= #{pageNum} * #{amount}) 
+			WHERE rn > (#{pageNum}-1)* #{amount}
+			]]>
+		 </select>
 </mapper>

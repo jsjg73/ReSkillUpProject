@@ -51,6 +51,7 @@ public class CocompanyController {
 		// DB 처리 : mybatis
 		System.out.println(dto.toString());
 		if(auth_code.check(dto.getEmpno())) {
+			//유형 수 만큼 insert 반복
 			String[] types = dto.getPdt_type().split(",");
 			for(int i = 0; i<types.length; i++) {
 				dto.setPdt_type(types[i]);

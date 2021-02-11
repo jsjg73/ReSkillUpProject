@@ -1,6 +1,5 @@
 package com.mycompany.service;
 
-
 import java.util.List;
 import java.util.UUID;
 import java.io.File;
@@ -16,9 +15,9 @@ import com.mycompany.persistence.PurposalDAO;
 
 @Service
 public class PurposalServiceImpl implements PurposalService {
-	@Autowired 
+	@Autowired
 	public PurposalDAO purDAO;
-	
+
 	@Override
 	public int purposalCnt() {
 		return purDAO.purposalCnt();
@@ -28,7 +27,7 @@ public class PurposalServiceImpl implements PurposalService {
 	public void PurposalInsert(PurposalDTO dto) {
 		purDAO.PurposalInsert(dto);
 	}
-	
+
 	@Override
 	public void purposalUpdate(PurposalDTO dto) {
 		purDAO.purposalUpdate(dto);
@@ -38,14 +37,24 @@ public class PurposalServiceImpl implements PurposalService {
 	public List<PurposalDTO> purposalList() {
 		return purDAO.purposalList();
 	}
+
 	@Override
 	public List<PurposalDTO> purposalListPaging(Criteria cri) {
 		return purDAO.purposalListPaging(cri);
 	}
+
 	@Override
 	public PurposalDTO purposalRead(PurposalDTO dto) {
 		return purDAO.purposalRead(dto);
 	}
 
-
+	@Override
+	public int purposalSearchCnt(Criteria cri) {
+		return purDAO.purposalSearchCnt(cri);
+	}
+	@Override
+	public List<PurposalDTO> purposalListPagingSearch(Criteria cri) {
+		// TODO Auto-generated method stub
+		return purDAO.purposalListPagingSearch(cri);
+	}
 }

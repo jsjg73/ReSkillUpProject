@@ -1,5 +1,6 @@
 package com.mycompany.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycompany.domain.Criteria;
 import com.mycompany.domain.PageDTO;
+import com.mycompany.domain.PurSearchDTO;
 import com.mycompany.domain.PurposalDTO;
 import com.mycompany.persistence.PurposalDAO;
 import com.mycompany.service.PurposalService;
@@ -27,7 +29,6 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String index() {
-		System.out.println();
 		return "index";
 	}
 	// 직원 로그인

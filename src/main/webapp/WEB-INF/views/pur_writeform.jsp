@@ -17,7 +17,7 @@
 <h1 style="text-align:center">신제품 기획서 등록</h1><br><br>
 
 <div class="container">
-   <form action="pur_write" method="post" id="pur_writeform" name="pwf" enctype="multipart/form-data">
+   <form action="/pur_write" method="post" id="pur_writeform" name="pwf" enctype="multipart/form-data">
    <input type="hidden" name="writer" value="employee">
    <input type="hidden" name="pic" value=""><!-- 첨부파일 없을때 -->
    <input type="hidden" name="orgpic" value=""><!-- 첨부파일 없을때 -->
@@ -25,6 +25,7 @@
          <label>제품명(중복 조회 처리해야함)</label>
          <input type="text" class="form-control" name="pdt_name" id="pdt_name"
                placeholder="제품명을 입력하세요">
+         <button id="coc_duplicate" disabled="disabled">중복검사</button>
       </div>
       <div class="form-group">
          <label>기획날짜</label>

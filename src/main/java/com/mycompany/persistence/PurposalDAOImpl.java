@@ -47,5 +47,12 @@ public class PurposalDAOImpl implements PurposalDAO {
 	public void purposalUpdate(PurposalDTO dto) {
 		mybatis.update("Pur.purposalUpdate",dto);
 	}
-	
+	@Override
+	public int purposalSearchCnt(Criteria cri) {
+		return mybatis.selectOne("Pur.purposalSearchCnt",cri);
+	}
+	@Override
+	public List<PurposalDTO> purposalListPagingSearch(Criteria cri) {
+		return mybatis.selectList("Pur.purposalListPagingSearch", cri);
+	}
 }

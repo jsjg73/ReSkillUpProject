@@ -20,20 +20,24 @@
 <div class="container">
 	<h2 style="text-align:center" >제품 목록</h2>
 	<br><br>
-	<form action="search_pur_list" method="post">
+	<form action="/pur_list_search" method="post">
+	<input type="hidden" value="1" name="pageNum">
 		<table>
 			<thead></thead>
 			<tbody>
 				<tr >
 					<td align="right">
-						<select name="searchCondition">
-							<option value=''>-- 선택 --</option>
-							<option value='제품명' selected>제품명</option>
-							<option value='작성자'>작성자</option>
-							<option value='내용'>내용</option>
-							<option value='유형'>유형</option>
+						<select name="condi">
+						
+						<!-- 디폴트 검색조건 -->
+						<option value='pdt_name' selected>-- 선택 --</option>
+						
+						<c:forEach var="i" items="${pursearch }">
+							<option value='${i.condi}'>${i.key}</option>
+						</c:forEach>
+						
 						</select> 
-						<input type="text" name="searchKeyword"> 
+						<input type="text" name="keyword" value=""> 
 						<input type="submit" value="검색">
 					</td>
 				</tr>

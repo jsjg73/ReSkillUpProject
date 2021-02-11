@@ -15,7 +15,9 @@ public interface PurposalService {
 
 	List<PurposalDTO> purposalList();
 	List<PurposalDTO> purposalListPaging(Criteria cri);
+	List<PurposalDTO> purposalListPagingSearch(Criteria cri);
 
 	PurposalDTO purposalRead(PurposalDTO dto);
+	int purposalSearchCnt(Criteria cri);
 
 }

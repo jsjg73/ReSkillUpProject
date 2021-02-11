@@ -18,4 +18,7 @@ public interface PurposalDAO {
 	int purposalCnt();
 
 	void purposalUpdate(PurposalDTO dto);
+	int purposalSearchCnt(Criteria cri);
+
+	List<PurposalDTO> purposalListPagingSearch(Criteria cri);
 }
