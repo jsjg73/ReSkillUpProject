@@ -39,11 +39,11 @@ $(function(){
 		}
 	});
 	
-	//제품명 중복검사
+	//샘플ID 중복검사
 	var samp_id ="";
 	$("#samp_duplicate").on("click",function(){
 	
-		//중복검사한 제품명 저장
+		//중복검사한 샘플ID 저장
 		samp_id = $("#samp_id").val().trim();
 		
 		var pattern2 = /[`~!@#$%^&*|\\\'\";:\/?]/;
@@ -65,7 +65,7 @@ $(function(){
 		    success: function(data){
 		         if(data == -1){
 		         	alert("사용가능한 샘플ID입니다.");
-		         	//$("#samp_idtd").text(samp_id + " 은(는) 사용가능한 제품명 ");
+		         	//$("#samp_idtd").text(samp_id + " 은(는) 사용가능한 샘플ID ");
 		         }else{
 		         	alert("샘플ID 중복");
 		         	$("#samp_id").val("").focus();
