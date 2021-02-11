@@ -20,6 +20,7 @@ import com.mycompany.domain.PurposalDTO;
 import com.mycompany.domain.SampSearchDTO;
 import com.mycompany.domain.SampleDTO;
 import com.mycompany.service.UploadService;
+import com.mycompany.service.CocompanyService;
 import com.mycompany.service.PurposalService;
 import com.mycompany.service.SampleService;
 import com.mycompany.service.UploadService;
@@ -30,6 +31,8 @@ public class SampController {
 	PurposalService purService;
 	@Autowired
 	SampleService samservice;
+	@Autowired
+	CocompanyService cocservice;
 	@Autowired
 	UploadService upload;
 	
@@ -58,7 +61,9 @@ public class SampController {
 		PurposalDTO purDTO = new PurposalDTO();
 		purDTO.setPdt_name(pdt_name);
 		purDTO =  purService.purposalRead(purDTO);
+		List<String> coc_name_list = cocservice.cocompanyReadByPdt_type(purDTO.getPdt_type().getKey());
 		model.addAttribute("pur",purDTO);
+		model.addAttribute("coc_name_list",coc_name_list);
 		
 		return "samp_writeform_step2";
 	}
