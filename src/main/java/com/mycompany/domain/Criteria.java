@@ -3,6 +3,7 @@ package com.mycompany.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import oracle.net.aso.k;
 
 @Setter
 @Getter
@@ -15,6 +16,8 @@ public class Criteria {
 	
 	public Criteria() {
 		this(1,10);
+		condi="#";
+		keyword="#";
 	}
 
 	public Criteria(int pageNum, int amount) {

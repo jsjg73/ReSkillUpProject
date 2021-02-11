@@ -28,12 +28,8 @@
 				<tr >
 					<td align="right">
 						<select name="condi">
-						
-						<!-- 디폴트 검색조건 -->
-						<option value='pdt_name' selected>-- 선택 --</option>
-						
 						<c:forEach var="i" items="${pursearch }">
-							<option value='${i.condi}'>${i.key}</option>
+							<option <c:if test="${page.cri.condi==i.condi }">selected</c:if> value='${i.condi}'>${i.key}</option>
 						</c:forEach>
 						
 						</select> 
@@ -73,7 +69,7 @@
 <div style="width:660px" align="left">
 <c:if test="${page.prev}">
    [ <a href="/pur_list/1">◀◀</a>]
-   [ <a href="/pur_list/${page.startPage-1}">◀</a>]
+   [ <a href="/pur_list/${page.startPage-1}/${page.cri.condi}/${page.cri.keyword}">◀</a>]
 </c:if>
 <c:if test="${not page.prev }">
    [ <span style="color:silver">◀</span> ]
@@ -82,15 +78,15 @@
 
 <c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
    <c:if test="${page.cri.pageNum != i}">
-      [<a href="/pur_list/${i }">${i}</a>]
+      [<a href="/pur_list/${i }/${page.cri.condi}/${page.cri.keyword}">${i}</a>]
    </c:if>
    <c:if test="${page.cri.pageNum == i}">
       [${i }]
    </c:if>
 </c:forEach>
 <c:if test="${page.next}">
-   [<a href="/pur_list/${page.endPage+1}">▶</a>]
-   [<a href="/pur_list/${page.totalPage }">▶▶</a>]
+   [<a href="/pur_list/${page.endPage+1}/${page.cri.condi}/${page.cri.keyword}">▶</a>]
+   [<a href="/pur_list/${page.totalPage }/${page.cri.condi}/${page.cri.keyword}">▶▶</a>]
 </c:if>
 <c:if test="${not page.next}">
    [ <span style="color:silver">▶</span> ]

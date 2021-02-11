@@ -92,7 +92,7 @@ public class PurposalController {
 	//첫 검색어 목록 조회
 	@RequestMapping(value="/pur_list_search")
 	public String pur_list_search(Model model, Criteria cri) {
-		System.out.println(cri);
+
 		int total = service.purposalSearchCnt(cri);
 		
 		//cri.pageNum==1, cri.amout == 10; (default)
@@ -105,13 +105,21 @@ public class PurposalController {
 	}
 	
 	//검색된 목록 페이지 이동
-	@RequestMapping(value="/pur_list_search/{pageNum}/{condi}/{keyword}")
+	@RequestMapping(value="/pur_list/{pageNum}/{condi}/{keyword}")
 	public String pur_list_search_pagemove(Model model, Criteria cri) {
-		System.out.println(cri);
+		
+		//검색 조건이 없을때 기본 목록으로 리다이렉트
+		if(cri.getCondi().equals("#")) { 
+			return "redirect:/pur_list/"+cri.getPageNum();
+		}
+		//키워드가 없을 때 공백으로 치환
+		if(cri.getKeyword().equals("#")) {
+			cri.setKeyword("");
+		}
 		int total = service.purposalSearchCnt(cri);
 		
 		//cri.pageNum==1, cri.amout == 10; (default)
-		List<PurposalDTO> list = service.purposalListPaging(cri);
+		List<PurposalDTO> list = service.purposalListPagingSearch(cri);
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
