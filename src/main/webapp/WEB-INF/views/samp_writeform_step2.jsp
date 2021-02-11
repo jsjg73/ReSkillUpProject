@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,9 +45,13 @@
                placeholder="가격을 입력하세요">
       </div>
       <div class="form-group">
-         <label>제조사(무결성 체크 필요)</label>
-         <input type="text" class="form-control" name="coc_name" id="coc_name"
-               placeholder="제조사를 입력하세요">
+         <label>제조사</label>
+         <select class="form-control" name="coc_name" >
+         	<option value="none">=== 선택 ===</option>
+         	<c:forEach var="Coc_name" items="${coc_name_list}">		    
+			    <option value="${Coc_name }" >${Coc_name }</option>
+		    </c:forEach>
+  		 </select>
       </div>
       <div class="form-group">
          <label>사진</label>
