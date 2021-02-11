@@ -66,8 +66,8 @@ $(function(){
 
 		    success: function(data){
 		         if(data == -1){
-		         	//alert("사용가능한 제품명");
-		         	$("#pdt_nametd").text(pdt_name + " 은(는) 사용가능한 제품명 ");
+		         	alert("사용가능한 제품명입니다.");
+		         	//$("#pdt_nametd").text(pdt_name + " 은(는) 사용가능한 제품명 ");
 		         }else{
 		         	alert("제품명 중복");
 		         	$("#pdt_name").val("").focus();
