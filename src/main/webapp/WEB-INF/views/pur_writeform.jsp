@@ -22,10 +22,11 @@
    <input type="hidden" name="pic" value=""><!-- 첨부파일 없을때 -->
    <input type="hidden" name="orgpic" value=""><!-- 첨부파일 없을때 -->
       <div class="form-group">
-         <label>제품명(중복 조회 처리해야함)</label>
+         <label>제품명</label>
          <input type="text" class="form-control" name="pdt_name" id="pdt_name"
                placeholder="제품명을 입력하세요">
-         <button id="pur_duplicate" disabled="disabled">중복검사</button>
+         <span id="pdt_nametd"></span>
+         <button id="pur_duplicate" >중복검사</button>
       </div>
       <div class="form-group">
          <label>기획날짜</label>
@@ -54,7 +55,7 @@
          <label>사진</label>
          <input type="file" class="form-control" name="file" accept="image/gif,image/jpeg, image/png">
       </div>
-      <button type="submit" class="btn btn-primary">등록</button>
+      <button type="submit" id="pur_write_btn" class="btn btn-primary">등록</button>
       <input class="btn btn-danger" type="reset" value="취소">
    </form>
 </div> <!-- /container -->
