@@ -19,9 +19,11 @@
    <input type="hidden" name="pic" value=""><!-- 첨부파일 없을때 -->
    <input type="hidden" name="orgpic" value=""><!-- 첨부파일 없을때 -->
       <div class="form-group">
-         <label>샘플ID(중복처리)</label>
+         <label>샘플ID</label>
          <input type="text" class="form-control" name="samp_id" id="samp_id"
                placeholder="샘플ID를 입력하세요">
+         <span id="samp_idtd"></span>
+         <button id="samp_duplicate" >중복검사</button>
       </div>
       <div class="form-group">
          <label>제품명</label>
