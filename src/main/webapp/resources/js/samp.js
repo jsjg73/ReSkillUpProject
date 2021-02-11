@@ -18,9 +18,9 @@ $(function(){
 			$("#price").focus();
 			return false;
 		}
-		if( $("#coc_name").val() == "" ) {
+
+		if($("[name='coc_name'] :selected").val()== "none"){
 			alert("제조사를 꼭 선택해주세요!");
-			$("#coc_name").focus();
 			return false;
 		}
 	});
