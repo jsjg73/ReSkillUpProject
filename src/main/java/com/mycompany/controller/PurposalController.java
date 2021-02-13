@@ -29,7 +29,7 @@ import com.mycompany.service.UploadService;
 import com.mycompany.service.PurposalService;
 import com.mycompany.service.UploadService;
 
-
+@RequestMapping("/pur")
 @Controller
 public class PurposalController {
 
@@ -38,7 +38,7 @@ public class PurposalController {
 	@Autowired
 	UploadService upload;
 	
-	@RequestMapping("pur_writeform")
+	@RequestMapping("writeform")
 	public String pur_writeform(Model model) {
 		
 		//유형,주고객 프론트로 전달.
@@ -60,7 +60,7 @@ public class PurposalController {
 	
 
 	//등록
-	@RequestMapping(value="pur_write", method=RequestMethod.POST)
+	@RequestMapping(value="write", method=RequestMethod.POST)
 	public String pur_write(@RequestParam("file") MultipartFile file, PurposalDTO dto,  HttpSession sess, HttpServletRequest res) {
 		
 		//DB 처리 : mybatis
@@ -75,11 +75,11 @@ public class PurposalController {
 		
 		service.PurposalInsert(dto);
 		
-		return "redirect:/pur_list/1";
+		return "redirect:/pur/list/1";
 	}
 	
 	//기본 목록 조회
-	@RequestMapping(value="pur_list/{pageNum}")
+	@RequestMapping(value="/list/{pageNum}")
 	public String pur_list(Model model, Criteria cri) {
 		int total = service.purposalCnt();
 		
@@ -93,7 +93,7 @@ public class PurposalController {
 	}
 	
 	//첫 검색어 목록 조회
-	@RequestMapping(value="/pur_list_search")
+	@RequestMapping(value="/list_search")
 	public String pur_list_search(Model model, Criteria cri) {
 
 		int total = service.purposalSearchCnt(cri);
@@ -108,12 +108,12 @@ public class PurposalController {
 	}
 	
 	//검색된 목록 페이지 이동
-	@RequestMapping(value="/pur_list/{pageNum}/{condi}/{keyword}")
+	@RequestMapping(value="/list/{pageNum}/{condi}/{keyword}")
 	public String pur_list_search_pagemove(Model model, Criteria cri) {
 		
 		//검색 조건이 없을때 기본 목록으로 리다이렉트
 		if(cri.getCondi().equals("#")) { 
-			return "redirect:/pur_list/"+cri.getPageNum();
+			return "redirect:/pur/list/"+cri.getPageNum();
 		}
 		//키워드가 없을 때 공백으로 치환
 		if(cri.getKeyword().equals("#")) {
@@ -130,7 +130,7 @@ public class PurposalController {
 		return "pur_list";
 	}
 	
-	@RequestMapping(value="pur_read/{pdt_name}/{pageNum}")
+	@RequestMapping(value="read/{pdt_name}/{pageNum}")
 	public String pur_read(Model model, HttpSession sess, @PathVariable("pdt_name") String pdt_name, @PathVariable("pageNum") String pageNum) {
 		
 		//DB 처리 : mybatis
@@ -147,7 +147,7 @@ public class PurposalController {
 		
 		return "pur_read";
 	}
-	@RequestMapping(value="pur_updateform")
+	@RequestMapping(value="updateform")
 	public String pur_updateform(Model model, String pdt_name, HttpSession sess, String pageNum) {
 		
 		//현재 로그인한 직원 번호를 세션에서 가져옴
@@ -174,7 +174,7 @@ public class PurposalController {
 		model.addAttribute("TargetDTO_list", TargetDTO_list);
 		return "pur_updateform";
 	}
-	@RequestMapping(value="pur_update")
+	@RequestMapping(value="update")
 	public String pur_update( @RequestParam("file") MultipartFile file,HttpSession sess,Model model, PurposalDTO dto, String pageNum) {
 		//pic은 변화 없음
 		
@@ -185,7 +185,7 @@ public class PurposalController {
 			upload.updateFile(file,realPath,dto.getPic(),dto.getIns_date());
 		}
 		service.purposalUpdate(dto);
-		return "redirect:/pur_list/"+pageNum;
+		return "redirect:/pur/list/"+pageNum;
 	}
 	
 	@RequestMapping(value="/pur_dupli")
