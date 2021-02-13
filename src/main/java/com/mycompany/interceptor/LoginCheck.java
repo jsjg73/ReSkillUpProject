@@ -19,17 +19,13 @@ public class LoginCheck extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		String login = (String) session.getAttribute("login");
-		System.out.println(login);
-		if(login == null) {
+
+		if(login == null || !login.equals("admin")) {
 			response.sendRedirect("/sessionNull");
 			return false;
 		}
-		
-		if(purservice.purposalWriterCheck(login).equals("admin")) {//직원 맞음
-			return true;
-		}
-		
-		return false; // 존재하지 않는 writer
+		request.setAttribute("writer", login);
+		return true;
 	}
 	
 	@Override
