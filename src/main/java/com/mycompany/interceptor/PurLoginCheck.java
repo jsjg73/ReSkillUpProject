@@ -10,9 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.mycompany.service.PurposalService;
 
-public class LoginCheck extends HandlerInterceptorAdapter{
-	@Autowired
-	PurposalService purservice;
+public class PurLoginCheck extends HandlerInterceptorAdapter{
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
