@@ -1,4 +1,4 @@
-package com.mycompany.aop;
+package com.mycompany.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
