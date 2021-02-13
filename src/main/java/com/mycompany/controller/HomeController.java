@@ -29,7 +29,7 @@ public class HomeController {
 		
 		//직원 : admin
 		//제조사 :coc
-		//비로그인 :#
+		//비로그인 :none
 		sess.setAttribute("login", login);
 		model.addAttribute("login",login);
 		

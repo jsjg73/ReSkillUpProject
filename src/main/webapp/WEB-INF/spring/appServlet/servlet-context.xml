@@ -38,7 +38,7 @@
 	<interceptors>
         <interceptor>
             <mapping path="/pur/**"/>
-            <beans:ref bean="PurLoginCheck"/>
+            <beans:ref bean="purLoginCheck"/>
         </interceptor>
     </interceptors>
 	
