@@ -25,13 +25,14 @@ import com.mycompany.service.PurposalService;
  * Handles requests for the application home page.
  */
 @Controller
+
 public class HomeController {
 	
 	@RequestMapping("/")
 	public String index() {
 		return "index";
 	}
-	@RequestMapping("/sessionnull")
+	@RequestMapping("/sessionNull")
 	public String sessionnull() {
 		return "sessionerror";
 	}

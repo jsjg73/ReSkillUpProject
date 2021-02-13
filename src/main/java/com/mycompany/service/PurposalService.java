@@ -19,5 +19,5 @@ public interface PurposalService {
 
 	PurposalDTO purposalRead(PurposalDTO dto);
 	int purposalSearchCnt(Criteria cri);
-
+	String purposalWriterCheck(String login);
 }

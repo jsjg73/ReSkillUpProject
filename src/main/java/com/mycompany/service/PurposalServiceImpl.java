@@ -57,4 +57,12 @@ public class PurposalServiceImpl implements PurposalService {
 		// TODO Auto-generated method stub
 		return purDAO.purposalListPagingSearch(cri);
 	}
+	
+	@Override
+	public String purposalWriterCheck(String login) {
+		if(login.equals("admin")) {
+			return "admin";
+		}
+		return null;
+	}
 }

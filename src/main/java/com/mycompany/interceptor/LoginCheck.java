@@ -4,10 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.mycompany.service.PurposalService;
+
 public class LoginCheck extends HandlerInterceptorAdapter{
+	@Autowired
+	PurposalService purservice;
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -15,16 +21,15 @@ public class LoginCheck extends HandlerInterceptorAdapter{
 		String login = (String) session.getAttribute("login");
 		System.out.println(login);
 		if(login == null) {
-			response.sendRedirect("/sessionnull");
-			return false;
-		}else if(login.equals("")) {
-			response.sendRedirect("/sessionnull");
+			response.sendRedirect("/sessionNull");
 			return false;
 		}
-		//직원 확인
-		//제조사 확인
 		
-		return true;
+		if(purservice.purposalWriterCheck(login).equals("admin")) {//직원 맞음
+			return true;
+		}
+		
+		return false; // 존재하지 않는 writer
 	}
 	
 	@Override

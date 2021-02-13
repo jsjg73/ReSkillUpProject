@@ -5,8 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+alert("권한이 없습니다.");
+location.href="/"
+</script>
 </head>
 <body>
-세션이 비었습니다.
+
 </body>
 </html>
