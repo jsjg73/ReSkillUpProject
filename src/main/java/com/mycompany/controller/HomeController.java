@@ -31,10 +31,14 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
+	@RequestMapping("/sessionnull")
+	public String sessionnull() {
+		return "sessionerror";
+	}
 	// 직원 로그인
 	@RequestMapping(value = "home/admin", method = RequestMethod.GET)
 	public String homeAdmin(HttpSession sess,Model model) {
-		sess.setAttribute("session", "admin");
+		sess.setAttribute("login", "admin");
 		model.addAttribute("login","admin");
 		return "home";
 	}
@@ -42,7 +46,7 @@ public class HomeController {
 	//제조사 로그인
 	@RequestMapping(value = "home/coc", method = RequestMethod.GET)
 	public String homeCoC(HttpSession sess,Model model) {
-		sess.setAttribute("session", "coc");
+		sess.setAttribute("login", "coc");
 		model.addAttribute("login","coc");
 		return "home";
 	}
@@ -52,7 +56,7 @@ public class HomeController {
 	public String home(HttpSession sess,Model model) {
 		
 		// 비로그인 세션 값 정하기.
-		sess.setAttribute("session", "");
+		sess.setAttribute("login", "");
 		model.addAttribute("login","");
 		
 		return "home";

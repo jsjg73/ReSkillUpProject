@@ -58,36 +58,14 @@
 	<context:component-scan base-package="com.mycompany.persistence" />
 	<context:component-scan base-package="com.mycompany.service" />
 	
-	<!-- AOP 트랜잭션 설정 -->
-	<bean id="transactionManager" 
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-	
-	<tx:advice id="txAdivce" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="*Insert" rollback-for="Exception"/>
-			<tx:method name="*Update" rollback-for="Exception"/>
-		</tx:attributes>
-	</tx:advice>
-	
-	
-	<aop:config proxy-target-class="true">
-		<aop:pointcut expression="execution(public * com.mycompany.service.*Service.*(..))" id="serviceOperation" />
-		<aop:advisor advice-ref="txAdivce" id="transactionAdvisor" pointcut-ref="serviceOperation"/>
-	</aop:config>
-	
-	
-	<!-- @Transactional 어노테이션 관리 설정  -->
-	<!-- 클래스 내에서도 트랜잭션 관리 가능 -->
 
-
-	<!-- 로그인 세션 체크를 위한 aop -->	
-	<bean id= "loginCheck" class="com.mycompany.aop.LoginCheck"/>
+<!-- 	<bean id="log" class="com.mycompany.aop.LoginCheck"></bean>
 	<aop:config>
-		<aop:pointcut expression="execution(public * com.mycompany.controller.PurposalController.pur*(..))" id="purLoingCheck"/>
-		<aop:aspect ref="loginCheck">
-			<aop:before method="loginSessionCheck" pointcut-ref="purLoingCheck" />
+		<aop:pointcut expression="execution(* com.mycompany.service..*Impl.*(..))" id="all"/>
+		<aop:aspect ref="log">
+			<aop:before pointcut-ref="all" method="loginSessionCheck"/>
 		</aop:aspect>
-	</aop:config>
+	</aop:config> -->
+
+		
 </beans>
