@@ -39,7 +39,7 @@ public class PurposalController {
 	UploadService upload;
 	
 	@RequestMapping("writeform")
-	public String pur_writeform(Model model, @RequestParam("writer") String login/*from 인터셉터*/) {
+	public String pur_writeform(Model model, HttpServletRequest req) {
 		
 		//유형,주고객 프론트로 전달.
 		ArrayList<String> Pdt_type_list = new ArrayList<String>();
@@ -54,7 +54,9 @@ public class PurposalController {
 		
 		model.addAttribute("Pdt_type_list", Pdt_type_list);
 		model.addAttribute("TargetDTO_list", TargetDTO_list);
-		model.addAttribute("writer", login);
+		
+		/*from 인터셉터*/
+		model.addAttribute("writer", req.getAttribute("writer"));
 		
 		return "pur_writeform";
 	}

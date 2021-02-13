@@ -18,7 +18,7 @@
 
 <div class="container">
    <form action="/pur/write" method="post" id="pur_writeform" name="pwf" enctype="multipart/form-data">
-   <input type="hidden" name="writer" value="employee">
+   <input type="hidden" name="writer" value="${writer}">
    <input type="hidden" name="pic" value=""><!-- 첨부파일 없을때 -->
    <input type="hidden" name="orgpic" value=""><!-- 첨부파일 없을때 -->
       <div class="form-group">
