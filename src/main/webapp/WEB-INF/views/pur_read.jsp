@@ -19,7 +19,7 @@
 	<div class="container">
 		<h1 style="text-align: center">신제품 기획서 상세조회</h1>
 		<br> <br>
-		<form action="/pur_updateform" method="post">
+		<form action="/pur/updateform" method="post">
 			<input type="hidden" name="writer" value="${pur.writer}">
 			<input type="hidden" name="pageNum" value="${pageNum}">
 			<div class="form-group">
@@ -56,7 +56,7 @@
 				<!-- 선택된 사진을 어떻게 받아서 표시할지 모르겠음 -->
 				<img src="/resources/upload/tmp/${imgPath}"><br>
 			</div>
-			<a href="/pur_list/${pageNum}" class="btn btn-primary">확인</a>
+			<a href="/pur/list/${pageNum}" class="btn btn-primary">확인</a>
 			<button type="submit" class="btn btn-primary">수정페이지로</button>
 		</form>
 	</div>

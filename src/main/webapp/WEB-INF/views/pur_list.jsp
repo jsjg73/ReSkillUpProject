@@ -20,7 +20,7 @@
 <div class="container">
 	<h2 style="text-align:center" >제품 목록</h2>
 	<br><br>
-	<form action="/pur_list_search" method="post">
+	<form action="/pur/list_search" method="post">
 	<input type="hidden" value="1" name="pageNum">
 		<table>
 			<thead></thead>
@@ -57,7 +57,7 @@
 		<c:forEach var="b" items="${list}" varStatus="st">
 		<tr>
 			<td>${st.index}</td>
-			<td><a href="/pur_read/${b.pdt_name}/${page.cri.pageNum}">${b.pdt_name}</a></td>
+			<td><a href="/pur/read/${b.pdt_name}/${page.cri.pageNum}">${b.pdt_name}</a></td>
 			<td>${b.writer}</td>
 			<td>${b.pdt_type}</td>
 			<td><fmt:formatDate value="${b.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -68,8 +68,8 @@
 </table>
 <div style="width:660px" align="left">
 <c:if test="${page.prev}">
-   [ <a href="/pur_list/1">◀◀</a>]
-   [ <a href="/pur_list/${page.startPage-1}/${page.cri.condi}/${page.cri.keyword}">◀</a>]
+   [ <a href="/pur/list/1">◀◀</a>]
+   [ <a href="/pur/list/${page.startPage-1}/${page.cri.condi}/${page.cri.keyword}">◀</a>]
 </c:if>
 <c:if test="${not page.prev }">
    [ <span style="color:silver">◀</span> ]
@@ -78,15 +78,15 @@
 
 <c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
    <c:if test="${page.cri.pageNum != i}">
-      [<a href="/pur_list/${i }/${page.cri.condi}/${page.cri.keyword}">${i}</a>]
+      [<a href="/pur/list/${i }/${page.cri.condi}/${page.cri.keyword}">${i}</a>]
    </c:if>
    <c:if test="${page.cri.pageNum == i}">
       [${i }]
    </c:if>
 </c:forEach>
 <c:if test="${page.next}">
-   [<a href="/pur_list/${page.endPage+1}/${page.cri.condi}/${page.cri.keyword}">▶</a>]
-   [<a href="/pur_list/${page.totalPage }/${page.cri.condi}/${page.cri.keyword}">▶▶</a>]
+   [<a href="/pur/list/${page.endPage+1}/${page.cri.condi}/${page.cri.keyword}">▶</a>]
+   [<a href="/pur/list/${page.totalPage }/${page.cri.condi}/${page.cri.keyword}">▶▶</a>]
 </c:if>
 <c:if test="${not page.next}">
    [ <span style="color:silver">▶</span> ]

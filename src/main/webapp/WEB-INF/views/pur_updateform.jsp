@@ -20,7 +20,7 @@
 <h1 style="text-align:center">신제품 기획서 수정</h1><br><br>
 
 <div class="container">
-   <form action="/pur_update" method="post" id="pur_updateform" name="puf" enctype="multipart/form-data" >
+   <form action="/pur/update" method="post" id="pur_updateform" name="puf" enctype="multipart/form-data" >
    <input type="hidden" name="writer" value="${editor}">
    <input type="hidden" name="orgpic" value="${dto.orgpic }">
    <input type="hidden" name="pic" value="${dto.pic }">
