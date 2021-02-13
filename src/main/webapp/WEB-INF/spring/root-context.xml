@@ -80,5 +80,14 @@
 	
 	<!-- @Transactional 어노테이션 관리 설정  -->
 	<!-- 클래스 내에서도 트랜잭션 관리 가능 -->
-	
+
+
+	<!-- 로그인 세션 체크를 위한 aop -->	
+	<bean id= "loginCheck" class="com.mycompany.aop.LoginCheck"/>
+	<aop:config>
+		<aop:pointcut expression="execution(public * com.mycompany.controller.PurposalController.pur*(..))" id="purLoingCheck"/>
+		<aop:aspect ref="loginCheck">
+			<aop:before method="loginSessionCheck" pointcut-ref="purLoingCheck" />
+		</aop:aspect>
+	</aop:config>
 </beans>
