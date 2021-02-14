@@ -57,3 +57,16 @@ select count(*)
 from purposal p,
 (select pdt_type from SCOTT.COCOMPANY where coc_name = '제조사1') c
 where p.pdt_type = c.pdt_type
+
+--테스트 데이터
+insert into COCOMPANY values ('제조사1','화장품','1111',1234,'홍길동','010','aaa@aaa.com')
+insert into COCOMPANY values ('제조사2','가구','1111',1234,'홍길동','010','aaa@aaa.com')
+insert into COCOMPANY values ('제조사2','식품','1111',1234,'홍길동','010','aaa@aaa.com')
+insert into PURPOSAL (pdt_name, reg_date, writer, pdt_type, target )
+values ('제품명1',sysdate,'admin','전자기기','여성')
+insert into PURPOSAL (pdt_name, reg_date, writer, pdt_type, target )
+values ('제품명2',sysdate,'admin','가구','여성')
+insert into PURPOSAL (pdt_name, reg_date, writer, pdt_type, target )
+values ('제품명3',sysdate,'admin','식품','여성')
+insert into PURPOSAL (pdt_name, reg_date, writer, pdt_type, target )
+values ('제품명4',sysdate,'admin','화장품','여성')
