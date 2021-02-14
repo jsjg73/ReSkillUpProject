@@ -1,5 +1,5 @@
 $(function() {
-	$("#coc_writeform").on("click", function() {
+	$("#write-btn").on("click", function() {
 		var flag = false;
 		var pattern2 = /[`~!@#$%^&*|\\\'\";:\/?]/;
 
@@ -46,10 +46,11 @@ $(function() {
 	$("#coc_duplicate").on("click", function() {
 		coc_name = $("#coc_name").val();
 		var checked_array = [];
-		$('input:checkbox[name="Pdt_type"]:checked').each(function() {
-			checked_array.push($(this).val());
-		});
-	
+		if ($("input:checkbox[name='Pdt_type']").is(":checked") == true) {
+			$('input:checkbox[name="Pdt_type"]:checked').each(function() {
+				checked_array.push($(this).val());
+			});
+		}
 		$.ajax({
 			url: '/coc_dupli',
 			type: 'GET',
@@ -93,7 +94,7 @@ $(function() {
 			url: '/coc_pwd_check',
 			type: 'GET',
 			dataType: 'json', //서버로부터 내가 받는 데이터의 타입
-			contentType 'application/json', //내가 서버로 보내는 데이터의 타입
+			contentType : 'application/json', //내가 서버로 보내는 데이터의 타입
 			data: {
 				pwd_check: pwd_check,
 				coc_name: coc_name
