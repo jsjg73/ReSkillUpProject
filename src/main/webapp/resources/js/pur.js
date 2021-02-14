@@ -58,7 +58,7 @@ $(function(){
 		}
 		
 		$.ajax({
-		 	url: '/pur_dupli',
+		 	url: '/pur/dupli',
 		    type: 'GET',
 		    dataType: 'json', //서버로부터 내가 받는 데이터의 타입
 		    contentType : 'application/json',//내가 서버로 보내는 데이터의 타입

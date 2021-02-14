@@ -248,7 +248,7 @@ public class PurposalController {
 		return "redirect:/pur/list/"+pageNum;
 	}
 	
-	@RequestMapping(value="/pur_dupli")
+	@RequestMapping(value="/dupli")
 	@ResponseBody
 	public String pur_duplicate( PurposalDTO pur) {
 		pur = service.purposalRead(pur);
