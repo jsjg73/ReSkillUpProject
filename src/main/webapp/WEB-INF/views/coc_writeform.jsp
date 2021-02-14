@@ -16,7 +16,7 @@
 <h1 style="text-align:center">제조사 등록</h1><br><br>
 
 <div class="container">
-   <form action="coc_write" method="post" id="coc_writeform" name="cwf">
+   <form action="/coc/write" method="post" id="coc_writeform" name="cwf">
    <input type="hidden" name="writer" value="employee">
       <div class="form-group">
          <label>제조사명</label>

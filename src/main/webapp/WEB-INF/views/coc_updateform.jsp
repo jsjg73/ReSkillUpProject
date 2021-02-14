@@ -21,7 +21,7 @@
 	<br>
 
 	<div class="container">
-		<form action="/coc_update" method="post" id="coc_updateform"
+		<form action="/coc/update" method="post" id="coc_updateform"
 			name="cuf">
 			<input type="hidden" name="pageNum" value="${pageNum }">
 			<div class="form-group">

@@ -52,9 +52,9 @@
   <i class="fa fa-diamond w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
   <h3>제조사</h3><br>
   <button 
-  class="w3-button w3-border w3-hover-red" style="cursor:pointer" onclick="location.href='/coc_writeform'">등록</button>
+  class="w3-button w3-border w3-hover-red" style="cursor:pointer" onclick="location.href='/coc/writeform'">등록</button>
   <button <c:if test="${login=='none'}"> disabled</c:if>
-  class="w3-button w3-border w3-hover-red" style="cursor:pointer" onclick="location.href='/coc_list/1'">조회</button>
+  class="w3-button w3-border w3-hover-red" style="cursor:pointer" onclick="location.href='/coc/list/1'">조회</button>
   </div>
 </div>
 </div>

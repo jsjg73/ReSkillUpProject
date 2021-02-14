@@ -18,7 +18,7 @@
 	<div class="container">
 		<h1 style="text-align: center">제조사 상세조회</h1>
 		<br> <br>
-		<form action="/coc_updateform" method="post">
+		<form action="/coc/updateform" method="post">
 			<input type="hidden" name="pwd" value="${coc.pwd}">
 			<input type="hidden" name="pageNum" value="${pageNum}">
 			<div class="form-group">
@@ -49,7 +49,7 @@
 				<input type="text" class="form-control" name="coc_mail"
 					value="${coc.coc_mail }" readonly>
 			</div>
-			<a href="/coc_list/${pageNum}" class="btn btn-primary">확인</a>
+			<a href="/coc/list/${pageNum}" class="btn btn-primary">확인</a>
 			<button type="submit" class="btn btn-primary">수정페이지로</button>
 		</form>
 	</div>

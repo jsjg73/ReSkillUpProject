@@ -51,7 +51,7 @@
 				<c:forEach var="b" items="${list}" varStatus="st">
 					<tr>
 						<td>${st.index}</td>
-						<td><a href="/coc_read/${b.coc_name}/${page.cri.pageNum}">${b.coc_name}</a></td>
+						<td><a href="/coc/read/${b.coc_name}/${page.cri.pageNum}">${b.coc_name}</a></td>
 						<td>${b.pdt_type}</td>
 						<td>${b.coc_emp}</td>
 					</tr>
