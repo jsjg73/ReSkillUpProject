@@ -151,6 +151,7 @@ public class PurposalController {
 	public String pur_list_search_pagemove(Model model, Criteria cri,HttpServletRequest req, HttpSession sess) {
 		
 		//검색 조건이 없을때 기본 목록으로 리다이렉트
+		//cirteria 초기값 #
 		if(cri.getCondi().equals("#")) { 
 			return "redirect:/pur/list/"+cri.getPageNum();
 		}

@@ -18,7 +18,7 @@
 <body>
 <h1 style="text-align:center">신제품 기획서 상세조회</h1><br><br>
 <div class="container">
-<form action="/samp_updateform" method="post" >
+<form action="/samp/updateform" method="post" >
    <input type="hidden" name=writer value="${writer}">
    <input type="hidden" name=pageNum value="${pageNum}">
    
@@ -59,7 +59,7 @@
          <label>비고</label>
          <textarea class="form-control" name="bigo" rows="5" cols="30" readonly="readonly">${samp.bigo}</textarea>
       </div>
-      <a href="/samp_list/${pageNum}" class="btn btn-primary">확인</a>
+      <a href="/samp/list/${pageNum}" class="btn btn-primary">확인</a>
       <button type="submit" class="btn btn-primary">수정페이지로</button>
    </table>
    </form>

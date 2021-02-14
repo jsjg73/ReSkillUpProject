@@ -68,7 +68,7 @@
 </table>
 <div style="width:660px" align="left">
 <c:if test="${page.prev}">
-   [ <a href="/pur/list/1">◀◀</a>]
+   [ <a href="/pur/list/1/${page.cri.condi}/${page.cri.keyword}">◀◀</a>]
    [ <a href="/pur/list/${page.startPage-1}/${page.cri.condi}/${page.cri.keyword}">◀</a>]
 </c:if>
 <c:if test="${not page.prev }">

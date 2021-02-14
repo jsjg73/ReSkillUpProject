@@ -36,11 +36,16 @@
 	<context:component-scan base-package="com.mycompany.controller" />
 	
 	<beans:bean id="purLoginCheck" class ="com.mycompany.interceptor.PurLoginCheck"></beans:bean>
+	<beans:bean id="sampLoginCheck" class ="com.mycompany.interceptor.SampLoginCheck"></beans:bean>
 	
 	<interceptors>
         <interceptor>
             <mapping path="/pur/**"/>
             <beans:ref bean="purLoginCheck"/>
+        </interceptor>
+        <interceptor>
+            <mapping path="/samp/**"/>
+            <beans:ref bean="sampLoginCheck"/>
         </interceptor>
     </interceptors>
 	

@@ -21,19 +21,19 @@
 	<br>
 <div class="container">
 	<h3 style="text-align:center">샘플 등록을 위해 기획서를 선택하세요</h3>
-	<form action="search_samp_writeform_step1" method="post">
+	<form action="/samp/writeform_step1/search" method="post">
 		
 		<table>
 			<thead></thead>
 			<tbody>
-				<tr>
+				<tr >
 					<td align="right">
-						<select name="searchCondition">
-							<option value=''>-- 선택 --</option>
-							<option value='제품명' selected>제품명</option>
-							<option value='제조사명'>제조사</option>
+						<select name="condi">
+						<c:forEach var="i" items="${pursearch }">
+							<option <c:if test="${page.cri.condi==i.condi }">selected</c:if> value='${i.condi}'>${i.key}</option>
+						</c:forEach>
 						</select> 
-						<input type="text" name="searchKeyword"> 
+						<input type="text" name="keyword" value=""> 
 						<input type="submit" value="검색">
 					</td>
 				</tr>
@@ -57,7 +57,7 @@
 		<c:forEach var="b" items="${list}" varStatus="st">
 		<tr>
 			<td>${st.index}</td>
-			<td><a href="/samp_writeform/${b.pdt_name}">${b.pdt_name}</a></td>
+			<td><a href="/samp/writeform/${b.pdt_name}">${b.pdt_name}</a></td>
 			<td>${b.writer}</td>
 			<td>${b.pdt_type}</td>
 			<td><fmt:formatDate value="${b.reg_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -68,8 +68,8 @@
 </table>
 <div style="width:660px" align="left">
 <c:if test="${page.prev}">
-   [ <a href="/samp_writeform_step1/1">◀◀</a>]
-   [ <a href="/samp_writeform_step1/${page.startPage-1}">◀</a>]
+   [ <a href="/samp/writeform_step1/1/${page.cri.condi}/${page.cri.keyword}">◀◀</a>]
+   [ <a href="/samp/writeform_step1/${page.startPage-1}">◀</a>]
 </c:if>
 <c:if test="${not page.prev }">
    [ <span style="color:silver">◀</span> ]
@@ -78,15 +78,15 @@
 
 <c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
    <c:if test="${page.cri.pageNum != i}">
-      [<a href="/samp_writeform_step1/${i }">${i}</a>]
+      [<a href="/samp/writeform_step1/${i }/${page.cri.condi}/${page.cri.keyword}">${i}</a>]
    </c:if>
    <c:if test="${page.cri.pageNum == i}">
       [${i }]
    </c:if>
 </c:forEach>
 <c:if test="${page.next}">
-   [<a href="/samp_writeform_step1/${page.endPage+1}">▶</a>]
-   [<a href="/samp_writeform_step1/${page.totalPage }">▶▶</a>]
+   [<a href="/samp/writeform_step1/${page.endPage+1}/${page.cri.condi}/${page.cri.keyword}">▶</a>]
+   [<a href="/samp/writeform_step1/${page.totalPage }/${page.cri.condi}/${page.cri.keyword}">▶▶</a>]
 </c:if>
 <c:if test="${not page.next}">
    [ <span style="color:silver">▶</span> ]

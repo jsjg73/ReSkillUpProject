@@ -25,6 +25,7 @@ import com.mycompany.service.PurposalService;
 import com.mycompany.service.SampleService;
 import com.mycompany.service.UploadService;
 
+@RequestMapping("/samp")
 @Controller
 public class SampController {
 	@Autowired
@@ -36,7 +37,7 @@ public class SampController {
 	@Autowired
 	UploadService upload;
 	
-	@RequestMapping("samp_writeform_step1")
+	@RequestMapping("writeform_step1/{pageNum}")
 	public String sample_writeform_step1(Model model, Criteria cri) {
 		int total = purService.purposalCnt();
 		
@@ -45,11 +46,47 @@ public class SampController {
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
+		model.addAttribute("pursearch", PurSearchDTO.values());//검색조건 enum
+		return "samp_writeform_step1";
+	}
+	//기획서 목록 키워드 검색
+	@RequestMapping("writeform_step1/search")
+	public String samp_search_writeform_step1(Model model, Criteria cri) {
+		int total = purService.purposalSearchCnt(cri);
+		
+		//cri.pageNum==1, cri.amout == 10; (default)
+		List<PurposalDTO> list = purService.purposalListPagingSearch(cri);
+		
+		model.addAttribute("page",new PageDTO(cri, total));
+		model.addAttribute("list", list);
+		model.addAttribute("pursearch", PurSearchDTO.values());//검색조건 enum
+		
+		return "samp_writeform_step1";
+	}
+	//검색된 제품 목록 페이지 이동
+	@RequestMapping("writeform_step1/{pageNum}/{condi}/{keyword}")
+	public String samp_search_writeform_step1_pagemove(Model model, Criteria cri) {
+		//검색 조건이 없을때 기본 목록으로 리다이렉트
+		if(cri.getCondi().equals("#")) { 
+			return "redirect:/samp/writeform_step1/"+cri.getPageNum();
+		}
+		//키워드가 없을 때 공백으로 치환
+		if(cri.getKeyword().equals("#")) {
+			cri.setKeyword("");
+		}
+		int total = purService.purposalSearchCnt(cri);
+		
+		//cri.pageNum==1, cri.amout == 10; (default)
+		List<PurposalDTO> list = purService.purposalListPagingSearch(cri);
+		
+		model.addAttribute("page",new PageDTO(cri, total));
+		model.addAttribute("list", list);
+		model.addAttribute("pursearch", PurSearchDTO.values());//검색조건 enum
 		
 		return "samp_writeform_step1";
 	}
 	
-	@RequestMapping("samp_writeform/{pdt_name}")
+	@RequestMapping("writeform/{pdt_name}")
 	public String sample_writeform(Model model,HttpSession sess, @PathVariable("pdt_name") String pdt_name ) {
 		
 		//현재 로그인한 직원 번호를 세션에서 가져옴
@@ -68,7 +105,7 @@ public class SampController {
 		return "samp_writeform_step2";
 	}
 	
-	@RequestMapping("samp_write")
+	@RequestMapping("write")
 	public String sample_write(SampleDTO samp,HttpSession sess, @RequestParam("file") MultipartFile file) {
 		if(!file.isEmpty()) {
 			// 업로드 위치 절대경로
@@ -82,7 +119,7 @@ public class SampController {
 		return "redirect:/samp_list/1";
 	}
 	
-	@RequestMapping(value="samp_list/{pageNum}")
+	@RequestMapping(value="list/{pageNum}")
 	public String samp_list(Model model, Criteria cri) {
 		int total = samservice.sampleCnt(); //
 		
@@ -94,7 +131,7 @@ public class SampController {
 		model.addAttribute("sampsearch", SampSearchDTO.values());//검색조건 enum
 		return "samp_list";
 	}
-	@RequestMapping(value="samp_list_search")
+	@RequestMapping(value="list_search")
 	public String samp_list_search(Model model, Criteria cri) {
 		int total = samservice.sampleSearchCnt(cri); //
 		
@@ -106,11 +143,11 @@ public class SampController {
 		model.addAttribute("sampsearch", SampSearchDTO.values());//검색조건 enum
 		return "samp_list";
 	}
-	@RequestMapping(value="samp_list/{pageNum}/{condi}/{keyword}")
+	@RequestMapping(value="list/{pageNum}/{condi}/{keyword}")
 	public String samp_list_search_pagemove(Model model, Criteria cri) {
 		//검색 조건이 없을때 기본 목록으로 리다이렉트
 		if(cri.getCondi().equals("#")) { 
-			return "redirect:/samp_list/"+cri.getPageNum();
+			return "redirect:/samp/list/"+cri.getPageNum();
 		}
 		//키워드가 없을 때 공백으로 치환
 		if(cri.getKeyword().equals("#")) {
@@ -127,7 +164,7 @@ public class SampController {
 		return "samp_list";
 	}
 	
-	@RequestMapping(value="samp_read/{samp_id}/{pageNum}")
+	@RequestMapping(value="read/{samp_id}/{pageNum}")
 	public String samp_read(Model model,HttpSession sess, @PathVariable("samp_id") String samp_id, @PathVariable("pageNum") String pageNum) {
 		
 		//현재 로그인한 직원 번호를 세션에서 가져옴
@@ -146,7 +183,7 @@ public class SampController {
 		return "samp_read";
 	}
 	
-	@RequestMapping(value="samp_updateform")
+	@RequestMapping(value="updateform")
 	public String samp_updateform(Model model, @RequestParam("writer") String writer, @RequestParam("pageNum") String pageNum,SampleDTO samp) {
 		//비정상적인 경로로 update 페이지에 오면 session이 null
 		if(writer == null) writer = "editor";
@@ -159,7 +196,7 @@ public class SampController {
 		return "samp_updateform";
 	}
 	
-	@RequestMapping("samp_update")
+	@RequestMapping("update")
 	public String samp_update(@RequestParam("file") MultipartFile file,HttpSession sess,@RequestParam("pageNum")String pageNum, SampleDTO samp) {
 		//pic은 변화 없음
 		
@@ -171,7 +208,7 @@ public class SampController {
 		}
 		samservice.sampleUpdate(samp);
 		
-		return "redirect:/samp_list/"+pageNum;
+		return "redirect:/samp/list/"+pageNum;
 	}
 	
 	@RequestMapping(value="/samp_dupli")

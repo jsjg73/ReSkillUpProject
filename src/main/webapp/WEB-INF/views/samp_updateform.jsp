@@ -18,7 +18,7 @@
 <body>
 <h1 style="text-align:center">샘플 수정</h1><br><br>
 <div class="container">
-<form action="/samp_update" method="post" id="samp_updateform" enctype="multipart/form-data">
+<form action="/samp/update" method="post" id="samp_updateform" enctype="multipart/form-data">
    <input type="hidden" name=writer value="${writer}">
    <input type="hidden" name=pageNum value="${pageNum}">
    <input type="hidden" name="orgpic" value="${samp.orgpic }">
