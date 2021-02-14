@@ -45,4 +45,15 @@
 		coc_mail = #{coc_mail}
 		WHERE coc_name = #{coc_name}
 	</update>
+	
+	<select id="cocompanyReadPaging" resultType="coc">
+		<![CDATA[
+		 	SELECT *
+			FROM (SELECT rownum as rn, A.*
+			      FROM (SELECT * FROM COCOMPANY 
+			      		WHERE coc_name = #{coc_name} ORDER BY coc_name DESC) A
+			      WHERE rownum <= #{pageNum} * #{amount}) 
+			WHERE rn > (#{pageNum}-1)* #{amount}
+		]]>
+	</select>
 </mapper>
