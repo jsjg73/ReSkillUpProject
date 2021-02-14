@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.domain.AuthenticationCode;
@@ -54,6 +55,21 @@ public class CocompanyController {
 		if(auth_code.check(dto.getEmpno())) {
 			//유형 수 만큼 insert 반복
 			String[] types = dto.getPdt_type().split(",");
+//			List<CocompanyDTO> coc_list = cocservice.cocompanyRead(dto.getCoc_name());
+//			List<String> db_types = new ArrayList<>();
+//			for(CocompanyDTO coc : coc_list) {
+//				db_types.add(coc.getPdt_type());
+//			}
+//			for(int i = 0; i<types.length; i++) {
+//				if(db_types.contains(types[i])) {
+//					response.setContentType("text/html; charset=UTF-8");			 
+//					PrintWriter out = response.getWriter();		 
+//					out.println("<script>alert('중복된 유형이 있습니다.'); location.href='coc_writeform';</script>");
+//					 
+//					out.flush();
+//					out.close();
+//				}
+//			}
 			for(int i = 0; i<types.length; i++) {
 				dto.setPdt_type(types[i]);
 				cocservice.cocompanyInsert(dto);
@@ -90,7 +106,7 @@ public class CocompanyController {
 		//DB 처리 : mybatis
 		CocompanyDTO dto = new CocompanyDTO();
 		dto.setCoc_name(coc_name);
-		List<CocompanyDTO> list = cocservice.cocompanyRead(dto);
+		List<CocompanyDTO> list = cocservice.cocompanyRead(dto.getCoc_name());
 		if(!list.isEmpty()) {
 			model.addAttribute("coc", list.get(0));
 		}
@@ -106,7 +122,7 @@ public class CocompanyController {
 		
 		CocompanyDTO dto = new CocompanyDTO();
 		dto.setCoc_name(coc_name);
-		List<CocompanyDTO> list = cocservice.cocompanyRead(dto);
+		List<CocompanyDTO> list = cocservice.cocompanyRead(dto.getCoc_name());
 		if(!list.isEmpty()) {
 			model.addAttribute("coc", list.get(0));
 			model.addAttribute("pwd", list.get(0).getPwd());
@@ -118,18 +134,45 @@ public class CocompanyController {
 		return "coc_updateform";
 	}
 	@RequestMapping(value="coc_update")
-	public String coc_update(Model model, CocompanyDTO dto, String pageNum) {
+	public String coc_update(CocompanyDTO dto, String pageNum) throws IOException {
+		
 		cocservice.cocompanyUpdate(dto);
 		return "redirect:/coc_list/"+pageNum;
 	}
 	
 	@RequestMapping(value="/coc_dupli")
 	@ResponseBody
-	public String coc_duplicate( CocompanyDTO dto) {
-		List<CocompanyDTO> list = cocservice.cocompanyRead(dto);
-		if(list.isEmpty())
+	public String coc_duplicate( String coc_name, @RequestParam(value="checked_array[]") ArrayList<String> checked_array) {
+		List<CocompanyDTO> coc_list = cocservice.cocompanyRead(coc_name);
+		ArrayList<String> db_types = new ArrayList<String>();
+		for(CocompanyDTO coc : coc_list) {
+			db_types.add(coc.getPdt_type());
+			System.out.print(coc.getPdt_type()+" ");
+		}
+		if(checked_array.isEmpty()) {
+			return "0";
+		}
+		System.out.println();
+		System.out.println("checked_array.size(): " + checked_array.size());
+		for(int i = 0; i<checked_array.size(); i++) {
+			System.out.print(checked_array.get(i)+" ");
+			if(db_types.contains(checked_array.get(i))) {
+				return "-1";
+			}
+		}
+		
+		return "1";
+	}
+	
+	@RequestMapping(value="/coc_pwd_check")
+	@ResponseBody
+	public String coc_pwd_check( String coc_name, String pwd_check) {
+		List<CocompanyDTO> list = cocservice.cocompanyRead(coc_name);
+		String pwd = list.get(0).getPwd();
+		if(!pwd.equals(pwd_check)) {
 			return "-1";
-		else 
+		}
+		else
 			return "1";
 	}
 }
