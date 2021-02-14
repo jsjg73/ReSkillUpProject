@@ -18,4 +18,5 @@ public interface CocompanyService {
 
 	List<CocompanyDTO> cocompanyRead(String coc_name);
 	List<String> cocompanyReadByPdt_type(String pdt_type);
+	List<CocompanyDTO> cocompanyReadPaging(Criteria cri);
 }

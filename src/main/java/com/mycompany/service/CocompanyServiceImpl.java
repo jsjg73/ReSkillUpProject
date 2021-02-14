@@ -52,4 +52,9 @@ public class CocompanyServiceImpl implements CocompanyService {
 		return cocDAO.cocompanyReadByPdt_type(pdt_type);
 	}
 
+	@Override
+	public List<CocompanyDTO> cocompanyReadPaging(Criteria cri) {
+		return cocDAO.cocompanyReadPaging(cri);
+	}
+
 }

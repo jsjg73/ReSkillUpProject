@@ -51,4 +51,9 @@ public class CocompanyDAOImpl implements CocompanyDAO {
 		mybatis.update("Coc.cocompanyUpdate",dto);
 	}
 
+	@Override
+	public List<CocompanyDTO> cocompanyReadPaging(Criteria cri) {
+		return mybatis.selectList("Coc.cocompanyReadPaging",cri);
+	}
+
 }
