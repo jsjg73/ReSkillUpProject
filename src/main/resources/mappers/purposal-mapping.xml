@@ -55,4 +55,47 @@
 			WHERE rn > (#{pageNum}-1)* #{amount}
 			]]>
 		 </select>
+		 
+		 <select id="cocPurposalCnt" resultType="int">
+		 	select count(*)
+			from purposal p,
+			(select pdt_type from COCOMPANY where coc_name = #{coc_name}) c
+			where p.pdt_type = c.pdt_type
+		 </select>
+		 
+		 <select id="cocPurposalListPaging" resultType="pur">
+		 	<![CDATA[
+		 	SELECT *
+			FROM (SELECT rownum as rn, A.*
+			      FROM (select p.*
+						from purposal p,
+							(select pdt_type from COCOMPANY where coc_name = #{coc_name}) c
+						where p.pdt_type = c.pdt_type ORDER BY reg_date DESC) A
+			      WHERE rownum <= #{pageNum} * #{amount}) 
+			WHERE rn > (#{pageNum}-1)* #{amount}
+			]]>
+		 </select>
+		 
+		 <select id="cocPurposalSearchCnt" resultType="int">
+		 select count(*)
+			from purposal p,
+			(select pdt_type from COCOMPANY where coc_name = #{coc_name}) c
+			where p.pdt_type = c.pdt_type
+		    AND ${condi} like '%'||#{keyword}||'%'
+		 </select>
+		 
+		 <select id="cocPurposalListPagingSearch" resultType="pur">
+		 	<![CDATA[
+		 	SELECT *
+			FROM (SELECT rownum as rn, A.*
+			      FROM (select p.*
+						from purposal p,
+							(select pdt_type from COCOMPANY where coc_name = #{coc_name}) c
+						where p.pdt_type = c.pdt_type
+						AND ${condi} like '%'||#{keyword}||'%'
+						ORDER BY reg_date DESC) A
+			      WHERE rownum <= #{pageNum} * #{amount}) 
+			WHERE rn > (#{pageNum}-1)* #{amount}
+			]]>
+		 </select>
 </mapper>

@@ -24,6 +24,12 @@ public class PurposalServiceImpl implements PurposalService {
 	}
 
 	@Override
+	public int cocPurposalCnt(String coc_name) {
+
+		return purDAO.cocPurposalCnt(coc_name);
+	}
+
+	@Override
 	public void PurposalInsert(PurposalDTO dto) {
 		purDAO.PurposalInsert(dto);
 	}
@@ -52,17 +58,32 @@ public class PurposalServiceImpl implements PurposalService {
 	public int purposalSearchCnt(Criteria cri) {
 		return purDAO.purposalSearchCnt(cri);
 	}
+
 	@Override
 	public List<PurposalDTO> purposalListPagingSearch(Criteria cri) {
 		// TODO Auto-generated method stub
 		return purDAO.purposalListPagingSearch(cri);
 	}
-	
+
 	@Override
 	public String purposalWriterCheck(String login) {
-		if(login.equals("admin")) {
+		if (login.equals("admin")) {
 			return "admin";
 		}
 		return null;
+	}
+
+	@Override
+	public List<PurposalDTO> cocPurposalListPaging(Criteria cri) {
+		return purDAO.cocPurposalListPaging(cri);
+	}
+	@Override
+	public int cocPurposalSearchCnt(Criteria cri) {
+		return purDAO.cocPurposalSearchCnt(cri);
+	}
+	@Override
+	public List<PurposalDTO> cocPurposalListPagingSearch(Criteria cri) {
+		// TODO Auto-generated method stub
+		return purDAO.cocPurposalListPagingSearch(cri);
 	}
 }

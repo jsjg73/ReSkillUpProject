@@ -51,3 +51,9 @@ create table samp(
 
 insert into samp ( samp_id, arriv_date, writer, price, pic, orgpic,coc_name, pdt_name, bigo,pdt_type)
 values ('u3',to_date('02/11/2021 00:00:00', 'mm/dd/yyyy hh24:mi:ss'),'admin',100,'','','제조사1','c1','','전자기기')
+
+--제조사 로그인 기획서 목록 조회
+select count(*)
+from purposal p,
+(select pdt_type from SCOTT.COCOMPANY where coc_name = '제조사1') c
+where p.pdt_type = c.pdt_type

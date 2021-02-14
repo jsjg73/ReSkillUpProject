@@ -21,4 +21,12 @@ public interface PurposalDAO {
 	int purposalSearchCnt(Criteria cri);
 
 	List<PurposalDTO> purposalListPagingSearch(Criteria cri);
+
+	int cocPurposalCnt(String coc_name);
+
+	List<PurposalDTO> cocPurposalListPaging(Criteria cri);
+
+	int cocPurposalSearchCnt(Criteria cri);
+
+	List<PurposalDTO> cocPurposalListPagingSearch(Criteria cri);
 }

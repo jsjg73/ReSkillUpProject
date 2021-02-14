@@ -9,6 +9,7 @@ import com.mycompany.domain.PurposalDTO;
 public interface PurposalService {
 
 	int purposalCnt();
+	int cocPurposalCnt(String coc_name);
 	public void PurposalInsert(PurposalDTO dto);
 	void purposalUpdate(PurposalDTO dto);
 
@@ -20,4 +21,7 @@ public interface PurposalService {
 	PurposalDTO purposalRead(PurposalDTO dto);
 	int purposalSearchCnt(Criteria cri);
 	String purposalWriterCheck(String login);
+	List<PurposalDTO> cocPurposalListPaging(Criteria cri);
+	int cocPurposalSearchCnt(Criteria cri);
+	List<PurposalDTO> cocPurposalListPagingSearch(Criteria cri);
 }

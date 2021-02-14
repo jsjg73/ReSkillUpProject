@@ -38,7 +38,10 @@ public class PurposalDAOImpl implements PurposalDAO {
 	public int purposalCnt() {
 		return mybatis.selectOne("Pur.purCnt");
 	}
-	
+	@Override
+	public int cocPurposalCnt(String coc_name) {
+		return mybatis.selectOne("Pur.cocPurposalCnt", coc_name);
+	}
 	@Override
 	public List<PurposalDTO> purposalListPaging(Criteria cri) {
 		return mybatis.selectList("Pur.purposalListPaging",cri);
@@ -54,5 +57,17 @@ public class PurposalDAOImpl implements PurposalDAO {
 	@Override
 	public List<PurposalDTO> purposalListPagingSearch(Criteria cri) {
 		return mybatis.selectList("Pur.purposalListPagingSearch", cri);
+	}
+	@Override
+	public List<PurposalDTO> cocPurposalListPaging(Criteria cri) {
+		return mybatis.selectList("Pur.cocPurposalListPaging", cri);
+	}
+	@Override
+	public int cocPurposalSearchCnt(Criteria cri) {
+		return mybatis.selectOne("Pur.cocPurposalSearchCnt", cri);
+	}
+	@Override
+	public List<PurposalDTO> cocPurposalListPagingSearch(Criteria cri) {
+		return mybatis.selectList("Pur.cocPurposalListPagingSearch", cri);
 	}
 }
