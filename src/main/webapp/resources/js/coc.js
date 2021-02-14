@@ -1,5 +1,5 @@
 $(function() {
-	$("#coc_writeform").submit(function() {
+	$("#coc_writeform").on("click", function() {
 		var flag = false;
 		var pattern2 = /[`~!@#$%^&*|\\\'\";:\/?]/;
 
@@ -43,7 +43,7 @@ $(function() {
 	
 	//제조사명, 유형 중복검사
 	var coc_name = "";
-	$(document).on("click", "#coc_duplicate", function(){
+	$("#coc_duplicate").on("click", function() {
 		coc_name = $("#coc_name").val();
 		var checked_array = [];
 		$('input:checkbox[name="Pdt_type"]:checked').each(function() {
@@ -115,8 +115,5 @@ $(function() {
 		});//ajax end
 		return false;//submit 방지
 	});
-
-
-	
 	
 });
