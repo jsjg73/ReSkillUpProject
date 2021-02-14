@@ -23,7 +23,6 @@
 	<div class="container">
 		<form action="/coc_update" method="post" id="coc_updateform"
 			name="cuf">
-			<input type="hidden" name="pwd" id="pwd" value="${coc.pwd}">
 			<input type="hidden" name="pageNum" value="${pageNum }">
 			<div class="form-group">
 				<label>제조사명</label>
@@ -48,9 +47,9 @@
 			<div class="form-group">
 				<label>비밀번호</label>
 				<input type="password" class="form-control" name="pwd_check" id="pwd_check">
-				<input class="btn btn-primary" type="button" id="pwd_check_btn" value="비밀번호 확인">
+				<input type="button" class="btn btn-primary" name="pwd_check_btn" id="pwd_check_btn" value="비밀번호 확인">
 			</div>
-			<button type="submit" class="btn btn-primary">수정</button>
+			<button type="submit" class="btn btn-primary" id="update-btn" disabled>수정</button>
 			<input class="btn btn-danger" type="reset" value="취소">
 		</form>
 	</div>
