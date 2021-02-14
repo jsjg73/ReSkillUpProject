@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +45,7 @@ public class CocompanyController {
 		}
 
 		model.addAttribute("Pdt_type_list", Pdt_type_list);
-
+		
 		return "coc_writeform";
 	}
 
@@ -56,21 +58,7 @@ public class CocompanyController {
 		if(auth_code.check(dto.getEmpno())) {
 			//유형 수 만큼 insert 반복
 			String[] types = dto.getPdt_type().split(",");
-//			List<CocompanyDTO> coc_list = cocservice.cocompanyRead(dto.getCoc_name());
-//			List<String> db_types = new ArrayList<>();
-//			for(CocompanyDTO coc : coc_list) {
-//				db_types.add(coc.getPdt_type());
-//			}
-//			for(int i = 0; i<types.length; i++) {
-//				if(db_types.contains(types[i])) {
-//					response.setContentType("text/html; charset=UTF-8");			 
-//					PrintWriter out = response.getWriter();		 
-//					out.println("<script>alert('중복된 유형이 있습니다.'); location.href='coc_writeform';</script>");
-//					 
-//					out.flush();
-//					out.close();
-//				}
-//			}
+
 			for(int i = 0; i<types.length; i++) {
 				dto.setPdt_type(types[i]);
 				cocservice.cocompanyInsert(dto);
@@ -89,11 +77,28 @@ public class CocompanyController {
 	}
 	
 	@RequestMapping(value="list/{pageNum}")
-	public String coc_list(Model model, Criteria cri) {
+	public String coc_list(Model model, Criteria cri, HttpServletRequest req, HttpSession sess) {
 		int total = cocservice.cocompanyCnt();
-		
-		//cri.pageNum==1, cri.amout == 10; (default)
-		List<CocompanyDTO> list = cocservice.cocompanyListPaging(cri);
+		List<CocompanyDTO> list = null;
+		String login = (String)sess.getAttribute("login"); //로그인 형태  : 직원 or 제조사
+		String coc_name =(String)req.getAttribute("coc_name"); 	
+		//제조사 로그인
+				if(login.equals("coc") ) {
+					if(coc_name != null) {
+						total = cocservice.cocompanyRead(coc_name).size();
+						cri.setCoc_name(coc_name);
+						//유형에 맞는 기획서 리스트
+						list = cocservice.cocompanyReadPaging(cri);
+					}
+					else
+						System.out.println("제조사명 없으므로 진행 불가 에러");
+				
+				//직원 로그인
+				}else {
+					total = cocservice.cocompanyCnt();
+					//cri.pageNum==1, cri.amout == 10; (default)
+					list = cocservice.cocompanyListPaging(cri);
+				}
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
