@@ -23,13 +23,15 @@
          <input type="text" class="form-control" name="coc_name" id="coc_name"
                placeholder="제조사명을 입력하세요">
          <span id="coc_nametd"></span>
-         <button id="coc_duplicate" >중복검사</button>
+         
       </div>
       <div class="form-group">
          <label>유형</label><br>
   		 <c:forEach var="Pdt_type" items="${Pdt_type_list}">
          	<label><input type="checkbox" name="Pdt_type" value="${Pdt_type }" > ${Pdt_type }</label>
 		 </c:forEach>
+		 <br/>
+		 <button type="button" class="btn btn-primary" id="coc_duplicate" >유형 중복검사</button>
       </div>
       <div class="form-group">
          <label>인증번호</label> <!-- 아무 회사나 등록하지못하고 기획회사 직원이 인증한 회사만 정보등록가능하도록 -->
@@ -56,7 +58,7 @@
          <input type="password" class="form-control" name="pwd_check" id="pwd_check">
       </div>
       
-      <button type="submit" class="btn btn-primary">등록</button>
+      <button type="submit" class="btn btn-primary" id="write-btn" disabled>등록</button>
       <input class="btn btn-danger" type="reset" value="취소">
    </form>
 </div> <!-- /container -->
