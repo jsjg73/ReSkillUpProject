@@ -45,14 +45,23 @@ $(function() {
 	var coc_name = "";
 	$("#coc_duplicate").on("click", function() {
 		coc_name = $("#coc_name").val();
+		if(coc_name == ""){
+			alert("제조사명을 입력해주세요.");
+			$("#coc_name").focus();
+			return false;
+		}
 		var checked_array = [];
 		if ($("input:checkbox[name='Pdt_type']").is(":checked") == true) {
 			$('input:checkbox[name="Pdt_type"]:checked').each(function() {
 				checked_array.push($(this).val());
 			});
 		}
+		else {
+			alert("유형을 꼭 선택해주세요!");
+			return false;
+		}
 		$.ajax({
-			url: '/coc_dupli',
+			url: '/coc/dupli',
 			type: 'GET',
 			dataType: 'json', //서버로부터 내가 받는 데이터의 타입
 			contentType: 'application/json',//내가 서버로 보내는 데이터의 타입
@@ -65,10 +74,6 @@ $(function() {
 				if (data == -1) {
 					alert("기존에 등록된 유형이 존재합니다.");
 					$("#write-btn").attr("disabled", true);
-					return false;
-				}
-				else if(data == 0){
-					alert("유형을 꼭 선택해주세요!");
 					return false;
 				}
 				else {
@@ -91,7 +96,7 @@ $(function() {
 		pwd_check = $("#pwd_check").val();
 		var coc_name = $("#coc_name").val();
 		$.ajax({
-			url: '/coc_pwd_check',
+			url: '/coc/pwd_check',
 			type: 'GET',
 			dataType: 'json', //서버로부터 내가 받는 데이터의 타입
 			contentType : 'application/json', //내가 서버로 보내는 데이터의 타입
