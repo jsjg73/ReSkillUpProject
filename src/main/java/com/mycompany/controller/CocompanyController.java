@@ -23,6 +23,7 @@ import com.mycompany.domain.PageDTO;
 import com.mycompany.domain.Pdt_typeDTO;
 import com.mycompany.service.CocompanyService;
 
+@RequestMapping("/coc")
 @Controller
 public class CocompanyController {
 
@@ -31,7 +32,7 @@ public class CocompanyController {
 	
 	AuthenticationCode auth_code = AuthenticationCode.getInstance();
 
-	@RequestMapping("coc_writeform")
+	@RequestMapping("writeform")
 	public String coc_writeform(Model model) {
 
 		// 유형,주고객 프론트로 전달.
@@ -47,7 +48,7 @@ public class CocompanyController {
 	}
 
 	// 등록
-	@RequestMapping(value = "coc_write", method = RequestMethod.POST)
+	@RequestMapping(value = "write", method = RequestMethod.POST)
 	public String coc_write(CocompanyDTO dto, HttpServletResponse response) throws IOException {
 
 		// DB 처리 : mybatis
@@ -87,7 +88,7 @@ public class CocompanyController {
 		return "redirect:/coc_list/1";
 	}
 	
-	@RequestMapping(value="coc_list/{pageNum}")
+	@RequestMapping(value="list/{pageNum}")
 	public String coc_list(Model model, Criteria cri) {
 		int total = cocservice.cocompanyCnt();
 		
@@ -100,7 +101,7 @@ public class CocompanyController {
 		return "coc_list";
 	}
 	
-	@RequestMapping(value="coc_read/{coc_name}/{pageNum}")
+	@RequestMapping(value="read/{coc_name}/{pageNum}")
 	public String coc_read(Model model, @PathVariable("coc_name") String coc_name, @PathVariable("pageNum") String pageNum) {
 		
 		//DB 처리 : mybatis
@@ -117,7 +118,7 @@ public class CocompanyController {
 		return "coc_read";
 	}
 	
-	@RequestMapping(value="coc_updateform")
+	@RequestMapping(value="updateform")
 	public String coc_updateform(Model model, String coc_name, String pageNum) {
 		
 		CocompanyDTO dto = new CocompanyDTO();
@@ -133,24 +134,22 @@ public class CocompanyController {
 		
 		return "coc_updateform";
 	}
-	@RequestMapping(value="coc_update")
+	@RequestMapping(value="update")
 	public String coc_update(CocompanyDTO dto, String pageNum) throws IOException {
 		
 		cocservice.cocompanyUpdate(dto);
 		return "redirect:/coc_list/"+pageNum;
 	}
 	
-	@RequestMapping(value="/coc_dupli")
+	@RequestMapping(value="/dupli")
 	@ResponseBody
 	public String coc_duplicate( String coc_name, @RequestParam(value="checked_array[]") ArrayList<String> checked_array) {
+		
 		List<CocompanyDTO> coc_list = cocservice.cocompanyRead(coc_name);
 		ArrayList<String> db_types = new ArrayList<String>();
 		for(CocompanyDTO coc : coc_list) {
 			db_types.add(coc.getPdt_type());
 			System.out.print(coc.getPdt_type()+" ");
-		}
-		if(checked_array.isEmpty()) {
-			return "0";
 		}
 		System.out.println();
 		System.out.println("checked_array.size(): " + checked_array.size());
@@ -164,7 +163,7 @@ public class CocompanyController {
 		return "1";
 	}
 	
-	@RequestMapping(value="/coc_pwd_check")
+	@RequestMapping(value="/pwd_check")
 	@ResponseBody
 	public String coc_pwd_check( String coc_name, String pwd_check) {
 		List<CocompanyDTO> list = cocservice.cocompanyRead(coc_name);
