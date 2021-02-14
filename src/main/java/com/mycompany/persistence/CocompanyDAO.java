@@ -11,7 +11,7 @@ public interface CocompanyDAO {
 	List<CocompanyDTO> cocompanyList();
 	List<CocompanyDTO> cocompanyListPaging(Criteria cri);
 
-	List<CocompanyDTO> cocompanyRead(CocompanyDTO dto);
+	List<CocompanyDTO> cocompanyRead(String coc_name);
 	List<String> cocompanyReadByPdt_type(String pdt_type);
 	
 	int cocompanyCnt();
