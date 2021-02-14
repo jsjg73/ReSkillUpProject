@@ -13,6 +13,7 @@ public class Criteria {
 	private int amount;
 	private String condi;
 	private String keyword;
+	private String coc_name;
 	
 	public Criteria() {
 		this(1,10);
