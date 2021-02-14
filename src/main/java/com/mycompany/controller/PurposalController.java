@@ -83,11 +83,29 @@ public class PurposalController {
 	
 	//기본 목록 조회
 	@RequestMapping(value="/list/{pageNum}")
-	public String pur_list(Model model, Criteria cri) {
-		int total = service.purposalCnt();
+	public String pur_list(Model model, Criteria cri, HttpServletRequest req, HttpSession sess) {
+		List<PurposalDTO> list =null;
+		int total= 0;
+		String login = (String)sess.getAttribute("login"); //로그인 형태  : 직원 or 제조사
+		String coc_name =(String)req.getAttribute("coc_name"); 
 		
-		//cri.pageNum==1, cri.amout == 10; (default)
-		List<PurposalDTO> list = service.purposalListPaging(cri);
+		//제조사 로그인
+		if(login.equals("coc") ) {
+			if(coc_name != null) {
+				total = service.cocPurposalCnt(coc_name);
+				cri.setCoc_name(coc_name);
+				//유형에 맞는 기획서 리스트
+				list = service.cocPurposalListPaging(cri);
+			}
+			else
+				System.out.println("제조사명 없으므로 진행 불가 에러");
+		
+		//직원 로그인
+		}else {
+			total = service.purposalCnt();
+			//cri.pageNum==1, cri.amout == 10; (default)
+			list = service.purposalListPaging(cri);
+		}
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
@@ -97,12 +115,30 @@ public class PurposalController {
 	
 	//첫 검색어 목록 조회
 	@RequestMapping(value="/list_search")
-	public String pur_list_search(Model model, Criteria cri) {
-
-		int total = service.purposalSearchCnt(cri);
+	public String pur_list_search(Model model, Criteria cri,HttpServletRequest req, HttpSession sess) {
+		List<PurposalDTO> list =null;
+		int total= 0;
+		String login = (String)sess.getAttribute("login"); //로그인 형태  : 직원 or 제조사
+		String coc_name =(String)req.getAttribute("coc_name"); 
 		
-		//cri.pageNum==1, cri.amout == 10; (default)
-		List<PurposalDTO> list = service.purposalListPagingSearch(cri);
+		//제조사 로그인
+		if(login.equals("coc") ) {
+			if(coc_name != null) {
+				cri.setCoc_name(coc_name);
+				total = service.cocPurposalSearchCnt(cri);
+				//유형에 맞는 기획서 리스트
+				list = service.cocPurposalListPagingSearch(cri);
+			}
+			else
+				System.out.println("제조사명 없으므로 진행 불가 에러");
+		
+		//직원 로그인
+		}else {
+			total = service.purposalSearchCnt(cri);
+			
+			//cri.pageNum==1, cri.amout == 10; (default)
+			list = service.purposalListPagingSearch(cri);
+		}
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
@@ -112,7 +148,7 @@ public class PurposalController {
 	
 	//검색된 목록 페이지 이동
 	@RequestMapping(value="/list/{pageNum}/{condi}/{keyword}")
-	public String pur_list_search_pagemove(Model model, Criteria cri) {
+	public String pur_list_search_pagemove(Model model, Criteria cri,HttpServletRequest req, HttpSession sess) {
 		
 		//검색 조건이 없을때 기본 목록으로 리다이렉트
 		if(cri.getCondi().equals("#")) { 
@@ -122,10 +158,30 @@ public class PurposalController {
 		if(cri.getKeyword().equals("#")) {
 			cri.setKeyword("");
 		}
-		int total = service.purposalSearchCnt(cri);
 		
-		//cri.pageNum==1, cri.amout == 10; (default)
-		List<PurposalDTO> list = service.purposalListPagingSearch(cri);
+		List<PurposalDTO> list =null;
+		int total= 0;
+		String login = (String)sess.getAttribute("login"); //로그인 형태  : 직원 or 제조사
+		String coc_name =(String)req.getAttribute("coc_name"); 
+		
+		//제조사 로그인
+		if(login.equals("coc") ) {
+			if(coc_name != null) {
+				cri.setCoc_name(coc_name);
+				total = service.cocPurposalSearchCnt(cri);
+				//유형에 맞는 기획서 리스트
+				list = service.cocPurposalListPagingSearch(cri);
+			}
+			else
+				System.out.println("제조사명 없으므로 진행 불가 에러");
+		
+		//직원 로그인
+		}else {
+			total = service.purposalSearchCnt(cri);
+			
+			//cri.pageNum==1, cri.amout == 10; (default)
+			list = service.purposalListPagingSearch(cri);
+		}
 		
 		model.addAttribute("page",new PageDTO(cri, total));
 		model.addAttribute("list", list);
