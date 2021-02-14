@@ -17,13 +17,33 @@ public class PurLoginCheck extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		String login = (String) session.getAttribute("login");
-
-		if(login == null || !login.equals("admin")) {
+		
+		String targetURL = request.getRequestURL().toString().split("/")[4];
+		
+		if(login == null) {
+			//권한 없음 알림
 			response.sendRedirect("/sessionNull");
 			return false;
 		}
-		request.setAttribute("writer", login);
-		return true;
+		//직원 로그인 : 모든 경로 접근 가능
+		if(login.equals("admin")) {
+			request.setAttribute("writer", login);
+			return true;
+		}
+		
+		//coc 로그인 :read, list, list_search
+		if(login.equals("coc")) {
+			if(targetURL.equals("read") ||
+				targetURL.equals("list") ||
+				targetURL.equals("list_search") ) {
+				request.setAttribute("coc_name", "제조사1");
+				return true;
+			}
+		}
+		
+		//권한 없음 알림
+		response.sendRedirect("/sessionNull");
+		return false;
 	}
 	
 	@Override

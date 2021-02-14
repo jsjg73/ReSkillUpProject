@@ -34,7 +34,9 @@
 	class="org.springframework.web.multipart.support.StandardServletMultipartResolver"
 	></beans:bean> -->
 	<context:component-scan base-package="com.mycompany.controller" />
+	
 	<beans:bean id="purLoginCheck" class ="com.mycompany.interceptor.PurLoginCheck"></beans:bean>
+	
 	<interceptors>
         <interceptor>
             <mapping path="/pur/**"/>
