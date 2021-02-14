@@ -2,6 +2,7 @@ package com.mycompany.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,13 +88,7 @@ public class SampController {
 	}
 	
 	@RequestMapping("writeform/{pdt_name}")
-	public String sample_writeform(Model model,HttpSession sess, @PathVariable("pdt_name") String pdt_name ) {
-		
-		//현재 로그인한 직원 번호를 세션에서 가져옴
-		String writer = (String)sess.getAttribute("session");
-		//비정상적인 경로로 update 페이지에 오면 session이 null
-		if(writer == null) writer = "emp";
-		model.addAttribute("writer", writer);
+	public String sample_writeform(Model model,HttpSession sess, @PathVariable("pdt_name") String pdt_name, HttpServletRequest req) {
 		
 		PurposalDTO purDTO = new PurposalDTO();
 		purDTO.setPdt_name(pdt_name);
@@ -101,7 +96,7 @@ public class SampController {
 		List<String> coc_name_list = cocservice.cocompanyReadByPdt_type(purDTO.getPdt_type().getKey());
 		model.addAttribute("pur",purDTO);
 		model.addAttribute("coc_name_list",coc_name_list);
-		
+		model.addAttribute("writer", req.getAttribute("writer"));
 		return "samp_writeform_step2";
 	}
 	
@@ -116,7 +111,7 @@ public class SampController {
 		
 		samservice.sampleInsert(samp);
 		
-		return "redirect:/samp_list/1";
+		return "redirect:/samp/list/1";
 	}
 	
 	@RequestMapping(value="list/{pageNum}")
@@ -167,12 +162,6 @@ public class SampController {
 	@RequestMapping(value="read/{samp_id}/{pageNum}")
 	public String samp_read(Model model,HttpSession sess, @PathVariable("samp_id") String samp_id, @PathVariable("pageNum") String pageNum) {
 		
-		//현재 로그인한 직원 번호를 세션에서 가져옴
-		String writer = (String)sess.getAttribute("session");
-		//비정상적인 경로로 update 페이지에 오면 session이 null
-		if(writer == null) writer = "emp";
-		model.addAttribute("writer", writer);
-		
 		//DB 처리 : mybatis
 		SampleDTO dto = new SampleDTO();
 		dto = samservice.sampleRead(samp_id);
@@ -184,15 +173,12 @@ public class SampController {
 	}
 	
 	@RequestMapping(value="updateform")
-	public String samp_updateform(Model model, @RequestParam("writer") String writer, @RequestParam("pageNum") String pageNum,SampleDTO samp) {
-		//비정상적인 경로로 update 페이지에 오면 session이 null
-		if(writer == null) writer = "editor";
-		model.addAttribute("writer", writer);
+	public String samp_updateform(Model model, @RequestParam("pageNum") String pageNum,SampleDTO samp, HttpServletRequest req) {
 		
 		samp = samservice.sampleRead(samp.getSamp_id());
 		model.addAttribute("samp",samp);
 		model.addAttribute("pageNum",pageNum);
-		
+		model.addAttribute("writer", req.getAttribute("writer"));
 		return "samp_updateform";
 	}
 	
@@ -211,7 +197,7 @@ public class SampController {
 		return "redirect:/samp/list/"+pageNum;
 	}
 	
-	@RequestMapping(value="/samp_dupli")
+	@RequestMapping(value="/dupli")
 	@ResponseBody
 	public String samp_duplicate( String samp_id) {
 		SampleDTO samp = samservice.sampleRead(samp_id);
