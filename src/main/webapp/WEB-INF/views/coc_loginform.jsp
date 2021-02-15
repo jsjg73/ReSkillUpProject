@@ -13,10 +13,10 @@
    <script src="/resources/js/coc.js"></script>
 </head>
 <body>
-<h1 style="text-align:center">제조사 등록</h1><br><br>
+<h1 style="text-align:center">제조사 로그인</h1><br><br>
 
 <div class="container">
-   <form action="home" method="post" id="coc_writeform" name="cwf">
+   <form action="/home/coc" method="POST">
    <input type="hidden" name="writer" value="employee">
       <div class="form-group">
          <label>제조사명</label>
@@ -30,12 +30,8 @@
          <label>비밀번호</label> <!-- 유효성검사 -->
          <input type="password" class="form-control" name="pwd" id="pwd">
       </div>
-      <div class="form-group">
-         <label>비밀번호확인</label>
-         <input type="password" class="form-control" name="pwd_check" id="pwd_check">
-      </div>
       
-      <button type="submit" class="btn btn-primary" id="login-btn" disabled>로그인</button>
+      <button type="submit" class="btn btn-primary" id="login-btn">로그인</button>
       <input class="btn btn-danger" type="reset" value="취소">
    </form>
 </div> <!-- /container -->
