@@ -122,4 +122,22 @@ $(function() {
 		return false;//submit 방지
 	});
 	
+	$("#login-btn").on("click", function() {
+		var coc_name = $("#coc_name").val();
+		var pwd = $("#pwd").val();
+		if (coc_name == "" || pattern2.test(coc_name)) {
+			alert("사용 불가능한 제조사명임(특수문자 확인바람.)");
+			$("#coc_nametd").text("올바른 제조사명 입력바람");
+			$("#coc_name").focus();
+			return false;
+		}
+		if ($("#pwd").val() == "") {
+			alert("비밀번호를 꼭 입력해주세요!");
+			$("#pwd").focus();
+			return false;
+		}
+		
+		
+	});
+	
 });
