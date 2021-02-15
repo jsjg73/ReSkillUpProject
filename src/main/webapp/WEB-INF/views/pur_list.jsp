@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
+<a href="/home/${login }">홈으로 </a>
 <br>
 <br>
 <br>
