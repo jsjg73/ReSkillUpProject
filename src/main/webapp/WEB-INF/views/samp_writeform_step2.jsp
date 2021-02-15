@@ -16,7 +16,7 @@
 <h1 style="text-align:center" >샘플 등록</h1>
 <div class="container">
    <form action="/samp/write" method="post" id="samp_writeform" enctype="multipart/form-data" >
-   <input type="hidden" name=writer value="${writer}">
+   <input type="hidden" name=writer value="${login}">
    <input type="hidden" name="pic" value=""><!-- 첨부파일 없을때 -->
    <input type="hidden" name="orgpic" value=""><!-- 첨부파일 없을때 -->
       <div class="form-group">

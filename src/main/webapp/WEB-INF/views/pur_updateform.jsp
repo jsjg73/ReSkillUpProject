@@ -21,7 +21,7 @@
 
 <div class="container">
    <form action="/pur/update" method="post" id="pur_updateform" name="puf" enctype="multipart/form-data" >
-   <input type="hidden" name="writer" value="${editor}">
+   <input type="hidden" name="writer" value="${login}">
    <input type="hidden" name="orgpic" value="${dto.orgpic }">
    <input type="hidden" name="pic" value="${dto.pic }">
    <input type="hidden" name="ins_date" value="${dto.ins_date}">
