@@ -19,7 +19,8 @@
 <br>
 <br>
 <div class="container">
-	<h2>샘플 목록</h2>
+	<h2 style="text-align:center" >샘플 목록</h2>
+	<br><br>
 	<form action="/samp/list_search" method="post">
 	<input type="hidden" value="1" name="pageNum">
 		<table>
