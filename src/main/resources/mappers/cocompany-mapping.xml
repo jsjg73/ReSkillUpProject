@@ -56,4 +56,5 @@
 			WHERE rn > (#{pageNum}-1)* #{amount}
 		]]>
 	</select>
+	
 </mapper>
