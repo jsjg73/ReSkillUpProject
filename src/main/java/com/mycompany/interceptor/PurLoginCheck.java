@@ -32,11 +32,11 @@ public class PurLoginCheck extends HandlerInterceptorAdapter{
 		}
 		
 		//coc 로그인 :read, list, list_search
-		if(login.equals("coc")) {
+		if(login.equals("coc")) {			
 			if(targetURL.equals("read") ||
 				targetURL.equals("list") ||
 				targetURL.equals("list_search") ) {
-				request.setAttribute("coc_name", "제조사1");
+				request.setAttribute("coc_name", session.getAttribute("coc_name"));
 				return true;
 			}
 		}

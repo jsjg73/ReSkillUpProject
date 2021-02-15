@@ -35,7 +35,8 @@ public class CocLoginCheck extends HandlerInterceptorAdapter {
 				targetURL.equals("list") ||
 				targetURL.equals("list_search") ||
 				targetURL.equals("updateform") ||
-				targetURL.equals("pwd_check")) {
+				targetURL.equals("pwd_check") ||
+				targetURL.equals("update")) {
 				System.out.println("도착 테스트~");
 				request.setAttribute("coc_name", session.getAttribute("coc_name"));
 				return true;
@@ -45,7 +46,7 @@ public class CocLoginCheck extends HandlerInterceptorAdapter {
 		//비로그인 : write
 		if(login.equals("none")) {
 			System.out.println("비로그인!");
-			if(targetURL.equals("writeform") || targetURL.equals("dupli")) {
+			if(targetURL.equals("write") ||targetURL.equals("writeform") || targetURL.equals("dupli")) {
 				
 				return true;
 			}
