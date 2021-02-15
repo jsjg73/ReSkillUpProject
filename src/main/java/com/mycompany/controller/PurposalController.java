@@ -56,7 +56,7 @@ public class PurposalController {
 		model.addAttribute("TargetDTO_list", TargetDTO_list);
 		
 		/*from 인터셉터*/
-		model.addAttribute("writer", req.getAttribute("writer"));
+//		model.addAttribute("writer", req.getAttribute("writer"));
 		
 		return "pur_writeform";
 	}

@@ -57,6 +57,8 @@ public class CocLoginCheck extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
+		HttpSession sess = request.getSession();
+		modelAndView.addObject("writer", sess.getAttribute("login"));
 		super.postHandle(request, response, handler, modelAndView);
 		
 	}

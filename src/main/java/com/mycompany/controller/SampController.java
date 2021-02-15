@@ -96,7 +96,7 @@ public class SampController {
 		List<String> coc_name_list = cocservice.cocompanyReadByPdt_type(purDTO.getPdt_type().getKey());
 		model.addAttribute("pur",purDTO);
 		model.addAttribute("coc_name_list",coc_name_list);
-		model.addAttribute("writer", req.getAttribute("writer"));
+//		model.addAttribute("writer", req.getAttribute("writer"));
 		return "samp_writeform_step2";
 	}
 	
@@ -178,7 +178,7 @@ public class SampController {
 		samp = samservice.sampleRead(samp.getSamp_id());
 		model.addAttribute("samp",samp);
 		model.addAttribute("pageNum",pageNum);
-		model.addAttribute("writer", req.getAttribute("writer"));
+//		model.addAttribute("writer", req.getAttribute("writer"));
 		return "samp_updateform";
 	}
 	
