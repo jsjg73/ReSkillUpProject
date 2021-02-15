@@ -16,7 +16,7 @@ public class CocLoginCheck extends HandlerInterceptorAdapter {
 		String login = (String) session.getAttribute("login");
 		
 		String targetURL = request.getRequestURL().toString().split("/")[4];
-		
+		System.out.println("targetURL : " + targetURL);
 		if(login == null) {
 			//권한 없음 알림
 			response.sendRedirect("/sessionNull");
@@ -27,15 +27,17 @@ public class CocLoginCheck extends HandlerInterceptorAdapter {
 			request.setAttribute("writer", login);
 			return true;
 		}
-		
+		System.out.println("request.getAttribute(\"coc_name\") :" + session.getAttribute("coc_name"));
+
 		//coc 로그인 :read, list, list_search
-		if(login.equals("coc")) {
+		if(login.equals("coc") && session.getAttribute("coc_name") != null) {
 			if(targetURL.equals("read") ||
 				targetURL.equals("list") ||
 				targetURL.equals("list_search") ||
 				targetURL.equals("updateform") ||
 				targetURL.equals("pwd_check")) {
-				request.setAttribute("coc_name", "제조사1");
+				System.out.println("도착 테스트~");
+				request.setAttribute("coc_name", session.getAttribute("coc_name"));
 				return true;
 			}
 		}
