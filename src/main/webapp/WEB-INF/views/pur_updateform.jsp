@@ -42,10 +42,12 @@
          <c:set var="idx" value="0" />		<!-- check할 targets배열의 인덱스  -->
          <c:forEach var="TargetDTO" items="${TargetDTO_list}">
          	<label>
-         		<input type="checkbox" name="target" value="${TargetDTO }"
-         		<c:if test="${targets[idx] == TargetDTO}"> 
-         		checked="checked" <c:set var="idx" value="${idx+1}" />
-         		</c:if>>
+
+         		<input type="checkbox" name="target" value="${TargetDTO }" 
+         		<c:if test="${targets[idx] == TargetDTO}">
+      				checked="checked"
+      				<c:set var="idx" value="${idx+1}" />
+      			</c:if>>
       			 ${TargetDTO }
          	</label>
 		 </c:forEach>
