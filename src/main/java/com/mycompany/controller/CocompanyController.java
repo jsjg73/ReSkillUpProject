@@ -73,7 +73,7 @@ public class CocompanyController {
 			out.close();
 		}
 
-		return "redirect:/coc_list/1";
+		return "redirect:/coc/list/1";
 	}
 	
 	@RequestMapping(value="list/{pageNum}")
@@ -143,7 +143,7 @@ public class CocompanyController {
 	public String coc_update(CocompanyDTO dto, String pageNum) throws IOException {
 		
 		cocservice.cocompanyUpdate(dto);
-		return "redirect:/coc_list/"+pageNum;
+		return "redirect:/coc/list/"+pageNum;
 	}
 	
 	@RequestMapping(value="/dupli")
