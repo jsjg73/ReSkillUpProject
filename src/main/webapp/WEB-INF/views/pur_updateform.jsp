@@ -42,11 +42,10 @@
          <c:set var="idx" value="0" />		<!-- check할 targets배열의 인덱스  -->
          <c:forEach var="TargetDTO" items="${TargetDTO_list}">
          	<label>
-         		<input type="checkbox" name="target" value="${TargetDTO }" 
-         		<c:if test="${targets[idx] == TargetDTO}">
-      				checked="checked"						<!-- check 활성화 -->
-      				<c:set var="idx" value="${idx+1}" />	<!-- idx 늘려주기 -->
-      			</c:if>>
+         		<input type="checkbox" name="target" value="${TargetDTO }"
+         		<c:if test="${targets[idx] == TargetDTO}"> 
+         		checked="checked" <c:set var="idx" value="${idx+1}" />
+         		</c:if>>
       			 ${TargetDTO }
          	</label>
 		 </c:forEach>
@@ -63,7 +62,9 @@
       </div>
       <div class="form-group">
          <label>저장된 사진</label>
-         <input type="text" value="${dto.orgpic}" readonly="readonly">
+         <input type="text" value="${dto.orgpic}" readonly="readonly"><br>
+      </div>
+      <div class="form-group">
          <label>변경할 사진</label>
          <input type="file" class="form-control" name="file" accept="image/gif,image/jpeg, image/png" >
       </div>
