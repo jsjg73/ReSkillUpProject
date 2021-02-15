@@ -38,6 +38,29 @@ public class UploadServiceImpl implements UploadService {
 		return saveName;
 	}
 	@Override
+	public String saveFile(MultipartFile file, String realPath , Date date) {
+		//실제 저장 위치
+		File uploadPath = new File(realPath+"resources/upload/tmp",getFolder(date));
+		
+		if(uploadPath.exists()==false)
+			uploadPath.mkdirs();
+		//make yyyy/MM/dd folder
+		UUID uuid = UUID.randomUUID();
+		
+		String saveName = uuid.toString()+"_"+ file.getOriginalFilename();
+	    // 저장할 File 객체를 생성(껍데기 파일)
+	    File saveFile = new File(uploadPath,saveName); // 저장할 폴더 이름, 저장할 파일 이름
+
+	    try {
+	        file.transferTo(saveFile); // 업로드 파일에 saveFile이라는 껍데기 입힘
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+
+		return saveName;
+	}
+	@Override
 	public void updateFile(MultipartFile file, String realPath, String pic, Date date) {
 		
 		//실제 저장 위치

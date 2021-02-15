@@ -240,7 +240,14 @@ public class PurposalController {
 			dto.setOrgpic(file.getOriginalFilename());
 			// 업로드 위치 절대경로
 			String realPath = sess.getServletContext().getRealPath("/");
-			upload.updateFile(file,realPath,dto.getPic(),dto.getIns_date());
+			if(dto.getPic().equals("")) { // 사진 처음 등록
+				//insert 날짜 넘겨주기
+				//메스도 새로 파기
+				dto.setPic(upload.saveFile(file,realPath,dto.getIns_date()));
+				
+			}else {
+				upload.updateFile(file,realPath,dto.getPic(),dto.getIns_date());
+			}
 		}
 		service.purposalUpdate(dto);
 		return "redirect:/pur/list/"+pageNum;

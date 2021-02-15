@@ -31,6 +31,7 @@
 		SET
 		price = #{price},
 		arriv_date = #{arriv_date},
+		pic=#{pic},
 		bigo = #{bigo},
 		upd_date = sysdate
 		WHERE samp_id = #{samp_id}
