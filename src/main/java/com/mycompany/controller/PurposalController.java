@@ -67,8 +67,6 @@ public class PurposalController {
 	public String pur_write(@RequestParam("file") MultipartFile file, PurposalDTO dto,  HttpSession sess, HttpServletRequest res) {
 		
 		//DB 처리 : mybatis
-
-		dto.setWriter((String)sess.getAttribute("session"));
 		if(!file.isEmpty()) {
 			dto.setOrgpic(file.getOriginalFilename());
 			// 업로드 위치 절대경로
