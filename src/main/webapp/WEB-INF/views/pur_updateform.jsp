@@ -44,8 +44,8 @@
          	<label>
          		<input type="checkbox" name="target" value="${TargetDTO }" 
          		<c:if test="${targets[idx] == TargetDTO}">
-      				checked="checked"						<!-- check 활성화 -->
-      				<c:set var="idx" value="${idx+1}" />	<!-- idx 늘려주기 -->
+      				checked="checked"
+      				<c:set var="idx" value="${idx+1}" />
       			</c:if>>
       			 ${TargetDTO }
          	</label>
