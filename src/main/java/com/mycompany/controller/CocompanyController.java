@@ -51,7 +51,7 @@ public class CocompanyController {
 
 	// 등록
 	@RequestMapping(value = "write", method = RequestMethod.POST)
-	public String coc_write(CocompanyDTO dto, HttpServletResponse response) throws IOException {
+	public String coc_write(CocompanyDTO dto, HttpServletResponse response, HttpSession sess) throws IOException {
 
 		// DB 처리 : mybatis
 		System.out.println(dto.toString());
@@ -72,7 +72,14 @@ public class CocompanyController {
 			out.flush();
 			out.close();
 		}
-
+		if(sess.getAttribute("login").equals("none")) {
+			response.setContentType("text/html; charset=UTF-8");			 
+			PrintWriter out = response.getWriter();		 
+			out.println("<script>alert('제조사 등록이 되었습니다.'); location.href='/home/coc_login';</script>");
+			 
+			out.flush();
+			out.close();
+		}
 		return "redirect:/coc/list/1";
 	}
 	
